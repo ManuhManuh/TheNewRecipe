@@ -1,2 +1,2 @@
 # TheNewRecipe
- Demo chapter of Escape Room game
+ Chapter 1 Demo
