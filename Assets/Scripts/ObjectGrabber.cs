@@ -7,10 +7,10 @@ public class ObjectGrabber : MonoBehaviour
     public string gripInputName;
     public string triggerInputName;
     public int inventoryObjectLayer;
-    public Rigidbody gripTarget;
+    //public Rigidbody gripTarget;
 
     private GrabbableObject grabbedObject;
-    private PullableObject pulledObject;
+    //private PullableObject pulledObject;
     private TouchableObject touchedObject;
 
 

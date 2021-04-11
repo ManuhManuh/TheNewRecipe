@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GrabWithJoint : GrabbableObject
 {
-    private FixedJoint fixedJoint;
 
+    private FixedJoint fixedJoint;
 
     public override void OnGrab(ObjectGrabber grabber)
     {
