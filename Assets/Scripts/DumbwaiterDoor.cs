@@ -41,7 +41,7 @@ public class DumbwaiterDoor : ControlledObject
         toPosition = originalPosition;
 
     }
-    private void FixedUpdate()
+    private void Update()
     {
         if (fromPosition == toPosition)
         {
@@ -61,7 +61,7 @@ public class DumbwaiterDoor : ControlledObject
             transform.position = Vector3.MoveTowards(transform.position, originalPosition, maxDistanceDeltaClose * Time.deltaTime);
         }
     }
-
+    /*
     private void OnCollisionEnter(Collision collision)
     {
         // If something other than the player has collided with the door
@@ -73,6 +73,23 @@ public class DumbwaiterDoor : ControlledObject
     }
 
     private void OnCollisionExit(Collision collision)
+    {
+        // If the door has not finished closing yet, continue closing
+        if (fromPosition != toPosition)
+        {
+            closing = true;
+        }
+    }
+    */
+    private void OnTriggerEnter(Collider other)
+    {
+        // If something other than the player has collided with the door
+        // if (other.collider.CompareTag("DoorStopper"))
+        //{
+            closing = false;
+       // }
+    }
+    private void OnTriggerExit(Collider other)
     {
         // If the door has not finished closing yet, continue closing
         if (fromPosition != toPosition)

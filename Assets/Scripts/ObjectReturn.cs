@@ -8,14 +8,15 @@ public class ObjectReturn : GrabWithJoint
     public float proximityToOrigin;
     public float maxDistanceDelta;
 
-    private Vector3 originalPosition;
+    protected Vector3 targetPosition;
     private bool dropped;
     private bool nearby;
 
     public override void Start()
     {
         base.Start();
-        originalPosition = transform.position;
+        // Set the target position as the original position of the object
+        targetPosition = transform.position;
         dropped = false;
     }
 
@@ -25,7 +26,7 @@ public class ObjectReturn : GrabWithJoint
 
         // Check to see if the object is close enough to its original starting point (on all axes) to be snapped back there
 
-        nearby = Vector3.Distance(originalPosition, transform.position) < proximityToOrigin;
+        nearby = Vector3.Distance(targetPosition, transform.position) < proximityToOrigin;
         dropped = true;
 
     }
@@ -35,7 +36,7 @@ public class ObjectReturn : GrabWithJoint
 
         if (dropped && nearby)
         {
-            transform.position = Vector3.MoveTowards(transform.position, originalPosition, maxDistanceDelta * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, maxDistanceDelta * Time.deltaTime);
         }
         
     }

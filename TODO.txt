@@ -1,0 +1,31 @@
+*Make grabbing script join on pickup target points instead of outer rigidbody (more realisting grabbing)
+*Make inventory system work
+	*Create spots for all inventory object
+	*Create highlight masks for each
+	*Write script that cycles through them for selection and places selection in player's hand
+*Make menu system work
+	*Main starting menu: set height (sitting or standing) and adjust XR Rig height accordingly
+*Build intro
+	*Initial VO
+	*Animation of slamming door
+	*Start player facing the notre 
+*Music
+	*Ambient music
+	*FX: Tones for final keg puzzle
+*SoundFX
+	*Opening drawers
+	*Opening Dumbwaiter door
+	*Placing wine bottles
+	*Cutting bag open
+	*Smashing vases
+*Make smashing vases work (breakable object scripts, broken versions of vases)
+*Make cutting bag open work (mesh manipulation, animation)
+*Make the wall mounted clue for inside the dumbwaiter
+*Make the win scenario
+	*Keg with the front cover off, some indicator to crawl through
+	*Credits scene after (or "stay tuned for chaper 2")
+*Remake notes with texture instead of TMP
+*Lock the desk drawer that the hammer is in, so it is the last thing found
+*Key is in bag
+*Knife to open bag is in wine desk drawer
+*Set up teleport points

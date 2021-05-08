@@ -7,12 +7,9 @@ public class ObjectGrabber : MonoBehaviour
     public string gripInputName;
     public string triggerInputName;
     public int inventoryObjectLayer;
-    //public Rigidbody gripTarget;
 
     private GrabbableObject grabbedObject;
-    //private PullableObject pulledObject;
     private TouchableObject touchedObject;
-
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +73,7 @@ public class ObjectGrabber : MonoBehaviour
         // Check if the object we touched is grabbable (has the grabbable script on it)
         GrabbableObject grabbable = other.GetComponent<GrabbableObject>();
 
+        // If we aren't already holding something
         if (grabbable != null)
         {
             // Store the current grabbable object

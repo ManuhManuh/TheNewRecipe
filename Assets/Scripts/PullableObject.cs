@@ -44,7 +44,7 @@ public class PullableObject : GrabbableObject
 
     public void Update()
     {
-        // Note that GrabbableObject scr does NOT have an update method
+        // Note that GrabbableObject script does NOT have an update method
 
         // Calculate the velocity of the object since the last update
         Vector3 velocity = transform.position - prevPosition;

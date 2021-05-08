@@ -6,6 +6,15 @@ TagManager:
   tags:
   - InvalidTeleportTarget
   - DoorStopper
+  - SolidSurface
+  - GrabPoint
+  - WineBottle
+  - DrawerBottom
+  - Brick
+  - Tap
+  - CorrectWineSlot
+  - Hammer
+  - Key
   layers:
   - Default
   - TransparentFX
@@ -18,7 +27,7 @@ TagManager:
   - InventoryObject
   - InvalidTeleportTarget
   - DrawerPart
-  - 
+  - Bricks
   - 
   - 
   - 

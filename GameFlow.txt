@@ -1,0 +1,48 @@
+Opening scene: 
+*Title
+*Sitting/Standing (Sitting will use teleport points, standing will be free teleporting)
+*Start
+
+Intro:
+*Fade Opening scene
+*Audio in first:
+	*Scuffle from behind the door (bar owner attacked by bad guys trying to steal recipe)
+*Bang of door, visual starts (player looking at the door)
+*"Psst! Look down" - pause until player looks down (raytrace from camera to see if spot in front of door is hit), note slid under door
+*Whisper of instructions to get out through the secrect exit and meet up later
+*Sounds of owner being hauled away by bad guys
+*Ambient sound starts
+
+Main Game:
+*Note slipped under the door is picked up, and it says "Tap the kegs"
+*Player goes down the stairs and finds another note on the barrel at the bottom: it is the first of three diagrams that are necessary to solve the keg puzzle
+*Several possible choices once in main room, order not important
+	*Open dumbwaiter door (prop with ladder) - second of three diagrams necessary to solve the keg puzzle, plus a tap
+	*Try desk drawers: 
+		*left one is locked (has hammer with rainbow head for changing keg colours)
+		*middle one has plus drink rings that indicate solution to wine puzzle
+		*right one has tap
+	*Try drawers in wine cabinet: 
+		*left one has a tap, but handle is hidden until wine puzzle is solved
+		*middle one has note: "Don't forget to put the wine away"
+		*right one has a knife
+			*Use knife to slice open bag beside the cabinet: find key to open left desk drawer
+			*Use key to open drawer in desk: get hammer
+	*Pick up item (one of several - they don't go into inventory) from shelves and smash vases: find a tap
+	*Box on shelf has picture of vases with FRAGILE written on it to clue the vase breaking
+*Items enter inventory as picked up (including notes)
+	*Go into their "spot" beneath the stairs
+	*Are highlightable when inventory is pulled up
+	*Diagram spots are indicated
+	*Inventory appears automatically for a few seconds when items are added to it
+*Taps can go in any keg - orientation is important
+*Colours of kegs are set with hammer
+
+Win scenario:
+*When keg puzzle is completed correctly
+	*Front of center keg opens, player can teleport into it
+	*Alternately, if that looks dumb, the whole rack of kegs will either raise or lower to reveal a secret door behind it
+	*Audio (thinking to self) "Now, to meet up with {owner}..."
+	*"Stay tuned for Chapter 2" splash screen
+	*Credits 
+

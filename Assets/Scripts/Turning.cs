@@ -14,36 +14,40 @@ public class Turning : MonoBehaviour
 
     void Update()
     {
-        // If the thumbstick is being pushed left (player wants to turn left)
-        if (Input.GetAxis(thumbstickTurnInputName) < thumbstickLeftThreshold)
+        if (!InventoryManager.instance.InventoryOpen)
         {
-            // Flag the rotation of the player to be 90 degrees to the left
-            rotation = -45;
-        }
-        else
-        {
-            // If the thumbstick is being pushed right (player want to turn right)
-            if (Input.GetAxis(thumbstickTurnInputName) > thumbstickRightThreshold)
+            // If the thumbstick is being pushed left (player wants to turn left) and the inventory is not open
+            if (Input.GetAxis(thumbstickTurnInputName) < thumbstickLeftThreshold)
             {
-                // Flag the rotation of the player to be 90 degrees to the right
-                rotation = 45;
+                // Flag the rotation of the player to be 90 degrees to the left
+                rotation = -45;
             }
             else
             {
-                // Check if the thumbstick has been released
-                if(Input.GetAxis(thumbstickTurnInputName) == 0 && !(rotation == 0))
+                // If the thumbstick is being pushed right (player want to turn right)
+                if (Input.GetAxis(thumbstickTurnInputName) > thumbstickRightThreshold)
                 {
-                    // Perform the rotation
-                    player.transform.eulerAngles = new Vector3(
-                        player.transform.eulerAngles.x, 
-                        player.transform.eulerAngles.y + rotation, 
-                        player.transform.eulerAngles.z);
+                    // Flag the rotation of the player to be 90 degrees to the right
+                    rotation = 45;
+                }
+                else
+                {
+                    // Check if the thumbstick has been released
+                    if (Input.GetAxis(thumbstickTurnInputName) == 0 && !(rotation == 0))
+                    {
+                        // Perform the rotation
+                        player.transform.eulerAngles = new Vector3(
+                            player.transform.eulerAngles.x,
+                            player.transform.eulerAngles.y + rotation,
+                            player.transform.eulerAngles.z);
 
-                    // Reset the rotation flag
-                    rotation = 0;
+                        // Reset the rotation flag
+                        rotation = 0;
+                    }
                 }
             }
         }
+        
     }
 }
 
