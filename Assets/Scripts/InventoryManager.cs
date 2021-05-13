@@ -7,12 +7,13 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager instance;
 
     public GameObject inventoryDisplay;
-    public string buttonRightPrimaryInputName;
-    public string buttonLeftPrimaryInputName;
+    public string buttonInventoryDisplayInputName;
+    public string buttonInventorySelectInputName;
     public string thumbstickAdvanceInputName;
     public float thumbstickAdvanceThreshold;
 
     public List<GameObject> highlights = new List<GameObject>();
+    public List<InventorySlot> slots = new List<InventorySlot>();
 
     public bool InventoryOpen => inventoryActive;
     private bool inventoryActive;
@@ -22,7 +23,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Awake()
     {
-        // Are there any other inventory managers yet?
+        // Are there any other game managers yet?
         if (instance != null)
         {
             // Error
@@ -32,27 +33,26 @@ public class InventoryManager : MonoBehaviour
         {
             instance = this;
         }
-        inventoryActive = inventoryDisplay.activeSelf;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         // If the A button is pressed
-        if (Input.GetButtonDown(buttonRightPrimaryInputName))
+        if (Input.GetButtonDown(buttonInventoryDisplayInputName))
         {
             // Toggle the inventory display in/out of view
             inventoryDisplay.SetActive(!inventoryDisplay.activeSelf);
         }
 
         // If the thumbstick is being pushed sideways while inventory is active
-        if (Input.GetAxis(thumbstickAdvanceInputName) < -thumbstickAdvanceThreshold)
+        if (Input.GetAxis(thumbstickAdvanceInputName) < -thumbstickAdvanceThreshold && inventoryDisplay.activeSelf)
         {
             // Flag the rotation of the player to be 90 degrees to the left
             advance = -1;
@@ -60,7 +60,7 @@ public class InventoryManager : MonoBehaviour
         else
         {
             // If the thumbstick is being pushed right (player want to turn right)
-            if (Input.GetAxis(thumbstickAdvanceInputName) > thumbstickAdvanceThreshold)
+            if (Input.GetAxis(thumbstickAdvanceInputName) > thumbstickAdvanceThreshold && inventoryDisplay.activeSelf)
             {
                 // Flag the rotation of the player to be 90 degrees to the right
                 advance = 1;
@@ -68,7 +68,7 @@ public class InventoryManager : MonoBehaviour
             else
             {
                 // Check if the thumbstick has been released
-                if (Input.GetAxis(thumbstickAdvanceInputName) == 0 && !(advance == 0))
+                if (Input.GetAxis(thumbstickAdvanceInputName) == 0 && !(advance == 0) && inventoryDisplay.activeSelf)
                 {
                     // Cycle to next highlight
                     for (int i = 0; i < highlights.Count; i++)
@@ -90,28 +90,41 @@ public class InventoryManager : MonoBehaviour
         }
 
         // If the B button is pressed
-        if (Input.GetButtonDown(buttonLeftPrimaryInputName))
+        if (Input.GetButtonDown(buttonInventorySelectInputName))
         {
-            // If the object is in the inventory, give it to the player
-            
+            // Cycle to next highlight
+            for (int i = 0; i < highlights.Count; i++)
+            {
+                if (highlights[i].activeSelf)
+                {
+                    slots[i].OnObjectWithdrawn();
+                }
+            }
+
         }
 
         inventoryActive = inventoryDisplay.activeSelf;
     }
 
-    public void OnObjectDeposited()
+    public void OnInventoryObjectAcquired(GrabbableObject inventoryObject, Vector3 objectLocalPosition, Quaternion objectLocalRotation)
     {
-        // Make the object visible in the inventory view
+        // Figure out which slot the object goes in
+        for (int i = 0; i < slots.Count; i++)
+        {
 
-        // Make the object invisible in the scene
+            if (slots[i].CompareTag(inventoryObject.tag))
+            {
+                // Tell the slot the object has been deposited
+                slots[i].OnObjectDeposited(inventoryObject, objectLocalPosition, objectLocalRotation);
+            }
+        }
+        
 
-        // Tell the appropriate slot that it now has an object
     }
 
-    public void OnObjectWithdrawn()
+    public void OnInventoryObjectUsed(GrabbableObject inventoryObject)
     {
-        // Find out which object was selected to withdraw
-        // Call whatever grabbable script is required by the specific object (ie with joint or not)
-        // Tell the appropriate slot that an object has been removed
+        // Currently does nothing, except avoids being put back in inventory
+
     }
 }

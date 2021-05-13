@@ -15,10 +15,14 @@ public class Teleporter : MonoBehaviour
     public Transform player;
 
     private bool hasValidTeleportTarget;
+    private int validTargetLayerMask;
+    private int teleportTargetLayer;
 
     void Start()
     {
         SetBeamVisible(false);
+        teleportTargetLayer = LayerMask.NameToLayer("ValidTeleportTarget");
+        validTargetLayerMask = 1 << teleportTargetLayer;
     }
 
     void Update()
@@ -33,34 +37,31 @@ public class Teleporter : MonoBehaviour
             SetBeamEndPoint(transform.position + transform.forward * range);
 
             // Check if the beam hit something
- 
-            if (Physics.Raycast(transform.position, transform.forward, out var hit, range))
-            {
-                // Update beam end point to the point in space it hit (so it doesn't pass though any objects
-                SetBeamEndPoint(hit.point);
+            //if (Physics.Raycast(transform.position, transform.forward, out var hit, range))
 
-                // If the thing it hit is a valid teleport target
-                if (IsValidTeleportTarget(hit.collider.gameObject))
-                {
+            RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, range, validTargetLayerMask);
+            {
+                // See if we hit a valid teleport target
+                if (hits.Length > 0) 
+                { 
+                    // Grab the first thing hit (should only be one anyway)
+                    RaycastHit hit = hits[0];
+
+                    // Update beam end point to the point in space it hit (so it doesn't pass though any objects)
+                    SetBeamEndPoint(hit.point);
+
                     // Set the beam to be valid (which will change colour, show spot, etc.) 
                     SetTeleportValid(true);
 
                     // Set the position of the teleport indicator (just off the floor to avoid z-fighting)
                     teleportIndicator.transform.position = hit.point + Vector3.up * 0.001f;
                 }
-                else   // If the thing it his is an invalid teleport target
+                else
                 {
                     // Set the beam to be invalid
                     SetTeleportValid(false);
                 }
-
             }
-            else      // We didn't hit anything
-            {
-                // Set the beam to be invalid
-                SetTeleportValid(false);
-            }
-
         }
 
         else     // The thumbstick has been released or is no longer being pushed forward
@@ -84,7 +85,7 @@ public class Teleporter : MonoBehaviour
     private bool IsValidTeleportTarget(GameObject gameObject)
     {
         
-        return !(gameObject.CompareTag("InvalidTeleportTarget"));
+        return (gameObject.CompareTag("ValidTeleportTarget"));
     }
 
     private void SetBeamVisible(bool visible)

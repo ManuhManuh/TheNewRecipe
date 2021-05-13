@@ -11,10 +11,14 @@ TagManager:
   - WineBottle
   - DrawerBottom
   - Brick
-  - Tap
   - CorrectWineSlot
+  - InventoryObject
+  - Undefined
+  - Tap
   - Hammer
   - Key
+  - ValidTeleportTarget
+  - ColourRing
   layers:
   - Default
   - TransparentFX
@@ -25,7 +29,7 @@ TagManager:
   - 
   - 
   - InventoryObject
-  - InvalidTeleportTarget
+  - ValidTeleportTarget
   - DrawerPart
   - Bricks
   - 

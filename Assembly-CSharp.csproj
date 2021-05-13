@@ -77,7 +77,6 @@
     <Compile Include="Assets\Scripts\Keg.cs" />
     <Compile Include="Assets\Scripts\LockedByKey.cs" />
     <Compile Include="Assets\Scripts\LockedByWinePuzzle.cs" />
-    <Compile Include="Assets\Scripts\LockedDrawer.cs" />
     <Compile Include="Assets\Scripts\MoveObject.cs" />
     <Compile Include="Assets\Scripts\ObjectGrabber.cs" />
     <Compile Include="Assets\Scripts\ObjectReturn.cs" />

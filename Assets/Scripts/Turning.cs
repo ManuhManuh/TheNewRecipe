@@ -14,8 +14,8 @@ public class Turning : MonoBehaviour
 
     void Update()
     {
-        if (!InventoryManager.instance.InventoryOpen)
-        {
+        //if (!InventoryManager.instance.InventoryOpen)
+        //{
             // If the thumbstick is being pushed left (player wants to turn left) and the inventory is not open
             if (Input.GetAxis(thumbstickTurnInputName) < thumbstickLeftThreshold)
             {
@@ -46,7 +46,7 @@ public class Turning : MonoBehaviour
                     }
                 }
             }
-        }
+       // }
         
     }
 }

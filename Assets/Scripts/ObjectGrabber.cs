@@ -6,7 +6,6 @@ public class ObjectGrabber : MonoBehaviour
 {
     public string gripInputName;
     public string triggerInputName;
-    public int inventoryObjectLayer;
 
     private GrabbableObject grabbedObject;
     private TouchableObject touchedObject;
@@ -76,8 +75,17 @@ public class ObjectGrabber : MonoBehaviour
         // If we aren't already holding something
         if (grabbable != null)
         {
-            // Store the current grabbable object
-            grabbedObject = grabbable;
+            // Check if the object is available to be grabbed
+            if (grabbable.AvailableToGrab)
+            {
+                // Store the current grabbable object
+                grabbedObject = grabbable;
+            }
+            else
+            {
+                // TODO: make this message a property
+                // Debug.Log("Object is unavailable - may be locked");
+            }
         }
 
     }
@@ -95,5 +103,16 @@ public class ObjectGrabber : MonoBehaviour
 
         }
 
+    }
+
+    public void OnInventoryWithdrawl(GrabbableObject grabbable)
+    {
+        // If we aren't already holding something
+        if (grabbable != null)
+        {
+            // Store the current grabbable object
+            grabbedObject = grabbable;
+
+        }
     }
 }

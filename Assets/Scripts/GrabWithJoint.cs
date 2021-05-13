@@ -10,7 +10,6 @@ public class GrabWithJoint : GrabbableObject
     public override void OnGrab(ObjectGrabber grabber)
     {
         // Create a fixed joint between this object and the grabber
-
         fixedJoint = gameObject.AddComponent<FixedJoint>();
         fixedJoint.connectedBody = grabber.GetComponent<Rigidbody>();
 

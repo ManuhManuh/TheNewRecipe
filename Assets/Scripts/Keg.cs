@@ -7,27 +7,32 @@ public class Keg : MonoBehaviour
     public Color correctColour;
     public Transform tapPlaceholder;
     public float maxDistanceDelta;
-
-    private bool colourIsCorrect;
-    private Color currentColour;
-    private bool hasTap;
-    private bool placingTap;
-    private Transform tap;
-
-    private List<Color> colourCycle => new List<Color>();
     public bool ColourIsCorrect => colourIsCorrect;
     public bool HasTap => hasTap;
 
-    public void Start()
-    {
-        colourCycle.Add(Color.blue);
-        colourCycle.Add(Color.magenta);
-        colourCycle.Add(Color.red);
-        colourCycle.Add(Color.green);
-        colourCycle.Add(Color.yellow);
-        colourCycle.Add(Color.black);
 
-        currentColour = Color.black;
+    private bool colourIsCorrect;
+    private bool hasTap;
+    private Color currentColour;
+    private int colourIndex;
+    private bool placingTap;
+    private Transform tap;
+    private GameObject colourRing;
+
+    private Color test;
+
+    public void Start()
+    {        
+        colourIsCorrect = false;
+        foreach (Transform child in transform)
+        {
+            if (child.CompareTag("ColourRing"))
+            {
+                colourRing = child.gameObject;
+                test = colourRing.GetComponent <MeshRenderer>().material.color;
+            }
+        }
+        colourIndex = 0;
     }
 
     private void Update()
@@ -53,22 +58,31 @@ public class Keg : MonoBehaviour
 
     public void OnChangeColour()
     {
-        // Find the current colour
-        int indexOfCurrentColour = colourCycle.IndexOf(currentColour);
-
-        // Find which colour is next in the list
-        int nextColourIndex = (indexOfCurrentColour > colourCycle.Count ? 0 : indexOfCurrentColour + 1);
-
-        // Set the object to that colour
-        gameObject.GetComponent<Material>().color = colourCycle[nextColourIndex];
+        // Set the colour ring to the next colour in the cycle
+        int newIndex = colourIndex < 5 ? colourIndex + 1 : 0;
+        colourRing.GetComponent<MeshRenderer>().material.color = GameManager.ColourCycle[newIndex];
+        currentColour = GameManager.ColourCycle[newIndex];
 
         // Reset the value of the current colour
-        currentColour = colourCycle[nextColourIndex];
+        colourIndex = newIndex;
+
+        // Check if the current colour is the correct colour
+
+        if (currentColour == correctColour)
+        {
+            // Flag as having the correct colour
+            colourIsCorrect = true;
+
+            // Let the Game Manager know a keg reached the correct colour
+            GameManager.OnKegColoured();
+        }
     }
 
-    public void OnCollisionEnter(Collision collision)
+
+    private void OnTriggerEnter(Collider other)
     {
-        GameObject hitMe = collision.gameObject;
+        GameObject hitMe = other.gameObject;
+
         // If the thing that collided was a tap
         if (hitMe.CompareTag("Tap"))
         {
@@ -81,13 +95,10 @@ public class Keg : MonoBehaviour
         }
 
         // If the thing that collided was the hammer
-        if(hitMe.name == "Hammer")
+        if (hitMe.CompareTag("Hammer"))
         {
             // Change to the next colour in the cycle
             OnChangeColour();
         }
-        
     }
-
-
 }
