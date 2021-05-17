@@ -17,8 +17,9 @@ TagManager:
   - Tap
   - Hammer
   - Key
-  - ValidTeleportTarget
   - ColourRing
+  - WineSlot
+  - SittingTarget
   layers:
   - Default
   - TransparentFX

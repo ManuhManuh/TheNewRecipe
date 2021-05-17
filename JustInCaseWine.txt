@@ -1,0 +1,246 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WineSlot : MonoBehaviour
+{
+    [SerializeField] private GameObject wineRack;
+    public bool CorrectFillStatus => correctFillStatus;
+    public bool Occupied => occupied;
+    public WineBottle Occupant => occupant;
+
+    private bool shouldBeFilled;
+    private bool correctFillStatus;
+    private bool occupied;
+    private WineBottle occupant;
+    private bool bottleGrabbed;
+
+    private void Start()
+    {
+        // Check if this slot should be filled 
+        shouldBeFilled = gameObject.CompareTag("CorrectWineSlot");
+
+        // InitialiZe the correct fill status
+        correctFillStatus = !shouldBeFilled;
+
+    }
+
+    public void OnBottlePlaced(WineBottle bottle)
+    {
+        Debug.Log("WineSlot.OnBottlePlaced");
+        // Update the correct fill status (Game Manager checks for this)
+        correctFillStatus = shouldBeFilled;
+
+        // update the occupied flag
+        occupied = true;
+
+        // update the occupant
+        occupant = bottle;
+    }
+
+    public void OnBottleGrabbed()
+    {
+        // Set the flag to wait for the exit trigger (so triggers not preceded by a grab are ignored)
+        bottleGrabbed = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("WineSlot.OnTriggerEnter");
+
+        // If the slot is not already occupied by a bottle
+        if (!occupied)
+        {
+            // If the slot was triggered by a wine bottle
+            if (other.CompareTag("WineBottle"))
+            {
+                // If the wine bottle has a parent
+                if (other.transform.parent != null)
+                {
+                    // If the wine bottle was a child of an object grabber when it entered (i.e. it was deliberately placed)
+                    if (other.transform.parent.TryGetComponent<ObjectGrabber>(out ObjectGrabber grabber))
+                    {
+                        // Inform the wine rack that this slot was entered and by which bottle
+                        wineRack.GetComponent<WineRack>().OnSlotEntered(this, other.GetComponent<WineBottle>());
+                    }
+                }
+            }
+        }
+        
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        // If we are waiting on a trigger exit from the current bottle occupying the slot
+        if(bottleGrabbed && other == occupant)
+        {
+            // Update the correct fill status (Game Manager checks for this)
+            correctFillStatus = shouldBeFilled;
+
+            // update the occupied  flag
+            occupied = false;
+
+            // Remove the bottle as occupant
+            occupant = null;
+            other.GetComponent<WineBottle>().CurrentSlot = null;
+        }
+ 
+    }
+
+}
+
+
+
+
+**********************************************
+
+
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WineRack : MonoBehaviour
+{
+    public WineBottle CurrentWineBottle => currentWineBottle;
+    private Vector3 restPosition;
+    private Quaternion restRotation;
+    private bool moveBottle;
+    private WineSlot currentSlot;
+    private WineBottle currentWineBottle;
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if (moveBottle)
+        {
+            // Move toward the position (TODO: Lerp this)
+            currentWineBottle.transform.position = restPosition;
+
+            // Turn toward the rotation (TODO: Lerp this)
+            currentWineBottle.transform.rotation = restRotation;
+
+            // If destination reached
+            if (currentWineBottle.transform.position == restPosition && currentWineBottle.transform.rotation == restRotation)
+            {
+                Debug.Log("WineRack bottle placed (task in update finished)");
+                // Stop moving the bottle
+                moveBottle = false;
+
+                // Let the slot know that the bottle was placed
+                currentSlot.GetComponent<WineSlot>().OnBottlePlaced(currentWineBottle);
+
+                // Reset current slot and wine bottle so new triggers can be accepted
+                currentWineBottle = null;
+                currentSlot = null;
+            }
+        }
+    }
+
+    public void OnSlotEntered(WineSlot slot, WineBottle bottle)
+    {
+        Debug.Log("WineRack.OnSlotTriggered");
+
+        // Set the latest trigger as the current slot
+        currentSlot = slot;
+
+        // Record the current bottle - wait for the OnDrop method of this bottle before doing anything with it
+        currentWineBottle = bottle;
+    }
+
+    public void OnSlotExited(WineSlot slot)
+    {
+        // Let the Game Manager know that a slot has been emptied
+        GameManager.OnWineSlotUpdated();
+    }
+
+    public void OnCurrentBottleDropped()
+    {
+        // Get the position and rotation of the most recently triggered slot
+        restPosition = currentSlot.transform.position;
+        restRotation = currentSlot.transform.rotation;
+
+        // Flag the bottle to be moved to the rest position in Update method
+        moveBottle = true;
+
+        // Let the bottle know which slot it was placed in
+        currentWineBottle.GetComponent<WineBottle>().OnStored(currentSlot);
+
+        // Let the Game Manager know that a slot has been filled
+        GameManager.OnWineSlotUpdated();
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log($"Collision with wine rack registered by: {collision.gameObject}");
+    }
+}
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WineBottle : GrabbableObject
+{
+    public WineRack wineRack;
+    public WineSlot CurrentSlot
+    {
+        get
+        {
+            return currentSlot;
+        }
+        set
+        {
+            currentSlot = value;
+        }
+    }
+
+    private WineSlot currentSlot;
+
+    public override void OnDrop()
+    {
+        Debug.Log("Wine bottle OnDrop");
+
+        // Check to see if the bottle is entirely outside of the wine rack
+
+
+        // Check with the wine rack to see if this wine bottle is the current one it is waiting for a drop signal from
+        if(!(wineRack.CurrentWineBottle == null))
+        {
+            if (wineRack.CurrentWineBottle == this)
+            {
+                // Unparent the bottle from the hand and parent it to the wine rack instead
+                transform.SetParent(wineRack.transform);
+
+                // Tell the wine rack that its current bottle has been dropped
+                wineRack.OnCurrentBottleDropped();
+
+                return;
+            }
+
+        }
+
+        // Drop normally like any other object
+        base.OnDrop();
+    }
+
+    public override void OnGrab(ObjectGrabber grabber)
+    {
+        base.OnGrab(grabber);
+        
+        // If the bottle was grabbed after being placed in a slot
+        if(!(currentSlot == null))
+        {
+            // Let the wine slot know the bottle has been grabbed so it can check for a trigger exit
+            currentSlot.OnBottleGrabbed();
+        }
+        
+    }
+
+    public void OnStored(WineSlot slot)
+    {
+        // Set the current slot
+        currentSlot = slot;
+    }
+}

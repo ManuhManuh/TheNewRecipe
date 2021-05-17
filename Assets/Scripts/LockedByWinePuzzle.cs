@@ -2,27 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LockedByWinePuzzle : GrabWithJoint
+public class LockedByWinePuzzle : ObjectReturn
 {
-    public bool locked;
+    public GameObject handle;
 
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
-        locked = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        GetComponent<GrabbableObject>().ObjectLocked = true;
     }
 
     public override void OnGrab(ObjectGrabber grabber)
     {
+   
         // If the drawer has been checked and found unlocked already
-        if (!locked)
+        if (GetComponent<GrabbableObject>().ObjectLocked == false)
         {
             base.OnGrab(grabber);
         }
@@ -31,7 +26,10 @@ public class LockedByWinePuzzle : GrabWithJoint
             // Check if the drawer was unlocked since last attempt
             if (GameManager.wineBottlesPlaced)
             {
-                locked = false;
+                // Unlock the drawer
+                GetComponent<GrabbableObject>().ObjectLocked = false;
+
+                // Grab the drawer and open it
                 base.OnGrab(grabber);
             }
             else

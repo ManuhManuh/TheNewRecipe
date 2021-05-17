@@ -39,15 +39,22 @@ public class ObjectGrabber : MonoBehaviour
             // Change the animation from grip to idle
             GetComponent<Animator>().SetBool("Gripped", false);
 
-            // Check if we are holding an object
-            if (grabbedObject != null)
+            // Check if we are holding any Grabbable object (may not be stored in grabbedObject due to timing mishaps)
+            foreach (Transform child in transform)
+            {
+                if (child.GetComponent<GrabbableObject>() && grabbedObject == null)
+                {
+                    grabbedObject = child.GetComponent<GrabbableObject>();
+                }
+            }
+
+            if(grabbedObject != null)
             {
                 // Drop the object we are holding
                 grabbedObject.OnDrop();
 
                 // Forget the object that was held
                 grabbedObject = null;
-
             }
 
         }
@@ -76,7 +83,7 @@ public class ObjectGrabber : MonoBehaviour
         if (grabbable != null)
         {
             // Check if the object is available to be grabbed
-            if (grabbable.AvailableToGrab)
+            if (!grabbable.ObjectUsed && !grabbable.ObjectLocked)
             {
                 // Store the current grabbable object
                 grabbedObject = grabbable;

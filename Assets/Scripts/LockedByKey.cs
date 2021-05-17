@@ -4,70 +4,71 @@ using UnityEngine;
 
 public class LockedByKey : MonoBehaviour
 {
-    private bool locked;
-    private bool available => !locked;
+    private Animator keyAnimator;
+
     private Vector3 keyPosition;
-    private Quaternion keyInitialRotation;
-    private Quaternion keyFinalRotation;
-    private bool keyTurning;
+    private Quaternion keyRotation;
+    private Transform key;
 
     private void Start()
     {
-        locked = true;
-        gameObject.GetComponent<GrabbableObject>().OnAvailabilityChanged(available);
+        GetComponent<GrabbableObject>().ObjectLocked = true;
 
         // Find the sample key among child objects
         foreach (Transform child in transform)
         {
             if (child.CompareTag("Key"))
             {
-                // Record the position and rotation of the sample object
+                // Record the position and rotation of the sample key
                 keyPosition = child.position;
-                keyInitialRotation = child.rotation;
+                keyRotation = child.localRotation;
 
                 // Destroy the sample object
                 Destroy(child.gameObject);
             }
         }
-        keyTurning = false;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (locked)
+        // Check to see if the drawer is locked
+        if (GetComponent<GrabbableObject>().ObjectLocked == true)
         {
+            // Check that a key is what triggered
             if (other.transform.CompareTag("Key"))
             {
+                key = other.transform;
+
+                // Get the key's animator
+                keyAnimator = key.GetComponent<Animator>();
+
+                // Tell the key that it has been used
+                key.GetComponent<GrabbableObject>().ObjectUsed = true;
+
                 // Parent the key to the drawer
-                other.transform.SetParent(gameObject.transform);
+                key.SetParent(gameObject.transform);
 
-                // Move the key to the correction position and starting rotation
-                other.transform.position = keyPosition;
-                other.transform.rotation = keyInitialRotation;
+                // Play the key insert sound
+                SoundManager.PlaySound(gameObject, "KeyInsert");
 
-                // TODO: Lerp to the correct rotation (turning key to keyFinalRotation)
-                keyTurning = true;
+                // Drop the key
+                key.GetComponent<GrabbableObject>().OnDrop();
 
-                // Drop the key, using overload of OnDrop in GrabbableOjbect
-                bool used = true;
-                other.GetComponent<GrabbableObject>().OnDrop(used);
+                // Set the key to its starting position
+                key.position = keyPosition;
+                key.localRotation = keyRotation;
 
-                // Make the key unavailable to be grabbed again
-                bool keyAvailable = false;
-                other.GetComponent<GrabbableObject>().OnAvailabilityChanged(keyAvailable);
+                // Play the key turning sound
+                SoundManager.PlaySound(gameObject, "KeyTurn");
+                
+                // Play the key turning animation
+                if(keyAnimator != null)
+                {
+                    keyAnimator.SetBool("KeyTurning", true);
+                }
 
-                // unlock the drawer
-                locked = false;
-                gameObject.GetComponent<GrabbableObject>().OnAvailabilityChanged(available);
+                GetComponent<GrabbableObject>().ObjectLocked = false;
             }
-        }
-    }
-
-    private void LateUpdate()
-    {
-        if (keyTurning)
-        {
-            // TODO: Here's where the lerp goes
         }
     }
 }   

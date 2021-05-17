@@ -4,47 +4,45 @@ using UnityEngine;
 
 public class WineSlot : MonoBehaviour
 {
-    private SpringJoint springJoint;
-    private bool hasCorrectFillStatus;
-    private WineBottle wineBottle;
+    public bool CorrectFillStatus => correctFillStatus;
+
     private bool shouldBeFilled;
-    private Vector3 homePosition;
-    private Quaternion homeRotation;
+    private bool correctFillStatus;
+
 
     private void Start()
     {
+        // Check if this slot should be filled 
         shouldBeFilled = gameObject.CompareTag("CorrectWineSlot");
-        homePosition = transform.position;
-        homeRotation = transform.rotation;
+
+        // Initialize the fill status
+        correctFillStatus = !shouldBeFilled;
 
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        // Check if the slot was triggered by a wine bottle
-        var isWineBottle = other.TryGetComponent<WineBottle>(out wineBottle);
-
-        // If it was triggered by a wine bottle
-        if (isWineBottle)
+        // If the slot was triggered by a wine bottle
+        if (other.CompareTag("WineBottle"))
         {
-            // If the wine bottle doesn't already have a current slot
-            if (!wineBottle.InAWineSlot)
-            {
-                // Let the wine bottle know where it should move to and if the slot should be filled
-                wineBottle.OnSlotEntered(homePosition, homeRotation, shouldBeFilled);
-            }
- 
+            // Update the correctly filled status
+            correctFillStatus = shouldBeFilled;
+
+            // Tell the Game Manager to check for the solved condition
+            GameManager.OnWineSlotUpdated();
+
         }
+
     }
+
     private void OnTriggerExit(Collider other)
     {
-        // Check if the slot was exited by a wine bottle
-        var isWineBottle = other.TryGetComponent<WineBottle>(out wineBottle);
-        
-        if (isWineBottle)
-        {
-            // Let the wine bottle know it is no longer in a slot
-            wineBottle.OnSlotExited();
-        }
-        
+        // Update the correctly filled status
+        correctFillStatus = !shouldBeFilled;
+
+        // Tell the Game Manager to check for the undoing of the solved condition
+        GameManager.OnWineSlotUpdated();
+
     }
+
 }

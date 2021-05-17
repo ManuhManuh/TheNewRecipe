@@ -30,6 +30,8 @@ public class DumbwaiterDoor : ControlledObject
         fromPosition = originalPosition;
         toPosition = openedPosition;
 
+        // Play opening sound
+        SoundManager.PlaySound(gameObject, "DumbwaiterDoorOpen");
     }
 
     public override void OnReleased()
@@ -39,6 +41,9 @@ public class DumbwaiterDoor : ControlledObject
         closing = true;
         fromPosition = openedPosition;
         toPosition = originalPosition;
+
+        // Play opening sound
+        SoundManager.PlaySound(gameObject, "DumbwaiterDoorClose");
 
     }
     private void Update()
@@ -61,26 +66,7 @@ public class DumbwaiterDoor : ControlledObject
             transform.position = Vector3.MoveTowards(transform.position, originalPosition, maxDistanceDeltaClose * Time.deltaTime);
         }
     }
-    /*
-    private void OnCollisionEnter(Collision collision)
-    {
-        // If something other than the player has collided with the door
-        if (collision.collider.CompareTag("DoorStopper"))
-        {
-            closing = false;
-        }
 
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        // If the door has not finished closing yet, continue closing
-        if (fromPosition != toPosition)
-        {
-            closing = true;
-        }
-    }
-    */
     private void OnTriggerEnter(Collider other)
     {
         // If something other than the player has collided with the door

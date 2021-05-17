@@ -77,17 +77,16 @@
     <Compile Include="Assets\Scripts\Keg.cs" />
     <Compile Include="Assets\Scripts\LockedByKey.cs" />
     <Compile Include="Assets\Scripts\LockedByWinePuzzle.cs" />
-    <Compile Include="Assets\Scripts\MoveObject.cs" />
     <Compile Include="Assets\Scripts\ObjectGrabber.cs" />
     <Compile Include="Assets\Scripts\ObjectReturn.cs" />
-    <Compile Include="Assets\Scripts\PlaceableObject.cs" />
     <Compile Include="Assets\Scripts\PullableObject.cs" />
     <Compile Include="Assets\Scripts\PushableObject.cs" />
+    <Compile Include="Assets\Scripts\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\TapSensor.cs" />
     <Compile Include="Assets\Scripts\Teleporter.cs" />
     <Compile Include="Assets\Scripts\ThrowableObject.cs" />
     <Compile Include="Assets\Scripts\TouchableObject.cs" />
     <Compile Include="Assets\Scripts\Turning.cs" />
-    <Compile Include="Assets\Scripts\WineBottle.cs" />
     <Compile Include="Assets\Scripts\WineSlot.cs" />
     <Compile Include="Assets\ThirdParty\Cardboard realistic boxes [HQ,Free]\SCG_Showcase_Modules\Scripts\SCG_Base_Controller.cs" />
     <Compile Include="Assets\ThirdParty\Soja Exiles\Bar &amp; Liquor Cabinets\Scripts &amp; Animation\TableFlipL.cs" />
@@ -108,6 +107,7 @@
     <None Include="Assets\ThirdParty\Kitchen Asset\README.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\ThirdParty\RetroLamps\Shaders\Lamps_rimShader_dust.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
@@ -116,10 +116,13 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\ThirdParty\RetroLamps\Shaders\Lamps_rimShader_simple.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\ThirdParty\Cardboard realistic boxes [HQ,Free]\SCG_Showcase_Modules\Readme.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\ThirdParty\RetroLamps\Shaders\Lamps_rimShader_specular.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\ThirdParty\RetroLamps\Shaders\Lamps_rimShaderSpecEmi.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
@@ -308,6 +311,9 @@
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.20f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <HintPath>C:/Users/caras/UnityProjects/TheNewRecipe/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
       <HintPath>C:/Users/caras/UnityProjects/TheNewRecipe/Library/PackageCache/com.unity.analytics@3.3.5/Unity.Analytics.Editor.dll</HintPath>
@@ -781,7 +787,12 @@
       <HintPath>C:/Users/caras/UnityProjects/TheNewRecipe/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup></ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{6BDB477C-540A-45E4-EAF0-BD0C1D6FFE31}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

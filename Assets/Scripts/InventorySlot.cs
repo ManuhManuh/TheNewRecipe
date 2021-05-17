@@ -55,6 +55,9 @@ public class InventorySlot : MonoBehaviour
         // Parent the object to the slot
         inventoryObject.transform.SetParent(gameObject.transform);
 
+        // Play the inventory acquired sound
+        SoundManager.PlaySound(gameObject, "InventorySwoosh");
+
         // Update the text on the slot with the new total
         label.text = ($"{gameObject.tag.ToString()} ({countOfItems})");
     }

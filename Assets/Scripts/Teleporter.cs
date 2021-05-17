@@ -36,9 +36,7 @@ public class Teleporter : MonoBehaviour
             // Extend beam to maximum range (tranform.position is hand in world)
             SetBeamEndPoint(transform.position + transform.forward * range);
 
-            // Check if the beam hit something
-            //if (Physics.Raycast(transform.position, transform.forward, out var hit, range))
-
+            // Search for a valid teleport target
             RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, range, validTargetLayerMask);
             {
                 // See if we hit a valid teleport target
@@ -47,14 +45,23 @@ public class Teleporter : MonoBehaviour
                     // Grab the first thing hit (should only be one anyway)
                     RaycastHit hit = hits[0];
 
-                    // Update beam end point to the point in space it hit (so it doesn't pass though any objects)
-                    SetBeamEndPoint(hit.point);
+                    // Check if it is valid for the play mode selected
+                    if (hit.transform.CompareTag("SittingTarget") && !GameManager.sitting)
+                    {
+                        // Set the beam to be invalid
+                        SetTeleportValid(false);
+                    }
+                    else
+                    {
+                        // Update beam end point to the point in space it hit (so it doesn't pass though any objects)
+                        SetBeamEndPoint(hit.point);
 
-                    // Set the beam to be valid (which will change colour, show spot, etc.) 
-                    SetTeleportValid(true);
+                        // Set the beam to be valid (which will change colour, show spot, etc.) 
+                        SetTeleportValid(true);
 
-                    // Set the position of the teleport indicator (just off the floor to avoid z-fighting)
-                    teleportIndicator.transform.position = hit.point + Vector3.up * 0.001f;
+                        // Set the position of the teleport indicator (just off the floor to avoid z-fighting)
+                        teleportIndicator.transform.position = hit.point + Vector3.up * 0.001f;
+                    }
                 }
                 else
                 {
@@ -80,12 +87,6 @@ public class Teleporter : MonoBehaviour
             }
 
         }
-    }
-
-    private bool IsValidTeleportTarget(GameObject gameObject)
-    {
-        
-        return (gameObject.CompareTag("ValidTeleportTarget"));
     }
 
     private void SetBeamVisible(bool visible)

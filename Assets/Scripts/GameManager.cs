@@ -6,15 +6,16 @@ using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
-
     public static GameManager instance;
+    public static bool sitting = true;
     public static bool wineBottlesPlaced;
     public static List<Color> ColourCycle = new List<Color>();
-
+    public static bool allPuzzlesSolved;
+    
     private static bool kegsTapped;
     private static bool kegsCorrectlyColoured;
-    private static int correctWineSlotsFilled;
     private Color baseColour;
+    private static LockedByWinePuzzle hiddenDrawer;
 
     private void Awake()
     {
@@ -32,6 +33,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        allPuzzlesSolved = false;
+
         baseColour = Color.black;
         // Collect the list of keg colours
         // Store the current keg colour, plus the collection of correct colours that will be cycled through
@@ -56,6 +59,9 @@ public class GameManager : MonoBehaviour
             ColourCycle.Add(keg.GetComponent<Keg>().correctColour);
         }
 
+        // Find the drawer that is locked by the wine puzzle
+        hiddenDrawer = FindObjectOfType<LockedByWinePuzzle>();
+
         // Check the colour array
         /*
         for(int i = 0; i < ColourCycle.Count; i++)
@@ -68,31 +74,59 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // If conditions necessary for win are complete
-        if(kegsCorrectlyColoured && kegsTapped)
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            // Open the cask door
-            // Play winning sequence
-            Debug.Log("WINNER!!");
+            SoundManager.PlayMusic("Alex Mason - Prisoner");
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            SoundManager.PlayMusic("Alex Mason - Watchword");
+        }
+
+        // If conditions necessary for win are complete
+        if (kegsCorrectlyColoured && kegsTapped)
+        {
+            allPuzzlesSolved = true;
+
+            // Play end of game music
+            SoundManager.PlayMusic("Alex Mason - Watchword");
+
+            Debug.Log("WINNER!!!!");
+
+            // TODO: Game winning animation or whatever visual needed
+
+            
+        }
+        else
+        {
+            SoundManager.PlayMusic("Alex Mason - Prisoner");
         }
     }
 
-    internal static void OnWineBottlePlaced()
+    internal static void OnWineSlotUpdated()
     {
         // Check to see if all slots have the correct fill status
-        wineBottlesPlaced = FindObjectsOfType<WineBottle>().All(bottle => bottle.InACorrectSlot);
+        wineBottlesPlaced = FindObjectsOfType<WineSlot>().All(slot => slot.CorrectFillStatus);
+
         if (wineBottlesPlaced)
         {
-            Debug.Log("Wine puzzle solved");
+            hiddenDrawer.GetComponent<GrabbableObject>().ObjectLocked = false;
+            hiddenDrawer.handle.SetActive(true);
+
+            Debug.Log("Wine bottles correct - consider freezing the bottles");
         }
+        
     }
+
 
     internal static void OnKegTapped()
     {
         // Check to see if all the kegs are tapped
-        kegsTapped = FindObjectsOfType<Keg>().All(k => k.HasTap);
+        kegsTapped = FindObjectsOfType<TapSensor>().All(sensor => sensor.HasTap);
 
         // Nothing else happens in the game, but the condition is set for evaluating the win
+        Debug.Log("Kegs all tapped");
     }
 
     internal static void OnKegColoured()
@@ -101,16 +135,10 @@ public class GameManager : MonoBehaviour
         kegsCorrectlyColoured = FindObjectsOfType<Keg>().All(k => k.ColourIsCorrect);
         if (kegsCorrectlyColoured)
         {
-            Debug.Log("Colours correct - consider freezing them");
+            Debug.Log("Colours correct - consider freezing the colours");
         }
 
     }
 
-    internal static void OnWineBottleRemoved()
-    {
-        // Check to see if all slots have the correct fill status
-        wineBottlesPlaced = FindObjectsOfType<WineBottle>().All(bottle => bottle.InACorrectSlot);
-
-        // No need to check for solving because if a bottle is removed but not replaced the puzzle is not solved
-    }
+    
 }

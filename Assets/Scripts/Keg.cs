@@ -8,18 +8,23 @@ public class Keg : MonoBehaviour
     public Transform tapPlaceholder;
     public float maxDistanceDelta;
     public bool ColourIsCorrect => colourIsCorrect;
-    public bool HasTap => hasTap;
-
+    public bool HasTap
+    {
+        get
+        {
+            return hasTap;
+        }
+        set
+        {
+            hasTap = value;
+        }
+    }
 
     private bool colourIsCorrect;
     private bool hasTap;
     private Color currentColour;
     private int colourIndex;
-    private bool placingTap;
-    private Transform tap;
     private GameObject colourRing;
-
-    private Color test;
 
     public void Start()
     {        
@@ -29,31 +34,9 @@ public class Keg : MonoBehaviour
             if (child.CompareTag("ColourRing"))
             {
                 colourRing = child.gameObject;
-                test = colourRing.GetComponent <MeshRenderer>().material.color;
             }
         }
         colourIndex = 0;
-    }
-
-    private void Update()
-    {
-        if(placingTap)
-        {
-            tap.position = Vector3.MoveTowards(tap.position, tapPlaceholder.position, maxDistanceDelta * Time.deltaTime);
-            if (tap.position == transform.position)
-            {
-                // Parent the bottle to the wine slot so it stays there
-                tap.SetParent(tapPlaceholder);
-                placingTap = false;
-
-                // update status of slot to filled
-                hasTap = true;
-
-                // Let the Game Manager know that the slot was filled
-                GameManager.OnKegTapped();
-                Debug.Log($"Tap nicely set in {gameObject.name}");
-            }
-        }
     }
 
     public void OnChangeColour()
@@ -83,16 +66,8 @@ public class Keg : MonoBehaviour
     {
         GameObject hitMe = other.gameObject;
 
-        // If the thing that collided was a tap
-        if (hitMe.CompareTag("Tap"))
-        {
-            // Unparent it (from the grabber)
-            hitMe.transform.SetParent(null);
-
-            // Start the process of placing it 
-            placingTap = true;
-
-        }
+        // Play the hitting sound
+        SoundManager.PlaySound(gameObject, "HittingCask");
 
         // If the thing that collided was the hammer
         if (hitMe.CompareTag("Hammer"))
@@ -100,5 +75,11 @@ public class Keg : MonoBehaviour
             // Change to the next colour in the cycle
             OnChangeColour();
         }
+    }
+
+    public void OnGameWon() 
+    {
+        // Turn ring glowing white
+        colourRing.GetComponent<MeshRenderer>().material.color = Color.white;
     }
 }

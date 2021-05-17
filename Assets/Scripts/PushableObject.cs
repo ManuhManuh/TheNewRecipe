@@ -16,6 +16,9 @@ public class PushableObject : MonoBehaviour
             // Move the button to the pushed position
             objectMesh.position = pushedPostion.position;
 
+            // Play the button click sound
+            SoundManager.PlaySound(gameObject, "WallButtonClick");
+
             // Perform the action that the button is supposed to control
             controlledObject.OnPressed();
 
@@ -28,6 +31,9 @@ public class PushableObject : MonoBehaviour
         {
             // Return the button to the original position
             objectMesh.localPosition = Vector3.zero;
+
+            // Play the button click sound
+            SoundManager.PlaySound(gameObject, "WallButtonClick");
 
             // Perform the action that releasing the button is supposed to control
             controlledObject.OnReleased();
