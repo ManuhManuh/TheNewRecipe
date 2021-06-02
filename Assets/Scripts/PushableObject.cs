@@ -11,6 +11,7 @@ public class PushableObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log($"Trigger entered: {other.name}");
         if (other.tag == "Player")
         {
             // Move the button to the pushed position
@@ -27,6 +28,7 @@ public class PushableObject : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log($"Trigger exited: {other.name}");
         if (other.tag == "Player")
         {
             // Return the button to the original position
@@ -40,4 +42,10 @@ public class PushableObject : MonoBehaviour
 
         }
     }
+
+    private void OnTriggerStay(Collider other)
+    {
+        Debug.Log($"Trigger staying: {other.name}");
+    }
+
 }

@@ -75,10 +75,14 @@
     <Compile Include="Assets\Scripts\InventoryManager.cs" />
     <Compile Include="Assets\Scripts\InventorySlot.cs" />
     <Compile Include="Assets\Scripts\Keg.cs" />
+    <Compile Include="Assets\Scripts\LoadScene.cs" />
     <Compile Include="Assets\Scripts\LockedByKey.cs" />
     <Compile Include="Assets\Scripts\LockedByWinePuzzle.cs" />
+    <Compile Include="Assets\Scripts\MenuPointer.cs" />
     <Compile Include="Assets\Scripts\ObjectGrabber.cs" />
     <Compile Include="Assets\Scripts\ObjectReturn.cs" />
+    <Compile Include="Assets\Scripts\Paragraph.cs" />
+    <Compile Include="Assets\Scripts\PlayIntro.cs" />
     <Compile Include="Assets\Scripts\PullableObject.cs" />
     <Compile Include="Assets\Scripts\PushableObject.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />

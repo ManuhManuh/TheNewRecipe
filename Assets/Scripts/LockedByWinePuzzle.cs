@@ -6,11 +6,14 @@ public class LockedByWinePuzzle : ObjectReturn
 {
     public GameObject handle;
 
+    private new Rigidbody rigidbody;
+
     // Start is called before the first frame update
     public override void Start()
     {
         base.Start();
         GetComponent<GrabbableObject>().ObjectLocked = true;
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     public override void OnGrab(ObjectGrabber grabber)
@@ -28,6 +31,9 @@ public class LockedByWinePuzzle : ObjectReturn
             {
                 // Unlock the drawer
                 GetComponent<GrabbableObject>().ObjectLocked = false;
+
+                // Allow physics to interact with it
+                rigidbody.isKinematic = false;
 
                 // Grab the drawer and open it
                 base.OnGrab(grabber);
