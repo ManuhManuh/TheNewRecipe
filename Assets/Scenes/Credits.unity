@@ -952,7 +952,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "MUSIC:\n\n\"Prisoner\" and \"Watchword'  \nby Alex Mason\nFreeMusicArchive.org
+  m_text: "MUSIC:\n\n\"Prisoner\" and \"Watchword\"  \nby Alex Mason\nFreeMusicArchive.org
     CC BY-NC-SA 4.0\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2e0ebfc7e115f34aa9452b7bbe5dcaf, type: 2}
@@ -2493,11 +2493,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRange: 20
-  lineRend: {fileID: 2027520607}
+  laserPointer: {fileID: 0}
   points: []
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 3863
   button: {fileID: 0}
   hitColour:
     serializedVersion: 2
