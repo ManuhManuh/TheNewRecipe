@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,8 +15,10 @@ public class GameManager : MonoBehaviour
     
     private static bool kegsTapped;
     private static bool kegsCorrectlyColoured;
-    private Color baseColour;
+    private static Color baseColour;
     private static LockedByWinePuzzle hiddenDrawer;
+
+    private bool chapterIsLoaded;
 
     private void Awake()
     {
@@ -34,7 +37,39 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         allPuzzlesSolved = false;
+        chapterIsLoaded = false;
+    }
 
+    // Update is called once per frame
+    void Update()
+    {
+        if(SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Chapter01"))
+        {
+            if (!chapterIsLoaded)
+            {
+                // This is the first frame after chapter is loaded
+                OnChapterLoaded();
+                chapterIsLoaded = true;
+            }
+            // If conditions necessary for win are complete
+            if (kegsCorrectlyColoured && kegsTapped)
+            {
+                allPuzzlesSolved = true;
+
+                // Play end of game music
+                SoundManager.PlayMusic("Alex Mason - Watchword");
+
+                Debug.Log("WINNER!!!!");
+
+                // TODO: Game winning animation or whatever visual needed
+            }
+
+        }
+        
+    }
+
+    internal static void OnChapterLoaded()
+    {
         baseColour = Color.black;
         // Collect the list of keg colours
         // Store the current keg colour, plus the collection of correct colours that will be cycled through
@@ -51,7 +86,7 @@ public class GameManager : MonoBehaviour
                         baseColour = child.GetComponent<MeshRenderer>().material.color;
                         ColourCycle.Add(baseColour);
                     }
-                    
+
                 }
             }
 
@@ -61,49 +96,7 @@ public class GameManager : MonoBehaviour
 
         // Find the drawer that is locked by the wine puzzle
         hiddenDrawer = FindObjectOfType<LockedByWinePuzzle>();
-
-        // Check the colour array
-        /*
-        for(int i = 0; i < ColourCycle.Count; i++)
-        {
-            Debug.Log($"Colour index {i}: {ColourCycle[i].ToString()}");
-        }
-        */
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            SoundManager.PlayMusic("Alex Mason - Prisoner");
-        }
-
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            SoundManager.PlayMusic("Alex Mason - Watchword");
-        }
-
-        // If conditions necessary for win are complete
-        if (kegsCorrectlyColoured && kegsTapped)
-        {
-            allPuzzlesSolved = true;
-
-            // Play end of game music
-            SoundManager.PlayMusic("Alex Mason - Watchword");
-
-            Debug.Log("WINNER!!!!");
-
-            // TODO: Game winning animation or whatever visual needed
-
-            
-        }
-        else
-        {
-            SoundManager.PlayMusic("Alex Mason - Prisoner");
-        }
-    }
-
     internal static void OnWineSlotUpdated()
     {
         // Check to see if all slots have the correct fill status

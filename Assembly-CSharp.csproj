@@ -72,10 +72,10 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GrabWithJoint.cs" />
     <Compile Include="Assets\Scripts\GrabbableObject.cs" />
+    <Compile Include="Assets\Scripts\InputTest.cs" />
     <Compile Include="Assets\Scripts\InventoryManager.cs" />
     <Compile Include="Assets\Scripts\InventorySlot.cs" />
     <Compile Include="Assets\Scripts\Keg.cs" />
-    <Compile Include="Assets\Scripts\LoadScene.cs" />
     <Compile Include="Assets\Scripts\LockedByKey.cs" />
     <Compile Include="Assets\Scripts\LockedByWinePuzzle.cs" />
     <Compile Include="Assets\Scripts\MenuPointer.cs" />
@@ -85,9 +85,11 @@
     <Compile Include="Assets\Scripts\PlayIntro.cs" />
     <Compile Include="Assets\Scripts\PullableObject.cs" />
     <Compile Include="Assets\Scripts\PushableObject.cs" />
+    <Compile Include="Assets\Scripts\SceneControl.cs" />
     <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\TapSensor.cs" />
     <Compile Include="Assets\Scripts\Teleporter.cs" />
+    <Compile Include="Assets\Scripts\TestSceneLoader.cs" />
     <Compile Include="Assets\Scripts\ThrowableObject.cs" />
     <Compile Include="Assets\Scripts\TouchableObject.cs" />
     <Compile Include="Assets\Scripts\Turning.cs" />

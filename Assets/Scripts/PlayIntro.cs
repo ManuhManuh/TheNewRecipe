@@ -8,11 +8,12 @@ public class PlayIntro : MonoBehaviour
     public List<Paragraph> paragraphs = new List<Paragraph>();
     public Canvas canvas;
 
+
     private void Start()
     {
         // Note: make sure paragraphs are in order in the inspector
-    
-            StartCoroutine(PlayParagraphs());
+            
+        StartCoroutine(PlayParagraphs());
 
     }
 
@@ -27,7 +28,7 @@ public class PlayIntro : MonoBehaviour
             //TODO: Fade this in
 
             // play the audio clip
-            SoundManager.PlaySound(para.sourceObject, para.audioClip.name);
+            SoundManager.PlaySound(para.sourceOfSound, para.audioClip.name);
 
             // Wait until the narration is finished
             yield return new WaitForSeconds(para.duration);
@@ -37,8 +38,9 @@ public class PlayIntro : MonoBehaviour
 
             //TODO: Fade this out
         }
-        
 
+        // Intro is finished - trigger the activation of Chapter 1
+        SceneControl.OnMenuSelection(SceneControl.SceneAction.PlayChapter);
     }
 
 }

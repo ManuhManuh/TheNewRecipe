@@ -6,5 +6,6 @@ public class Paragraph : MonoBehaviour
 {
     public float duration;
     public AudioClip audioClip;
-    public GameObject sourceObject;
+    public GameObject sourceOfSound;
+
 }
