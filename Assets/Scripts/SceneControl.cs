@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
 
 public class SceneControl : MonoBehaviour
 {
@@ -147,6 +146,52 @@ public class SceneControl : MonoBehaviour
         currentSceneAction = newAction;
     }
 
+    internal static void OnPanelFadeRequest (GameObject panelToFade, float fadeDuration, SceneAction nextSceneAction, bool fadeOut)
+    {
+        instance.OnPanelFadeRequestInternal(panelToFade, fadeDuration, nextSceneAction, fadeOut);
+    }
+
+    private void OnPanelFadeRequestInternal(GameObject panelToFade, float fadeDuration, SceneAction nextSceneAction, bool fadeOut)
+    {
+        StartCoroutine(FadePanel(panelToFade, fadeDuration, nextSceneAction, fadeOut));
+    }
+
+    private IEnumerator FadePanel(GameObject panelToFade, float fadeDuration, SceneAction nextSceneAction, bool fadeOut)
+    {
+        float fadeTimer = 0;
+        Image panelImage = panelToFade.GetComponent<Image>();
+        Color newColour = panelImage.GetComponent<Color>();
+
+        if (fadeOut)
+        {
+            // Fade the panel to black
+            while (fadeTimer < fadeDuration)
+            {
+                fadeTimer += Time.deltaTime;
+                newColour.a = 1.0f - Mathf.Clamp01(fadeTimer / fadeDuration);
+                panelImage.color = newColour;
+            }
+            
+        }
+        else
+        {
+            // Fade the panel to invisible
+            while (fadeTimer < fadeDuration)
+            {
+                fadeTimer += Time.deltaTime;
+                newColour.a = 0f + Mathf.Clamp01(fadeTimer / fadeDuration);
+                panelImage.color = newColour;
+            }
+        }
+
+        // Let panel stay for three seconds
+        yield return new WaitForSeconds(3f);
+
+        // Play next scene
+        OnMenuSelectionInternal(nextSceneAction);
+
+        yield return null;
+    }
     private void Update()
     {
         // Check to see if the player wants to access the Main Menu

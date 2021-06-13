@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -59,9 +60,6 @@ public class GameManager : MonoBehaviour
                 // Play end of game music
                 SoundManager.PlayMusic("Alex Mason - Watchword");
 
-                Debug.Log("WINNER!!!!");
-
-                // TODO: Game winning animation or whatever visual needed
             }
 
         }
@@ -107,7 +105,7 @@ public class GameManager : MonoBehaviour
             hiddenDrawer.GetComponent<GrabbableObject>().ObjectLocked = false;
             hiddenDrawer.handle.SetActive(true);
 
-            Debug.Log("Wine bottles correct - consider freezing the bottles");
+            // Debug.Log("Wine bottles correct - consider freezing the bottles");
         }
         
     }
@@ -119,7 +117,7 @@ public class GameManager : MonoBehaviour
         kegsTapped = FindObjectsOfType<TapSensor>().All(sensor => sensor.HasTap);
 
         // Nothing else happens in the game, but the condition is set for evaluating the win
-        Debug.Log("Kegs all tapped");
+        // Debug.Log("Kegs all tapped");
     }
 
     internal static void OnKegColoured()
@@ -128,7 +126,7 @@ public class GameManager : MonoBehaviour
         kegsCorrectlyColoured = FindObjectsOfType<Keg>().All(k => k.ColourIsCorrect);
         if (kegsCorrectlyColoured)
         {
-            Debug.Log("Colours correct - consider freezing the colours");
+            // Debug.Log("Colours correct - consider freezing the colours");
         }
 
     }

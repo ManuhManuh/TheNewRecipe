@@ -109,7 +109,7 @@ public class GrabbableObject : MonoBehaviour
         else
         {
             // All objects that have been previously picked up should have rigidbodies, so this would be a fake drop
-            Debug.Log($"Fake drop on {gameObject.name}");
+            // Debug.Log($"Fake drop on {gameObject.name}");
         }
 
     }

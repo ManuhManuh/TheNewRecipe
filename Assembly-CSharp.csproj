@@ -72,7 +72,6 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\GrabWithJoint.cs" />
     <Compile Include="Assets\Scripts\GrabbableObject.cs" />
-    <Compile Include="Assets\Scripts\InputTest.cs" />
     <Compile Include="Assets\Scripts\InventoryManager.cs" />
     <Compile Include="Assets\Scripts\InventorySlot.cs" />
     <Compile Include="Assets\Scripts\Keg.cs" />
@@ -89,10 +88,10 @@
     <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\TapSensor.cs" />
     <Compile Include="Assets\Scripts\Teleporter.cs" />
-    <Compile Include="Assets\Scripts\TestSceneLoader.cs" />
     <Compile Include="Assets\Scripts\ThrowableObject.cs" />
     <Compile Include="Assets\Scripts\TouchableObject.cs" />
     <Compile Include="Assets\Scripts\Turning.cs" />
+    <Compile Include="Assets\Scripts\WinSequence.cs" />
     <Compile Include="Assets\Scripts\WineSlot.cs" />
     <Compile Include="Assets\ThirdParty\Cardboard realistic boxes [HQ,Free]\SCG_Showcase_Modules\Scripts\SCG_Base_Controller.cs" />
     <Compile Include="Assets\ThirdParty\Soja Exiles\Bar &amp; Liquor Cabinets\Scripts &amp; Animation\TableFlipL.cs" />
