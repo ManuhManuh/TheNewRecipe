@@ -17,6 +17,7 @@ public class Teleporter : MonoBehaviour
     private bool hasValidTeleportTarget;
     private int validTargetLayerMask;
     private int teleportTargetLayer;
+    private GameObject currentTarget;
 
     void Start()
     {
@@ -61,6 +62,9 @@ public class Teleporter : MonoBehaviour
 
                         // Set the position of the teleport indicator (just off the floor to avoid z-fighting)
                         teleportIndicator.transform.position = hit.point + Vector3.up * 0.001f;
+
+                        // Save the gameObject in case it's the one inside the cask
+                        currentTarget = hit.transform.gameObject;
                     }
                 }
                 else
@@ -84,6 +88,12 @@ public class Teleporter : MonoBehaviour
 
                 // Remove the target indicator
                 teleportIndicator.SetActive(false);
+
+                // If the teleport target is the one inside the cask, trigger the win sequence
+                if (currentTarget.TryGetComponent<WinSequence>(out _))
+                {
+                    currentTarget.GetComponent<WinSequence>().CallFadeRequest();
+                }
             }
 
         }
