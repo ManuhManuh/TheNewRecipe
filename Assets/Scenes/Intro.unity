@@ -845,7 +845,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: I work at Red Hill Winery, and my part in the story begins with a gunpoint
+  m_text: I work at Blue Hill Winery, and my part in the story begins with a gunpoint
     holdup in the tasting room. The thugs were not demanding money; somehow, they
     knew about the recipe, and that my boss had made the final tweak that brought
     it to its full potency.
@@ -939,7 +939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 17
-  audioClip: {fileID: 8300000, guid: f042d8e863c06b045aad3c9cbc1f76fc, type: 3}
+  audioClip: {fileID: 8300000, guid: 19fe3ca2abb3fd3428b64ef563012a55, type: 3}
   sourceOfSound: {fileID: 609573113}
 --- !u!1 &609573113
 GameObject:
@@ -1335,8 +1335,6 @@ MonoBehaviour:
   - {fileID: 470769738}
   - {fileID: 1530010486}
   canvas: {fileID: 2100481169}
-  finalClip: {fileID: 8300000, guid: e80ba296cd0db7b4da3c5a53acc67423, type: 3}
-  finalClipSource: {fileID: 1216479425}
 --- !u!1 &1302255394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1395,8 +1393,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: In the beginning,there was a recipe. It was passed down from father to
-    son through uncounted generations, with modest improvements made every now and
-    then, until at last, in the 21st century, it was passed down to my boss.
+    son through uncounted generations, with modest improvements made along the way,
+    until at last, in the 21st century, it was passed down to my boss.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2e0ebfc7e115f34aa9452b7bbe5dcaf, type: 2}
   m_sharedMaterial: {fileID: -4709799478857678551, guid: e2e0ebfc7e115f34aa9452b7bbe5dcaf,
@@ -1486,8 +1484,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f905cc1b239c5f04b84d97160d8a6408, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 18
-  audioClip: {fileID: 8300000, guid: 40c760980d36abc4291a84c1828cf391, type: 3}
+  duration: 17
+  audioClip: {fileID: 8300000, guid: 6a4e938195095714f9168881843a6d8c, type: 3}
   sourceOfSound: {fileID: 609573113}
 --- !u!1001 &1402613240
 PrefabInstance:
@@ -1835,7 +1833,7 @@ MonoBehaviour:
 
     All I knew was that as the thugs were
     breaking down the door to the back room, my boss locked me in the cellar; his
-    final, urgently whispered instructions were:
+    final, urgent instructions were:
 
 '
   m_isRightToLeft: 0
@@ -1928,7 +1926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 12
-  audioClip: {fileID: 8300000, guid: f375c100c4c9e4445a5a199c8fdb9f43, type: 3}
+  audioClip: {fileID: 8300000, guid: 48503de1a724013438eedc2b8e1852f1, type: 3}
   sourceOfSound: {fileID: 609573113}
 --- !u!1 &1713180385
 GameObject:
