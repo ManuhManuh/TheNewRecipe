@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public static bool wineBottlesPlaced;
     public static List<Color> ColourCycle = new List<Color>();
     public static bool allPuzzlesSolved;
-    
+
     private static bool kegsTapped;
     private static bool kegsCorrectlyColoured;
     private static Color baseColour;
@@ -39,31 +39,36 @@ public class GameManager : MonoBehaviour
     {
         allPuzzlesSolved = false;
         chapterIsLoaded = false;
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Chapter01"))
+        if (!chapterIsLoaded && SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Chapter01"))
         {
-            if (!chapterIsLoaded)
-            {
-                // This is the first frame after chapter is loaded
-                OnChapterLoaded();
-                chapterIsLoaded = true;
-            }
-            // If conditions necessary for win are complete
-            if (kegsCorrectlyColoured && kegsTapped)
+            // This is the first frame after chapter is loaded
+            OnChapterLoaded();
+            chapterIsLoaded = true;
+        }
+        else
+        {
+            if (chapterIsLoaded && kegsCorrectlyColoured && kegsTapped)
             {
                 allPuzzlesSolved = true;
 
                 // Play end of game music
                 SoundManager.PlayMusic("Alex Mason - Watchword");
-
             }
-
         }
-        
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Debug.Log($"Kegs correctly coloured: {kegsCorrectlyColoured}");
+            Debug.Log($"Kegs tapped: {kegsTapped}");
+        }
+
     }
 
     internal static void OnChapterLoaded()
@@ -107,7 +112,7 @@ public class GameManager : MonoBehaviour
 
             // Debug.Log("Wine bottles correct - consider freezing the bottles");
         }
-        
+
     }
 
 
@@ -128,6 +133,13 @@ public class GameManager : MonoBehaviour
         {
             // Debug.Log("Colours correct - consider freezing the colours");
         }
+
+    }
+
+    internal static void OnFinalTeleport()
+    {
+        // This may have additional functionality (and a chapter parameter) if/when there are more chapters
+        SceneControl.OnMenuSelection(SceneControl.SceneAction.StayTuned);
 
     }
 

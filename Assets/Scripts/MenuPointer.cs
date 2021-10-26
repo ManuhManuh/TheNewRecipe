@@ -16,6 +16,11 @@ public class MenuPointer : MonoBehaviour
     public TMP_Text playWarning;
     public string rightTriggerInput;
 
+    private void Awake()
+    {
+        UnityEngine.XR.InputTracking.Recenter();
+    }
+
     private void Start()
     {
 

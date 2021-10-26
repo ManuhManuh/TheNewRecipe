@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Teleporter : MonoBehaviour
 {
     public string thumbstickBeamInputName;
@@ -18,12 +19,15 @@ public class Teleporter : MonoBehaviour
     private int validTargetLayerMask;
     private int teleportTargetLayer;
     private GameObject currentTarget;
+    private bool endSequenceTriggered;
 
     void Start()
     {
         SetBeamVisible(false);
         teleportTargetLayer = LayerMask.NameToLayer("ValidTeleportTarget");
         validTargetLayerMask = 1 << teleportTargetLayer;
+        endSequenceTriggered = false;
+
     }
 
     void Update()
@@ -89,10 +93,12 @@ public class Teleporter : MonoBehaviour
                 // Remove the target indicator
                 teleportIndicator.SetActive(false);
 
-                // If the teleport target is the one inside the cask, trigger the win sequence
-                if (currentTarget.TryGetComponent<WinSequence>(out _))
+                // If the teleport target is the one inside the cask, trigger the Stay Tuned scene
+                if (currentTarget.TryGetComponent<WinSequence>(out _) && !endSequenceTriggered)
                 {
-                    currentTarget.GetComponent<WinSequence>().CallFadeRequest();
+                    endSequenceTriggered = true;
+                    // Let the Game Manager know the final teleport target was triggered
+                    GameManager.OnFinalTeleport();
                 }
             }
 

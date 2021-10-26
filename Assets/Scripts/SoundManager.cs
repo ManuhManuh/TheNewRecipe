@@ -62,7 +62,6 @@ public class SoundManager : MonoBehaviour
         var trackClip = audioClips.FirstOrDefault(audioClip => audioClip.name == trackName);
         if (trackClip == null)
         {
-            Debug.LogError($"Couldn't find a track called {trackName}");
             return;
         }
 
@@ -119,7 +118,6 @@ public class SoundManager : MonoBehaviour
         var soundClip = audioClips.FirstOrDefault(audioClip => audioClip.name == soundName);
         if (soundClip == null)
         {
-            Debug.LogError($"Couldn't find a sound called {soundName}");
             return;
         }
 

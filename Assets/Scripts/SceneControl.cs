@@ -16,6 +16,7 @@ public class SceneControl : MonoBehaviour
     private bool activeOnLoad;
     private bool readyForPreload;
     private bool introFinished;
+    private bool outroFinished;
     private AsyncOperation asyncOperation;
 
     public enum SceneAction
@@ -27,6 +28,7 @@ public class SceneControl : MonoBehaviour
         PlayChapter,
         Pause,
         Resume,
+        StayTuned,
         Credits,
         Exit
     }
@@ -54,6 +56,18 @@ public class SceneControl : MonoBehaviour
         }
     }
 
+    public bool OutroFinished
+    {
+        get
+        {
+            return outroFinished;
+        }
+        set
+        {
+            outroFinished = value;
+        }
+    }
+
     private void Awake()
     {
         // Are there any other Scene Controls yet?
@@ -65,9 +79,8 @@ public class SceneControl : MonoBehaviour
         else
         {
             instance = this;
+            DontDestroyOnLoad(transform.root);
         }
-
-        
         
     }
     private void Start()
@@ -92,6 +105,7 @@ public class SceneControl : MonoBehaviour
             case SceneAction.None:
                 // Should only happen at the very beginning of the game
                 introFinished = false;
+                outroFinished = false;
                 unloadPreviousScene = false;
                 activeOnLoad = true;
                 StartCoroutine(ChangeScene("MainMenu", unloadPreviousScene, activeOnLoad));
@@ -153,9 +167,26 @@ public class SceneControl : MonoBehaviour
                 // Unload the Main menu
                 SceneManager.UnloadSceneAsync("MainMenu");
 
-                // Activate the paused scene
-                SceneManager.SetActiveScene(SceneManager.GetSceneByName("Chapter01"));
+                // Activate the paused scene, or load the first chapter to skip intro
+                Scene firstChapter = SceneManager.GetSceneByName("Chapter01");
+                if (firstChapter.isLoaded)
+                {
+                    SceneManager.SetActiveScene(firstChapter);
+                }
+                else
+                {
+                    SceneManager.LoadScene("Chapter01");
+
+                }    
                 
+                return;
+
+            case SceneAction.StayTuned:
+
+                unloadPreviousScene = true;
+                activeOnLoad = true;
+                StartCoroutine(ChangeScene("Outro", unloadPreviousScene, activeOnLoad));
+
                 return;
 
             case SceneAction.Credits:
@@ -178,57 +209,6 @@ public class SceneControl : MonoBehaviour
         currentSceneAction = newAction;
     }
 
-    internal static void OnPanelFadeRequest (GameObject panelToFade, float fadeDuration, SceneAction nextSceneAction, bool fadeOut)
-    {
-
-        instance.OnPanelFadeRequestInternal(panelToFade, fadeDuration, nextSceneAction, fadeOut);
-    }
-
-    private void OnPanelFadeRequestInternal(GameObject panelToFade, float fadeDuration, SceneAction nextSceneAction, bool fadeOut)
-    {
-        StartCoroutine(FadePanel(panelToFade, fadeDuration, nextSceneAction, fadeOut));
-    }
-
-    private IEnumerator FadePanel(GameObject panelToFade, float fadeDuration, SceneAction nextSceneAction, bool fadeOut)
-    {
-        Image panelImage = panelToFade.GetComponent<Image>();
-        Color newColour = panelImage.color;
-
-        if (fadeOut)
-        {
-            // Fade the panel to black
-
-            for (float i = 0; i <= fadeDuration; i += Time.deltaTime)
-            {
-                newColour.a = i;
-                panelImage.color = newColour;
-
-                yield return null;
-            }
-
-        }
-        else
-        {
-            // Fade the panel to invisible
-
-            for (float i = fadeDuration; i >= 0; i -= Time.deltaTime)
-            {
-                newColour.a = i;
-                panelImage.color = newColour;
-
-                yield return null;
-            }
-
-        }
-
-        // Let panel stay for three seconds
-        yield return new WaitForSeconds(3f);
-
-        // Play next scene
-        OnMenuSelectionInternal(nextSceneAction);
-
-        yield return null;
-    }
     private void Update()
     {
         // Check to see if the player wants to access the Main Menu
@@ -268,12 +248,20 @@ public class SceneControl : MonoBehaviour
             StartCoroutine(ActivateWaitingScene(sceneToUnload, sceneToActivate));
         }
 
+        // Check if the outro was playing and is now is finished
+
+        if (outroFinished)
+        {
+            outroFinished = false;
+            OnMenuSelection(SceneAction.Credits);
+        }
+
     }
 
-    private IEnumerator ChangeScene (string newScene, bool unloadOldScene, bool activeOnLoad)
+    private IEnumerator ChangeScene (string newScene, bool unloadPreviousScene, bool activeOnLoad)
     {
-        Scene sceneToUnload = SceneManager.GetActiveScene();
 
+        Scene sceneToUnload = SceneManager.GetActiveScene();
         asyncOperation = SceneManager.LoadSceneAsync(newScene, LoadSceneMode.Additive);
 
         if (!activeOnLoad)
@@ -287,11 +275,12 @@ public class SceneControl : MonoBehaviour
             {
                 yield return null;
             }
+
             Scene sceneToActivate = SceneManager.GetSceneByName(newScene);
             SceneManager.SetActiveScene(sceneToActivate);
         }
 
-        if (unloadPreviousScene)
+        if (unloadPreviousScene && sceneToUnload.name != "MasterScene")
         {
             // Note: this will not happen if the asyncOperation is paused - scene will be unloaded when new scene is activated
             SceneManager.UnloadSceneAsync(sceneToUnload);
@@ -327,7 +316,6 @@ public class SceneControl : MonoBehaviour
         if (SceneManager.GetSceneByName(sceneToActivate).isLoaded)
         {
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneToActivate));
-            Debug.Log($"{sceneToActivate} is the active scene!!");
         }
         else
         {

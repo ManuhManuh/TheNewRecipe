@@ -12,7 +12,7 @@ public class PlayIntro : MonoBehaviour
     private void Start()
     {
         // Note: make sure paragraphs are in order in the inspector
-            
+
         StartCoroutine(PlayParagraphs());
 
     }
@@ -20,8 +20,6 @@ public class PlayIntro : MonoBehaviour
 
     private IEnumerator PlayParagraphs()
     {
-        Debug.Log("Starting intro");
-
         // Start the ambient game music, minimum duration 0, volume 0.5
         SoundManager.PlayMusic("Alex Mason - Prisoner",0f,0.1f);
 

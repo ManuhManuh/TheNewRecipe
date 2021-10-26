@@ -235,6 +235,7 @@
     <Compile Include="Assets\Scripts\ObjectReturn.cs" />
     <Compile Include="Assets\Scripts\Paragraph.cs" />
     <Compile Include="Assets\Scripts\PlayIntro.cs" />
+    <Compile Include="Assets\Scripts\PlayOutro.cs" />
     <Compile Include="Assets\Scripts\PullableObject.cs" />
     <Compile Include="Assets\Scripts\PushableObject.cs" />
     <Compile Include="Assets\Scripts\SceneControl.cs" />
