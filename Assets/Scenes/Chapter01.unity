@@ -298,7 +298,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &16422812
 Transform:
@@ -341,6 +341,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WineGlass (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
@@ -416,6 +421,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WineGlass (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
@@ -854,6 +864,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HiballGlass (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 8311730756876188298, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97, type: 3}
 --- !u!4 &98171511 stripped
@@ -1012,6 +1027,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HiballGlass (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8311730756876188298, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97, type: 3}
@@ -1326,6 +1346,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bowl (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 308119715834758981, guid: f9e42f3b214817a4cb08a456166c950a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 310949043042510469, guid: f9e42f3b214817a4cb08a456166c950a,
         type: 3}
       propertyPath: m_RootOrder
@@ -1593,6 +1618,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WineGlass (29)
       objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
       propertyPath: m_RootOrder
@@ -1722,6 +1752,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7726031644263713531, guid: b0aa6fa4d2d55c949986070f703802a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0aa6fa4d2d55c949986070f703802a9, type: 3}
@@ -2013,7 +2048,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &203951445
 Transform:
@@ -3857,6 +3892,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HiballGlass (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 8311730756876188298, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97, type: 3}
 --- !u!4 &339012059 stripped
@@ -3931,6 +3971,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7726031644263713531, guid: b0aa6fa4d2d55c949986070f703802a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0aa6fa4d2d55c949986070f703802a9, type: 3}
@@ -4341,6 +4386,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pot (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4541692180463125325, guid: 2fbad6f1f295ecd4484317a6394bcbf3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4543790842517810375, guid: 2fbad6f1f295ecd4484317a6394bcbf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -4522,6 +4572,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pot (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4541692180463125325, guid: 2fbad6f1f295ecd4484317a6394bcbf3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4543790842517810375, guid: 2fbad6f1f295ecd4484317a6394bcbf3,
         type: 3}
       propertyPath: m_RootOrder
@@ -4660,6 +4715,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HiballGlass (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8311730756876188298, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97, type: 3}
@@ -5306,6 +5366,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HiballGlass (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8311730756876188298, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97, type: 3}
@@ -7683,6 +7748,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WineGlass (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
       propertyPath: m_RootOrder
@@ -7757,6 +7827,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WineGlass (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
@@ -8019,6 +8094,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate
+      objectReference: {fileID: 0}
+    - target: {fileID: 7726031644263713531, guid: b0aa6fa4d2d55c949986070f703802a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0aa6fa4d2d55c949986070f703802a9, type: 3}
@@ -8434,6 +8514,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WineGlass (21)
       objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
       propertyPath: m_RootOrder
@@ -8509,6 +8594,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WineGlass (26)
       objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
       propertyPath: m_RootOrder
@@ -8583,6 +8673,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WineGlass (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
@@ -9267,6 +9362,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HiballGlass (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8311730756876188298, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97, type: 3}
 --- !u!4 &604265767 stripped
@@ -9286,6 +9386,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WineGlass (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
@@ -9637,6 +9742,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WineGlass (20)
       objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
       propertyPath: m_RootOrder
@@ -9979,6 +10089,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7726031644263713531, guid: b0aa6fa4d2d55c949986070f703802a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0aa6fa4d2d55c949986070f703802a9, type: 3}
 --- !u!4 &659851865 stripped
@@ -10033,6 +10148,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WineGlass (34)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
@@ -10258,6 +10378,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HiballGlass (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8311730756876188298, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97, type: 3}
 --- !u!4 &694649552 stripped
@@ -10371,6 +10496,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WineGlass (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
@@ -10807,6 +10937,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WineGlass (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
@@ -11427,6 +11562,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 7726031644263713531, guid: b0aa6fa4d2d55c949986070f703802a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0aa6fa4d2d55c949986070f703802a9, type: 3}
 --- !u!4 &781945820 stripped
@@ -11689,6 +11829,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HiballGlass (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 8311730756876188298, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97, type: 3}
 --- !u!4 &829467174 stripped
@@ -11763,6 +11908,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7726031644263713531, guid: b0aa6fa4d2d55c949986070f703802a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0aa6fa4d2d55c949986070f703802a9, type: 3}
@@ -11883,6 +12033,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WineGlass (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
@@ -12883,6 +13038,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7726031644263713531, guid: b0aa6fa4d2d55c949986070f703802a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0aa6fa4d2d55c949986070f703802a9, type: 3}
 --- !u!4 &874864197 stripped
@@ -12902,6 +13062,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WineGlass (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
@@ -13256,6 +13421,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WineGlass (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
       propertyPath: m_RootOrder
@@ -13457,7 +13627,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &909605937
 Transform:
@@ -13618,6 +13788,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WineGlass (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
@@ -15074,6 +15249,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HiballGlass (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 8311730756876188298, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97, type: 3}
 --- !u!4 &1028711115 stripped
@@ -15395,6 +15575,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HiballGlass (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8311730756876188298, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97, type: 3}
 --- !u!4 &1039191933 stripped
@@ -15640,6 +15825,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HiballGlass (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8311730756876188298, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97, type: 3}
@@ -15984,6 +16174,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WineGlass (19)
       objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
       propertyPath: m_RootOrder
@@ -16276,6 +16471,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7726031644263713531, guid: b0aa6fa4d2d55c949986070f703802a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0aa6fa4d2d55c949986070f703802a9, type: 3}
@@ -16620,6 +16820,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WineGlass (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
@@ -17670,6 +17875,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WineGlass (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
       propertyPath: m_RootOrder
@@ -17856,6 +18066,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7726031644263713531, guid: b0aa6fa4d2d55c949986070f703802a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0aa6fa4d2d55c949986070f703802a9, type: 3}
@@ -18044,6 +18259,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HiballGlass (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8311730756876188298, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97, type: 3}
@@ -18724,6 +18944,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WineGlass (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
       propertyPath: m_RootOrder
@@ -18798,6 +19023,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WineGlass (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
@@ -18948,6 +19178,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WineGlass (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
@@ -19333,6 +19568,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HiballGlass (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8311730756876188298, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97, type: 3}
@@ -19963,6 +20203,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WineGlass (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
       propertyPath: m_RootOrder
@@ -20092,6 +20337,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HiballGlass (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8311730756876188298, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97, type: 3}
@@ -20388,6 +20638,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WineGlass (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
       propertyPath: m_RootOrder
@@ -20574,6 +20829,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HiballGlass (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8311730756876188298, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97, type: 3}
@@ -22832,6 +23092,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HiballGlass (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 8311730756876188298, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97, type: 3}
 --- !u!4 &1509439862 stripped
@@ -22851,6 +23116,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WineGlass (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
@@ -23466,6 +23736,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7726031644263713531, guid: b0aa6fa4d2d55c949986070f703802a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0aa6fa4d2d55c949986070f703802a9, type: 3}
@@ -24229,6 +24504,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WineGlass (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
@@ -25103,6 +25383,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WineGlass (30)
       objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
       propertyPath: m_RootOrder
@@ -25277,6 +25562,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WineGlass (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
@@ -25814,6 +26104,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 7726031644263713531, guid: b0aa6fa4d2d55c949986070f703802a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0aa6fa4d2d55c949986070f703802a9, type: 3}
 --- !u!4 &1747370396 stripped
@@ -25888,6 +26183,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7726031644263713531, guid: b0aa6fa4d2d55c949986070f703802a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0aa6fa4d2d55c949986070f703802a9, type: 3}
@@ -26458,6 +26758,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 7726031644263713531, guid: b0aa6fa4d2d55c949986070f703802a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0aa6fa4d2d55c949986070f703802a9, type: 3}
 --- !u!4 &1762654640 stripped
@@ -26877,6 +27182,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WineGlass (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
       propertyPath: m_RootOrder
@@ -27200,6 +27510,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HiballGlass
+      objectReference: {fileID: 0}
+    - target: {fileID: 8311730756876188298, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97, type: 3}
@@ -27647,6 +27962,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WineGlass (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
@@ -31542,6 +31862,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WineGlass (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
       propertyPath: m_RootOrder
@@ -31616,6 +31941,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WineGlass (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
@@ -31785,6 +32115,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WineGlass (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
@@ -32098,6 +32433,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HiballGlass (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8311730756876188298, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97, type: 3}
@@ -32542,6 +32882,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HiballGlass (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8311730756876188298, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97, type: 3}
@@ -33812,6 +34157,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WineGlass (33)
       objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
       propertyPath: m_RootOrder
@@ -34039,6 +34389,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 7726031644263713531, guid: b0aa6fa4d2d55c949986070f703802a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0aa6fa4d2d55c949986070f703802a9, type: 3}
 --- !u!4 &2017850606 stripped
@@ -34094,7 +34449,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2033186131
 Transform:
@@ -34176,6 +34531,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bowl (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 308119715834758981, guid: f9e42f3b214817a4cb08a456166c950a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 310949043042510469, guid: f9e42f3b214817a4cb08a456166c950a,
         type: 3}
@@ -34502,6 +34862,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7726031644263713531, guid: b0aa6fa4d2d55c949986070f703802a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0aa6fa4d2d55c949986070f703802a9, type: 3}
@@ -34896,6 +35261,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HiballGlass (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 8311730756876188298, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6c2b8a4acd0cba49a5ef9fb0d781c97, type: 3}
 --- !u!4 &2134456205 stripped
@@ -34970,6 +35340,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7726031644263713531, guid: b0aa6fa4d2d55c949986070f703802a9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0aa6fa4d2d55c949986070f703802a9, type: 3}
@@ -36145,6 +36520,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Bowl
+      objectReference: {fileID: 0}
+    - target: {fileID: 308119715834758981, guid: f9e42f3b214817a4cb08a456166c950a,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 310949043042510469, guid: f9e42f3b214817a4cb08a456166c950a,
         type: 3}
@@ -37344,6 +37724,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WineGlass
       objectReference: {fileID: 0}
+    - target: {fileID: 5387214312310432884, guid: 8a73ba3250fcf264f9eaecd8689765d6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5389052600095545314, guid: 8a73ba3250fcf264f9eaecd8689765d6,
         type: 3}
       propertyPath: m_RootOrder
@@ -37412,6 +37797,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4541692180463125325, guid: 2fbad6f1f295ecd4484317a6394bcbf3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 4543790842517810375, guid: 2fbad6f1f295ecd4484317a6394bcbf3,
         type: 3}
