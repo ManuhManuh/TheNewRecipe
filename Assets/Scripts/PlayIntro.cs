@@ -7,17 +7,35 @@ public class PlayIntro : MonoBehaviour
 {
     public List<Paragraph> paragraphs = new List<Paragraph>();
     public Canvas canvas;
-    
+    public string buttonSkipIntroInputName;
+    public TMP_Text skipMessage;
+
+    private bool previouslyPlayed;
 
     private void Start()
     {
+        previouslyPlayed = PlayerPrefs.HasKey("Played");
+
         // Note: make sure paragraphs are in order in the inspector
+
+        if (previouslyPlayed)
+        {
+            // move StartCoroutine here when testing is done
+            skipMessage.enabled = previouslyPlayed;
+        }
+
 
         StartCoroutine(PlayParagraphs());
 
     }
 
-
+    public void Update()
+    {
+        if (Input.GetButtonDown(buttonSkipIntroInputName))
+        {
+            StartCoroutine(EndIntro());
+        }
+    }
     private IEnumerator PlayParagraphs()
     {
         // Start the ambient game music, minimum duration 0, volume 0.5
@@ -45,6 +63,14 @@ public class PlayIntro : MonoBehaviour
             //TODO: Fade this out
 
         }
+
+        PlayerPrefs.SetString("Played", "True");
+
+        StartCoroutine(EndIntro());
+    }
+
+    private IEnumerator EndIntro()
+    {
 
         // Notify scene control that intro has finished, so first chapter can be activated
         SceneControl.instance.IntroFinished = true;
