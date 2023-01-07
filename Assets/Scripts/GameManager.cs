@@ -63,12 +63,6 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            Debug.Log($"Kegs correctly coloured: {kegsCorrectlyColoured}");
-            Debug.Log($"Kegs tapped: {kegsTapped}");
-        }
-
     }
 
     internal static void OnChapterLoaded()
