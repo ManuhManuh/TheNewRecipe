@@ -113,8 +113,8 @@
     <Compile Include="Assets\Oculus\Spatializer\scripts\ONSPPropagationMaterial.cs" />
     <Compile Include="Assets\Oculus\Avatar\Samples\SocialStarter\Assets\Scripts\P2PManager.cs" />
     <Compile Include="Assets\Oculus\SampleFramework\Core\DebugUI\Scripts\DebugUIBuilder.cs" />
-    <Compile Include="Assets\Oculus\SampleFramework\Core\Locomotion\Scripts\TeleportSupport.cs" />
     <Compile Include="Assets\Oculus\SampleFramework\Core\HandsInteraction\Scripts\ButtonController.cs" />
+    <Compile Include="Assets\Oculus\SampleFramework\Core\Locomotion\Scripts\TeleportSupport.cs" />
     <Compile Include="Assets\Oculus\SampleFramework\Core\CustomHands\Scripts\Hand.cs" />
     <Compile Include="Assets\Oculus\LipSync\Scripts\Helpers\OVRNamedArrayAttribute.cs" />
     <Compile Include="Assets\Oculus\SampleFramework\Core\Locomotion\Scripts\TeleportOrientationHandler.cs" />
@@ -995,6 +995,9 @@
     <Reference Include="Unity.VisualStudio.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.XR.OpenXR.Features.OculusQuestSupport.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.Features.OculusQuestSupport.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Autodesk.Fbx.Editor">
       <HintPath>Library\ScriptAssemblies\Autodesk.Fbx.Editor.dll</HintPath>
     </Reference>
@@ -1025,6 +1028,9 @@
     <Reference Include="com.unity.multiplayer-weaver.Editor">
       <HintPath>Library\ScriptAssemblies\com.unity.multiplayer-weaver.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.XR.OpenXR.Features.OculusQuestSupport">
+      <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.Features.OculusQuestSupport.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.Purchasing.SecurityCore">
       <HintPath>Library\ScriptAssemblies\UnityEngine.Purchasing.SecurityCore.dll</HintPath>
     </Reference>
@@ -1033,6 +1039,9 @@
     </Reference>
     <Reference Include="UnityEngine.XR.LegacyInputHelpers">
       <HintPath>Library\ScriptAssemblies\UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.OpenXR.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
@@ -1049,11 +1058,11 @@
     <Reference Include="UnityEditor.Purchasing">
       <HintPath>Library\ScriptAssemblies\UnityEditor.Purchasing.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.XR.OpenXR">
+      <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.XR.Interaction.Toolkit.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.XR.Interaction.Toolkit.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.XR.Oculus">
-      <HintPath>Library\ScriptAssemblies\Unity.XR.Oculus.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.SpatialTracking">
       <HintPath>Library\ScriptAssemblies\UnityEditor.SpatialTracking.dll</HintPath>
@@ -1061,20 +1070,11 @@
     <Reference Include="UnityEngine.Advertisements.Editor">
       <HintPath>Library\ScriptAssemblies\UnityEngine.Advertisements.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.XR.OpenXR.Features.OculusQuestSupport.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.Features.OculusQuestSupport.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.XR.OpenXR.Features.OculusQuestSupport">
-      <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.Features.OculusQuestSupport.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.XR.OpenXR.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.XR.OpenXR">
-      <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.XR.OpenXR.Features.ConformanceAutomation">
       <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.Features.ConformanceAutomation.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.XR.Oculus">
+      <HintPath>Library\ScriptAssemblies\Unity.XR.Oculus.dll</HintPath>
     </Reference>
     <Reference Include="Unity.XR.OpenXR.Features.RuntimeDebugger.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.XR.OpenXR.Features.RuntimeDebugger.Editor.dll</HintPath>
