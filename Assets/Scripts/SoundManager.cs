@@ -101,7 +101,7 @@ public class SoundManager : MonoBehaviour
 
     internal static void PlaySound(GameObject target, string soundName)
     {
-        SoundManager.instance.PlaySoundInternal(target, soundName);
+        instance.PlaySoundInternal(target, soundName);
     }
 
     private void PlaySoundInternal(GameObject target, string soundName)

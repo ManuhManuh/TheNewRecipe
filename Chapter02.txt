@@ -1,9 +1,0 @@
-Replace "Stay tuned" screen with new scene - tunnel maze
-*Object is to collect the parts of the recipe (not the ingredients yet)
-*Once parts are collected, the code for the door to the ingredients room can be figured out
-
-Ideas for hiding parts:
-*Behind bricks in the wall
-*Assemble something out of a garbage pile, then use somewhere else
-*Step on one floor brick, lights up something, which lights up something else, etc.
-
