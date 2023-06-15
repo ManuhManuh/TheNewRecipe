@@ -8,12 +8,12 @@ public class InventorySlot : MonoBehaviour
     public int capacity;
     public TMP_Text label;
     public string itemName;
-    public ObjectGrabber defaultObjectGrabber;
+    // public ObjectGrabber defaultObjectGrabber;
 
     private int countOfItems;
     private Vector3 objectPosition;
     private Quaternion objectRotation;
-    private GrabbableObject objectToDispense;
+    private InventoryObject objectToDispense;
     private Vector3 objectReturnPosition;
     private Quaternion objectReturnRotation;
 
@@ -35,7 +35,7 @@ public class InventorySlot : MonoBehaviour
 
     }
 
-    public void OnObjectDeposited(GrabbableObject inventoryObject, Vector3 objectLocalPosition, Quaternion objectLocalRotation)
+    public void OnObjectDeposited(InventoryObject inventoryObject, Vector3 objectLocalPosition, Quaternion objectLocalRotation)
     {
         // Increment the object count
         countOfItems++;
@@ -71,17 +71,20 @@ public class InventorySlot : MonoBehaviour
             countOfItems--;
 
             // Place the object in the player's hand   
-            foreach (Transform child in transform)
-            {
-                if (child.CompareTag(gameObject.tag))
-                {
-                    objectToDispense = child.GetComponent<GrabbableObject>();
-                }
-            }
+
+            //****Note: this will still need to happen, but will be different with Interaction Toolkit
+
+            //foreach (Transform child in transform)
+            //{
+            //    if (child.CompareTag(gameObject.tag))
+            //    {
+            //        objectToDispense = child.GetComponent<GrabbableObject>();
+            //    }
+            //}
 
             // Implement the whole grabbing scenario with the default grabber
-            objectToDispense.OnGrab(defaultObjectGrabber);
-            defaultObjectGrabber.OnInventoryWithdrawl(objectToDispense);
+            //objectToDispense.OnGrab(defaultObjectGrabber);
+            // defaultObjectGrabber.OnInventoryWithdrawl(objectToDispense);
 
             //objectToDispense.transform.localPosition = objectReturnPosition;
             objectToDispense.transform.localPosition = Vector3.zero;

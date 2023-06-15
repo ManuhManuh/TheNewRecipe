@@ -106,7 +106,7 @@ public class InventoryManager : MonoBehaviour
         inventoryActive = inventoryDisplay.activeSelf;
     }
 
-    public void OnInventoryObjectAcquired(GrabbableObject inventoryObject, Vector3 objectLocalPosition, Quaternion objectLocalRotation)
+    public void OnInventoryObjectAcquired(InventoryObject inventoryObject, Vector3 objectLocalPosition, Quaternion objectLocalRotation)
     {
         // Figure out which slot the object goes in
         for (int i = 0; i < slots.Count; i++)
@@ -122,7 +122,7 @@ public class InventoryManager : MonoBehaviour
 
     }
 
-    public void OnInventoryObjectUsed(GrabbableObject inventoryObject)
+    public void OnInventoryObjectUsed(InventoryObject inventoryObject)
     {
         // Currently does nothing, except avoids being put back in inventory
 

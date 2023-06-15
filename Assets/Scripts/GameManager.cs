@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public static bool sitting = true;
-    public static bool wineBottlesPlaced;
+    public static bool winePuzzleSolved;
     public static List<Color> ColourCycle = new List<Color>();
     public static bool allPuzzlesSolved;
 
@@ -97,13 +97,12 @@ public class GameManager : MonoBehaviour
     internal static void OnWineSlotUpdated()
     {
         // Check to see if all slots have the correct fill status
-        wineBottlesPlaced = FindObjectsOfType<WineSlot>().All(slot => slot.CorrectFillStatus);
+        winePuzzleSolved = FindObjectsOfType<WineSlot>().All(slot => slot.CorrectFillStatus);
 
-        if (wineBottlesPlaced)
+        if (winePuzzleSolved)
         {
-            hiddenDrawer.GetComponent<GrabbableObject>().ObjectLocked = false;
-            hiddenDrawer.handle.SetActive(true);
-
+            //hiddenDrawer.GetComponent<LockableObject>().OnUnlocked;
+            // TODO: Make this work with new LockedByWinePuzzle script
             // Debug.Log("Wine bottles correct - consider freezing the bottles");
         }
 

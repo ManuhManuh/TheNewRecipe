@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LockedByKey : MonoBehaviour
+public class LockedByKey : LockableObject
 {
     private Animator keyAnimator;
 
@@ -10,10 +10,8 @@ public class LockedByKey : MonoBehaviour
     private Quaternion keyRotation;
     private Transform key;
 
-    private void Start()
+    protected override void Start()
     {
-        GetComponent<GrabbableObject>().ObjectLocked = true;
-
         // Find the sample key among child objects
         foreach (Transform child in transform)
         {
@@ -32,7 +30,7 @@ public class LockedByKey : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Check to see if the drawer is locked
-        if (GetComponent<GrabbableObject>().ObjectLocked == true)
+        if (locked)
         {
             // Check that a key is what triggered
             if (other.transform.CompareTag("Key"))
@@ -43,7 +41,7 @@ public class LockedByKey : MonoBehaviour
                 keyAnimator = key.GetComponent<Animator>();
 
                 // Tell the key that it has been used
-                key.GetComponent<GrabbableObject>().ObjectUsed = true;
+                // key.GetComponent<GrabbableObject>().ObjectUsed = true;
 
                 // Parent the key to the drawer
                 key.SetParent(gameObject.transform);
@@ -52,7 +50,7 @@ public class LockedByKey : MonoBehaviour
                 SoundManager.PlaySound(gameObject, "KeyInsert");
 
                 // Drop the key
-                key.GetComponent<GrabbableObject>().OnDrop();
+                // key.GetComponent<GrabbableObject>().OnDrop();
 
                 // Set the key to its starting position
                 key.position = keyPosition;
@@ -67,7 +65,8 @@ public class LockedByKey : MonoBehaviour
                     keyAnimator.SetBool("KeyTurning", true);
                 }
 
-                GetComponent<GrabbableObject>().ObjectLocked = false;
+                // Unlock the drawer
+                base.OnUnlocked();
             }
         }
     }

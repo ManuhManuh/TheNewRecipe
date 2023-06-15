@@ -126,7 +126,7 @@ public class DumbwaiterDoor : ControlledObject
         ladder.rotation = ladderRestRotation;
 
         // Disable the ladder from being picked up again
-        ladder.GetComponent<GrabbableObject>().ObjectLocked = true;
+        ladder.GetComponent<LockableObject>().OnUnlocked();
 
         // Enable the teleport target inside the dumbwaiter
         interiorTeleportTarget.SetActive(true);
