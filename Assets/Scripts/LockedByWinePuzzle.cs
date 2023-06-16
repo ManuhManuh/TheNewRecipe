@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class LockedByWinePuzzle : LockableObject
 {
+    private WinePuzzle winePuzzle;
     public override void OnUnlocked()
     {
-        if (GameManager.winePuzzleSolved)
+        if (winePuzzle.Solved)
         {
             base.OnUnlocked();
         }

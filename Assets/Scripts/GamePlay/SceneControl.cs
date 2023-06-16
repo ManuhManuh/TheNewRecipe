@@ -211,28 +211,13 @@ public class SceneControl : MonoBehaviour
 
     private void Update()
     {
-        // Check to see if the player wants to access the Main Menu
-        if (Input.GetButtonDown(mainMenuButton))
-        {
-            
-            if (currentSceneAction == SceneAction.PlayChapter)
-            {
-                // Pause the game, which will display the main menu
-                OnMenuSelection(SceneAction.Pause);
-            }
-            else
-            {
-                // Unload the current scene (leaving the main menu only)
-                OnMenuSelection(SceneAction.Menu);
-            }
-            
-        }
 
         // Check if we are waiting for the intro to start
         if (readyForPreload == true && introFinished == false)
         {
             // Pause to make sure intro has started
-            StartCoroutine(PreLoadChapter1());
+
+           StartCoroutine(PreLoadChapter1());
 
             // Prevent this from being called again
             readyForPreload = false;
@@ -258,6 +243,19 @@ public class SceneControl : MonoBehaviour
 
     }
 
+    public void AccessMainMenu()
+    {
+        if (currentSceneAction == SceneAction.PlayChapter)
+        {
+            // Pause the game, which will display the main menu
+            OnMenuSelection(SceneAction.Pause);
+        }
+        else
+        {
+            // Unload the current scene (leaving the main menu only)
+            OnMenuSelection(SceneAction.Menu);
+        }
+    }
     private IEnumerator ChangeScene (string newScene, bool unloadPreviousScene, bool activeOnLoad)
     {
 

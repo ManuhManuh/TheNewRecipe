@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LockableObject : MonoBehaviour
 {
-    [SerializeField] protected GameObject disabledGameObject;
+    [SerializeField] protected GameObject disabledPart;
     public bool Locked
     {
         get
@@ -23,7 +23,7 @@ public class LockableObject : MonoBehaviour
 
     public virtual void OnUnlocked()
     {
-        disabledGameObject.SetActive(true);
+        disabledPart.SetActive(true);
 
     }
 

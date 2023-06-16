@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class Keg : MonoBehaviour
 {
-    public Color correctColour;
-    public Transform tapPlaceholder;
-    public float maxDistanceDelta;
     public bool ColourIsCorrect => colourIsCorrect;
+    public Color CorrectColour => correctColour;
     public bool HasTap
     {
         get
@@ -20,14 +18,18 @@ public class Keg : MonoBehaviour
         }
     }
 
+    [SerializeField] private Color correctColour;
+
     private bool colourIsCorrect;
     private bool hasTap;
     private Color currentColour;
     private int colourIndex;
     private GameObject colourRing;
+    private KegPuzzle kegPuzzle;
 
     public void Start()
-    {        
+    {
+        kegPuzzle = FindObjectOfType<KegPuzzle>();
         colourIsCorrect = false;
         foreach (Transform child in transform)
         {
@@ -43,8 +45,8 @@ public class Keg : MonoBehaviour
     {
         // Set the colour ring to the next colour in the cycle
         int newIndex = colourIndex < 5 ? colourIndex + 1 : 0;
-        colourRing.GetComponent<MeshRenderer>().material.color = GameManager.ColourCycle[newIndex];
-        currentColour = GameManager.ColourCycle[newIndex];
+        colourRing.GetComponent<MeshRenderer>().material.color = kegPuzzle.ColourCycle[newIndex];
+        currentColour = kegPuzzle.ColourCycle[newIndex];
 
         // Reset the value of the current colour
         colourIndex = newIndex;
@@ -56,11 +58,11 @@ public class Keg : MonoBehaviour
             // Flag as having the correct colour
             colourIsCorrect = true;
 
-            // Let the Game Manager know a keg reached the correct colour
-            GameManager.OnKegColoured();
         }
-    }
 
+        // Get the puzzle status updated
+        kegPuzzle.CheckPuzzleStatus();
+}
 
     private void OnTriggerEnter(Collider other)
     {
@@ -77,6 +79,17 @@ public class Keg : MonoBehaviour
         }
     }
 
+    public void TapPlaced()
+    {
+        hasTap = true;
+        kegPuzzle.CheckPuzzleStatus();
+    }
+
+    public void TapRemoved()
+    {
+        hasTap = false;
+        kegPuzzle.CheckPuzzleStatus();
+    }
     public void OnGameWon() 
     {
         // Turn ring glowing white

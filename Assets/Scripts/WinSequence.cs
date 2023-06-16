@@ -22,32 +22,8 @@ public class WinSequence : MonoBehaviour
     {
         barrelAnimator = animatedLid.GetComponent<Animator>();
     }
-    void Update()
+    public void OnWin()
     {
-        if (GameManager.allPuzzlesSolved && !sequenceStarted)
-        {
-            // Disable Cask B
-            realCask.SetActive(false);
-
-            // Enable Barrel Door
-            animatedCask.SetActive(true);
-
-            // Play animation
-            barrelAnimator.SetBool("DoorOpening", true);
-
-            // Play sound effect
-            SoundManager.PlaySound(gameObject, "DumbwaiterDoorOpen");
-
-            // Make hidden door visible
-            hiddenDoor.SetActive(true); //Figure out how to fade in .. really abrupt
-
-            // Activate teleport target inside barrel
-            interiorTeleportTarget.SetActive(true);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && !sequenceStarted)    //TODO: remove this in production - used for testing end sequence
-        {
-            sequenceStarted = true;
 
             // Disable Cask B
             realCask.SetActive(false);
@@ -66,7 +42,7 @@ public class WinSequence : MonoBehaviour
 
             // Activate teleport target inside barrel
             interiorTeleportTarget.SetActive(true);
-        }
+       
 
     }
 
