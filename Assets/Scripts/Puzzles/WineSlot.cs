@@ -6,7 +6,7 @@ public class WineSlot : MonoBehaviour
 {
     public bool CorrectFillStatus => correctFillStatus;
 
-    private bool shouldBeFilled;
+    [SerializeField] private bool shouldBeFilled;
     private bool correctFillStatus;
     private WinePuzzle winePuzzle;
 

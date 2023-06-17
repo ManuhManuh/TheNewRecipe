@@ -42,6 +42,7 @@ public class WinePuzzle : MonoBehaviour, IPuzzle
 
     public void OnSolved()
     {
+        
         chapterManager.CheckChapterStatus();
     }
     
