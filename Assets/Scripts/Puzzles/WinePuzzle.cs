@@ -1,20 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class WinePuzzle : MonoBehaviour, IPuzzle
 {
-    [SerializeField] private string puzzleName;
-    
+   
     public string PuzzleName => puzzleName;
     public bool Solved => IsSolved();
 
+    [SerializeField] private GameObject tap;
+    [SerializeField] private XRGrabInteractable drawer;
+
+    private string puzzleName = "WinePuzzle";
     private WineSlot[] wineSlots;
-    private ChapterManager chapterManager;
 
     private void Start()
     {
-        chapterManager = FindObjectOfType<ChapterManager>();
         wineSlots = FindObjectsOfType<WineSlot>();
     }
 
@@ -42,8 +44,11 @@ public class WinePuzzle : MonoBehaviour, IPuzzle
 
     public void OnSolved()
     {
-        
-        chapterManager.CheckChapterStatus();
+        // unlock the drawer 
+        drawer.enabled = true;
+
+        // enable the tap inside the drawer
+        tap.SetActive(true);
     }
     
 }

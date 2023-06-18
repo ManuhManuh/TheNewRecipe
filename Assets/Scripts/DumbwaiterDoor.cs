@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class DumbwaiterDoor : ControlledObject
 {
+    public bool Frozen => frozen;
+
     [SerializeField] private float maxDistanceDeltaOpen;
     [SerializeField] private float maxDistanceDeltaClose;
     [SerializeField] private float minOpeningSizeForEntry;
@@ -11,7 +14,6 @@ public class DumbwaiterDoor : ControlledObject
 
     [SerializeField] private Transform openedPositionTransform;
     [SerializeField] private GameObject ladderPlaceholder;
-    [SerializeField] private GameObject interiorTeleportTarget;
 
     private Vector3 closedPosition;
     private Vector3 openedPosition;
@@ -23,6 +25,7 @@ public class DumbwaiterDoor : ControlledObject
     private bool closing;
     private bool frozen;
     private bool delaying;
+    private DumbwaiterPuzzle dumbwaiterPuzzle;
 
     private void Start()
     {
@@ -37,6 +40,8 @@ public class DumbwaiterDoor : ControlledObject
         ladderRestPosition = ladderPlaceholder.transform.position;
         ladderRestRotation = ladderPlaceholder.transform.rotation;
         Destroy(ladderPlaceholder);
+
+        dumbwaiterPuzzle = FindObjectOfType<DumbwaiterPuzzle>();
     }
     public override void OnPressed()
     {
@@ -104,6 +109,8 @@ public class DumbwaiterDoor : ControlledObject
 
                 // Freeze the door open so it doesn't keep trying to close
                 frozen = true;
+
+                dumbwaiterPuzzle.CheckPuzzleStatus();
             }
         }
 
@@ -124,11 +131,8 @@ public class DumbwaiterDoor : ControlledObject
         ladder.rotation = ladderRestRotation;
 
         // Disable the ladder from being picked up again
-        ladder.GetComponent<LockableObject>().OnUnlocked();
+        ladder.GetComponent<XRGrabInteractable>().enabled = false;
 
-        // Enable the teleport target inside the dumbwaiter
-        interiorTeleportTarget.SetActive(true);
-        Debug.Log("Teleport should now be enabled");
     }
 
     private IEnumerator CloseDumbwaiterDoor(float delay)

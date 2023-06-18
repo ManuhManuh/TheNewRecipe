@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class KegPuzzle : MonoBehaviour, IPuzzle
 {
-    public string PuzzleName => throw new System.NotImplementedException();
-    public bool Solved => throw new System.NotImplementedException();
+    public string PuzzleName => puzzleName;
+    public bool Solved => IsSolved();
     public List<Color> ColourCycle = new List<Color>();
 
-    [SerializeField] private string puzzleName;
-
+    private string puzzleName = "KegPuzzle";
     private Keg[] kegs;
     private ChapterManager chapterManager;
 

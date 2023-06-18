@@ -109,9 +109,10 @@ GameObject:
   - component: {fileID: 99780415436817370}
   - component: {fileID: 99780415435468196}
   - component: {fileID: 99780415434574726}
-  - component: {fileID: 99780415436489020}
   - component: {fileID: 1332043028827805915}
   - component: {fileID: 6265209869558963238}
+  - component: {fileID: 9087080526912244536}
+  - component: {fileID: 6541667221463139851}
   m_Layer: 0
   m_Name: Hammer
   m_TagString: Untagged
@@ -183,20 +184,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &99780415436489020
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 99780415436489018}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300692, guid: fde463d1640be964dad05cce1c744989, type: 3}
 --- !u!54 &1332043028827805915
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -208,7 +195,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -338,3 +325,30 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!136 &9087080526912244536
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99780415436489018}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.658649
+  m_Height: 13.2159815
+  m_Direction: 1
+  m_Center: {x: 0.037314277, y: 6.6083074, z: -0.0032120056}
+--- !u!65 &6541667221463139851
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99780415436489018}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.1348076, y: 2.5852435, z: 2.7729735}
+  m_Center: {x: 0.015851013, y: 14.765452, z: -0.018195888}
