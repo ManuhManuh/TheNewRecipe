@@ -4,28 +4,25 @@ using UnityEngine;
 
 public class WineSlot : MonoBehaviour
 {
-    public bool CorrectFillStatus => correctFillStatus;
+    public bool HasCorrectFillStatus => fillStatusIsCorrect;
 
     [SerializeField] private bool shouldBeFilled;
-    private bool correctFillStatus;
+    private bool fillStatusIsCorrect;
     private WinePuzzle winePuzzle;
 
     private void Start()
     {
         winePuzzle = FindObjectOfType<WinePuzzle>();
 
-        // Check if this slot should be filled 
-        shouldBeFilled = gameObject.CompareTag("CorrectWineSlot");
-
-        // Initialize the fill status
-        correctFillStatus = !shouldBeFilled;
+        // Initialize the fill status (all are empty, so is correct if it should not be filled)
+        fillStatusIsCorrect = !shouldBeFilled;
 
     }
 
     public void WineBottlePlaced()
     {
         // Update the correctly filled status
-        correctFillStatus = shouldBeFilled;
+        fillStatusIsCorrect = shouldBeFilled;
 
         // Get the puzzle status updated
         winePuzzle.CheckPuzzleStatus();
@@ -35,7 +32,7 @@ public class WineSlot : MonoBehaviour
     public void WineBottleRemoved()
     {
         // Update the correctly filled status
-        correctFillStatus = shouldBeFilled;
+        fillStatusIsCorrect = shouldBeFilled;
 
         // Get the puzzle status updated
         winePuzzle.CheckPuzzleStatus();

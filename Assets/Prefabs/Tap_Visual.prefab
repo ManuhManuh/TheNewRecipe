@@ -70,7 +70,31 @@ PrefabInstance:
     - target: {fileID: 4049497615811617766, guid: 271c9650131060d45b1e072c02c5cd2b,
         type: 3}
       propertyPath: m_Name
-      value: Tap_Drawer
+      value: Tap_Visual
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 5239795354044976955, guid: 271c9650131060d45b1e072c02c5cd2b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7307751174648613504, guid: 271c9650131060d45b1e072c02c5cd2b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733948928641718375, guid: 271c9650131060d45b1e072c02c5cd2b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7783673930234359305, guid: 271c9650131060d45b1e072c02c5cd2b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5239795354044976955, guid: 271c9650131060d45b1e072c02c5cd2b, type: 3}
+    - {fileID: 7783673930234359305, guid: 271c9650131060d45b1e072c02c5cd2b, type: 3}
+    - {fileID: 7733948928641718375, guid: 271c9650131060d45b1e072c02c5cd2b, type: 3}
+    - {fileID: 4049497615811617764, guid: 271c9650131060d45b1e072c02c5cd2b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 271c9650131060d45b1e072c02c5cd2b, type: 3}

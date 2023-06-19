@@ -44,7 +44,8 @@ public class Keg : MonoBehaviour
     public void OnChangeColour()
     {
         // Set the colour ring to the next colour in the cycle
-        int newIndex = colourIndex < 5 ? colourIndex + 1 : 0;
+        int newIndex = colourIndex < 4 ? colourIndex + 1 : 0;
+
         colourRing.GetComponent<MeshRenderer>().material.color = kegPuzzle.ColourCycle[newIndex];
         currentColour = kegPuzzle.ColourCycle[newIndex];
 
@@ -64,20 +65,20 @@ public class Keg : MonoBehaviour
         kegPuzzle.CheckPuzzleStatus();
 }
 
-    private void OnTriggerEnter(Collider other)
+    public void RingHitDetected(GameObject hitBy)
     {
-        GameObject hitMe = other.gameObject;
-
         // Play the hitting sound
         SoundManager.PlaySound(gameObject, "HittingCask");
 
         // If the thing that collided was the hammer
-        if (hitMe.CompareTag("Hammer"))
+        if (hitBy.CompareTag("Hammer"))
         {
             // Change to the next colour in the cycle
             OnChangeColour();
         }
     }
+
+    
 
     public void TapPlaced()
     {

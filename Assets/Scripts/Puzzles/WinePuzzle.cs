@@ -34,7 +34,7 @@ public class WinePuzzle : MonoBehaviour, IPuzzle
 
         foreach (WineSlot slot in wineSlots)
         {
-            if (!slot.CorrectFillStatus)
+            if (!slot.HasCorrectFillStatus)
             {
                 solved = false;
             }

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2292928759086160898}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Attach
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,8 +43,9 @@ GameObject:
   - component: {fileID: 8730280469607430785}
   - component: {fileID: 3271745055068618887}
   - component: {fileID: 5638865034504925949}
-  - component: {fileID: 5638865034504925946}
-  m_Layer: 2
+  - component: {fileID: 2728627341871646458}
+  - component: {fileID: 7780341149098380920}
+  m_Layer: 0
   m_Name: WineBottle
   m_TagString: WineBottle
   m_Icon: {fileID: 0}
@@ -258,8 +259,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &5638865034504925946
-BoxCollider:
+--- !u!136 &2728627341871646458
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -268,9 +269,24 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.1387514, y: 0.5735482, z: 0.13935538}
-  m_Center: {x: 0.00000059604645, y: 0.2866578, z: -0.00030378255}
+  m_Radius: 0.06967768
+  m_Height: 0.45388687
+  m_Direction: 1
+  m_Center: {x: 0.00000012107006, y: 0.20357816, z: -0.00030375086}
+--- !u!136 &7780341149098380920
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8730280469605229633}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.0279095
+  m_Height: 0.13787039
+  m_Direction: 1
+  m_Center: {x: 0.00000012107064, y: 0.50452065, z: -0.0004074024}
 --- !u!1 &8730280469605229635
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +298,7 @@ GameObject:
   - component: {fileID: 8730280469605529699}
   - component: {fileID: 8730280469606332483}
   - component: {fileID: 8730280469607430787}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +379,7 @@ GameObject:
   - component: {fileID: 8730280469605529703}
   - component: {fileID: 8730280469606332487}
   - component: {fileID: 8730280469607430791}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Wrapper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
