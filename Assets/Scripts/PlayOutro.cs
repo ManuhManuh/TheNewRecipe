@@ -27,6 +27,8 @@ public class PlayOutro : MonoBehaviour
 
     public void OnEnteredCask()
     {
+        Debug.Log($"Entered the cask!!)");
+
         StartCoroutine(PlayStayTuned());
     }
 

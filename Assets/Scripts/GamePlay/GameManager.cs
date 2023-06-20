@@ -31,7 +31,8 @@ public class GameManager : MonoBehaviour
     public void AdvanceToNextChapter()
     {
         currentChapterIndex++;
-        //SceneControl.SceneAction nextScene = chapters[currentChapterIndex]; - use this when there are more chapters to test with
+        // SceneControl.SceneAction nextScene = chapters[currentChapterIndex].name; // use this when there are more chapters to test with
+
         SceneControl.OnMenuSelection(SceneControl.SceneAction.StayTuned);
 
     }

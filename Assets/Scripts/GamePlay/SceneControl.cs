@@ -266,6 +266,7 @@ public class SceneControl : MonoBehaviour
         {
             // Load but do not activate
             asyncOperation.allowSceneActivation = false;
+      
         }
         else
         {
@@ -276,12 +277,14 @@ public class SceneControl : MonoBehaviour
 
             Scene sceneToActivate = SceneManager.GetSceneByName(newScene);
             SceneManager.SetActiveScene(sceneToActivate);
+        
         }
 
         if (unloadPreviousScene && sceneToUnload.name != "MasterScene")
         {
             // Note: this will not happen if the asyncOperation is paused - scene will be unloaded when new scene is activated
             SceneManager.UnloadSceneAsync(sceneToUnload);
+ 
         }
 
         yield return null;
@@ -290,7 +293,6 @@ public class SceneControl : MonoBehaviour
 
     private IEnumerator ActivateWaitingScene(string sceneToUnload, string sceneToActivate)
     {
-        Debug.Log("Starting ActivateWaitingScene");
 
         // allow the scene activation if we have a waiting scene
         if (asyncOperation.allowSceneActivation == false)

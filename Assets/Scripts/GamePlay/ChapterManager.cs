@@ -41,8 +41,10 @@ public class ChapterManager : MonoBehaviour
         winSequence.OnWin();
         
     }
-    public void OnTransitionTeleportReached()
+
+    public void OnAdvancementTriggered()
     {
         gameManager.AdvanceToNextChapter();
     }
+    
 }
