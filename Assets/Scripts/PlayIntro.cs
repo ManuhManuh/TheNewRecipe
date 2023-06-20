@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayIntro : MonoBehaviour
 {
     public List<Paragraph> paragraphs = new List<Paragraph>();
     public Canvas canvas;
-    public string buttonSkipIntroInputName;
-    public TMP_Text skipMessage;
+    public Button skipButton;
 
     private bool previouslyPlayed;
 
@@ -21,7 +21,7 @@ public class PlayIntro : MonoBehaviour
         if (previouslyPlayed)
         {
             // move StartCoroutine here when testing is done
-            skipMessage.enabled = previouslyPlayed;
+            skipButton.enabled = previouslyPlayed;
         }
 
 
@@ -29,13 +29,11 @@ public class PlayIntro : MonoBehaviour
 
     }
 
-    public void Update()
+    public void SkipIntro()
     {
-        if (Input.GetButtonDown(buttonSkipIntroInputName))
-        {
-            StartCoroutine(EndIntro());
-        }
+        StartCoroutine(EndIntro());
     }
+
     private IEnumerator PlayParagraphs()
     {
         // Start the ambient game music, minimum duration 0, volume 0.5

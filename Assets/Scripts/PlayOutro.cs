@@ -12,7 +12,7 @@ public class PlayOutro : MonoBehaviour
 
     private void Awake()
     {
-        UnityEngine.XR.InputTracking.Recenter();
+       // mainCamera.XRInputSubsystem.TryRecenter();
     }
 
     private void Start()
@@ -21,12 +21,18 @@ public class PlayOutro : MonoBehaviour
         // Note: make sure paragraphs are in order in the inspector
         playing = true;
         secondsLeft = viewDuration;
-        StartCoroutine(PlayStayTuned());
+        
 
     }
 
+    public void OnEnteredCask()
+    {
+        Debug.Log($"Entered the cask!!)");
 
-    private IEnumerator PlayStayTuned()
+        StartCoroutine(PlayStayTuned());
+    }
+
+    public IEnumerator PlayStayTuned()
     {
         while (playing)
         {

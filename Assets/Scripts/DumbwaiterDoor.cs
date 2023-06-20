@@ -1,15 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class DumbwaiterDoor : ControlledObject
 {
-    public float maxDistanceDeltaOpen;
-    public float maxDistanceDeltaClose;
-    public float minOpeningSizeForEntry;
-    public Transform openedPositionTransform;
-    public GameObject ladderPlaceholder;
-    public GameObject interiorTeleportTarget;
+    public bool Frozen => frozen;
+
+    [SerializeField] private float maxDistanceDeltaOpen;
+    [SerializeField] private float maxDistanceDeltaClose;
+    [SerializeField] private float minOpeningSizeForEntry;
+    [SerializeField] private float doorCloseDelay;
+
+    [SerializeField] private Transform openedPositionTransform;
+    [SerializeField] private GameObject ladderPlaceholder;
 
     private Vector3 closedPosition;
     private Vector3 openedPosition;
@@ -20,7 +24,8 @@ public class DumbwaiterDoor : ControlledObject
     private bool opening;
     private bool closing;
     private bool frozen;
-    
+    private bool delaying;
+    private DumbwaiterPuzzle dumbwaiterPuzzle;
 
     private void Start()
     {
@@ -29,11 +34,14 @@ public class DumbwaiterDoor : ControlledObject
         opening = false;
         closing = false;
         frozen = false;
+        delaying = false;
 
         // Find resting position for ladder when being propped and delete placeholder
         ladderRestPosition = ladderPlaceholder.transform.position;
         ladderRestRotation = ladderPlaceholder.transform.rotation;
         Destroy(ladderPlaceholder);
+
+        dumbwaiterPuzzle = FindObjectOfType<DumbwaiterPuzzle>();
     }
     public override void OnPressed()
     {
@@ -53,16 +61,11 @@ public class DumbwaiterDoor : ControlledObject
 
     public override void OnReleased()
     {
-        if (!frozen && !closing)
+        if (!frozen && !closing && !delaying)
         {
-            // Set flags and positions for closing
-            opening = false;
-            closing = true;
-            fromPosition = openedPosition;
-            toPosition = closedPosition;
+            delaying = true;
+            StartCoroutine(CloseDumbwaiterDoor(doorCloseDelay));
 
-            // Play opening sound
-            SoundManager.PlaySound(gameObject, "DumbwaiterDoorClose");
         }
        
     }
@@ -106,6 +109,8 @@ public class DumbwaiterDoor : ControlledObject
 
                 // Freeze the door open so it doesn't keep trying to close
                 frozen = true;
+
+                dumbwaiterPuzzle.CheckPuzzleStatus();
             }
         }
 
@@ -126,10 +131,23 @@ public class DumbwaiterDoor : ControlledObject
         ladder.rotation = ladderRestRotation;
 
         // Disable the ladder from being picked up again
-        ladder.GetComponent<GrabbableObject>().ObjectLocked = true;
+        ladder.GetComponent<XRGrabInteractable>().enabled = false;
 
-        // Enable the teleport target inside the dumbwaiter
-        interiorTeleportTarget.SetActive(true);
-        Debug.Log("Teleport should now be enabled");
+    }
+
+    private IEnumerator CloseDumbwaiterDoor(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        // Set flags and positions for closing
+        opening = false;
+        closing = true;
+        fromPosition = openedPosition;
+        toPosition = closedPosition;
+
+        // Play opening sound
+        SoundManager.PlaySound(gameObject, "DumbwaiterDoorClose");
+
+        delaying = false;
     }
 }

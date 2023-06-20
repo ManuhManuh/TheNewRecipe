@@ -7,8 +7,10 @@ public class BreakableObject : MonoBehaviour
     public GameObject brokenVersion;
     public string breakingSoundName;
 
-    private GameObject currentBrokenVase;
+    [SerializeField] private GameObject hiddenObject;
 
+    private GameObject currentBrokenVase;
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Brick"))
@@ -21,6 +23,12 @@ public class BreakableObject : MonoBehaviour
 
             // Destroy the unbroken version
             Destroy(gameObject);
+
+            // if there is a hidden object, enable it
+            if (hiddenObject != null)
+            {
+                hiddenObject.SetActive(true);
+            }
         }
     }
 
