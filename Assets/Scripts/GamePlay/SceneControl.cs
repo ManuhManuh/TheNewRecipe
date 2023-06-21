@@ -108,7 +108,7 @@ public class SceneControl : MonoBehaviour
                 outroFinished = false;
                 unloadPreviousScene = false;
                 activeOnLoad = true;
-                StartCoroutine(ChangeScene("MainMenu", unloadPreviousScene, activeOnLoad));
+                StartCoroutine(ChangeScene("Instructions", unloadPreviousScene, activeOnLoad));
 
                 return;
 
