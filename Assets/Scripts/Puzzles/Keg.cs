@@ -67,8 +67,6 @@ public class Keg : MonoBehaviour
 
     public void RingHitDetected(GameObject hitBy)
     {
-        // Play the hitting sound
-        SoundManager.PlaySound(gameObject, "HittingCask");
 
         // If the thing that collided was the hammer
         if (hitBy.CompareTag("Hammer"))
