@@ -12,11 +12,11 @@ EditorBuildSettings:
     path: Assets/Scenes/MasterScene.unity
     guid: 8dfaea9c6f70e084884e6a3dea6c8a34
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 7587b3470c2a70f41bb5a49e8ed7512c
-  - enabled: 1
     path: Assets/Scenes/Instructions.unity
     guid: 025bb3a58243d52449b610d925343b7b
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 7587b3470c2a70f41bb5a49e8ed7512c
   - enabled: 1
     path: Assets/Scenes/Intro.unity
     guid: 266f600cf986b8746b85572318109562
