@@ -39,3 +39,4 @@ Material:
     - _EmColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 0.17841695, g: 0.2334596, b: 0.32352942, a: 0}
     - _SpecColor: {r: 0.029195482, g: 0.44594625, b: 0.7941176, a: 1}
+  m_BuildTextureStacks: []
