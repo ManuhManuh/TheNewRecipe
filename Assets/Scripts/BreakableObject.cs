@@ -9,26 +9,25 @@ public class BreakableObject : MonoBehaviour
 
     [SerializeField] private GameObject hiddenObject;
 
-    private GameObject currentBrokenVase;
-    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Brick"))
         {
-            // Instantiate the broken version
-            currentBrokenVase = Instantiate(brokenVersion, transform.position, transform.rotation);
+            // Activate the broken version
+            brokenVersion.SetActive(true);
 
             // Play the breaking sound
-            SoundManager.PlaySound(currentBrokenVase, breakingSoundName);
-
-            // Destroy the unbroken version
-            Destroy(gameObject);
+            SoundManager.PlaySound(brokenVersion, breakingSoundName);
 
             // if there is a hidden object, enable it
             if (hiddenObject != null)
             {
                 hiddenObject.SetActive(true);
             }
+
+            // Destroy the unbroken version
+            Destroy(gameObject);
+
         }
     }
 
