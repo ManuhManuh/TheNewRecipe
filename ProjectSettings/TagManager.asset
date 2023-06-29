@@ -20,6 +20,7 @@ TagManager:
   - ColourRing
   - WineSlot
   - SittingTarget
+  - DumbwaiterFloor
   layers:
   - Default
   - TransparentFX

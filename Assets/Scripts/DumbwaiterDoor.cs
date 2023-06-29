@@ -14,6 +14,7 @@ public class DumbwaiterDoor : ControlledObject
 
     [SerializeField] private Transform openedPositionTransform;
     [SerializeField] private GameObject ladderPlaceholder;
+    [SerializeField] private Rigidbody doorRigidbody;
 
     private Vector3 closedPosition;
     private Vector3 openedPosition;
@@ -42,6 +43,7 @@ public class DumbwaiterDoor : ControlledObject
         Destroy(ladderPlaceholder);
 
         dumbwaiterPuzzle = FindObjectOfType<DumbwaiterPuzzle>();
+      
     }
     public override void OnPressed()
     {
@@ -52,6 +54,7 @@ public class DumbwaiterDoor : ControlledObject
             closing = false;
             fromPosition = closedPosition;
             toPosition = openedPosition;
+            doorRigidbody.isKinematic = true;
 
             // Play opening sound
             SoundManager.PlaySound(gameObject, "DumbwaiterDoorOpen");
@@ -75,6 +78,8 @@ public class DumbwaiterDoor : ControlledObject
         {
             opening = false;
             closing = false;
+            // replace physics
+            doorRigidbody.isKinematic = false;
         }
 
         if (opening)
@@ -92,8 +97,7 @@ public class DumbwaiterDoor : ControlledObject
 
     private void OnTriggerEnter(Collider other)
     {
-        // If the door is not frozen and the ladder is what collided with it
-        if (!frozen && other.CompareTag("DoorStopper"))
+        if (!frozen && other.CompareTag("DoorStopper")) // if the ladder is what the door collided with
         {
             // Stop the door closing
             closing = false;
@@ -112,6 +116,7 @@ public class DumbwaiterDoor : ControlledObject
 
                 dumbwaiterPuzzle.CheckPuzzleStatus();
             }
+            
         }
 
     }
