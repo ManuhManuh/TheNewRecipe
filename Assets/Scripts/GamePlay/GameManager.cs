@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private List<ChapterManager> chapters = new List<ChapterManager>();
 
+    private int currentChapterIndex = 0;
+
     private void Awake()
     {
         // Are there any other game managers yet?
@@ -26,14 +28,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private int currentChapterIndex = 0;
-    
     public void AdvanceToNextChapter()
     {
         currentChapterIndex++;
+        
+        // use this until there are more chapters and the chapter flow mechanism is built; then, remove this
+        SceneControl.OnMenuSelection(SceneControl.SceneAction.StayTuned);
+
         // SceneControl.SceneAction nextScene = chapters[currentChapterIndex].name; // use this when there are more chapters to test with
 
-        SceneControl.OnMenuSelection(SceneControl.SceneAction.StayTuned);
+        // if the chapter specifies where the player should start, put the player there
+        //if (chapters[currentChapterIndex].playerStartPosition != null)
+        //{
+        //    player.transform.position = chapters[currentChapterIndex].playerStartPosition.position;
+        //}
 
     }
 

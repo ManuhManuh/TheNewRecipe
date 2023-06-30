@@ -54,7 +54,8 @@ public class DumbwaiterDoor : ControlledObject
             closing = false;
             fromPosition = closedPosition;
             toPosition = openedPosition;
-            doorRigidbody.isKinematic = true;
+            //doorRigidbody.isKinematic = true;
+            //doorRigidbody.useGravity = false;
 
             // Play opening sound
             SoundManager.PlaySound(gameObject, "DumbwaiterDoorOpen");
@@ -79,7 +80,8 @@ public class DumbwaiterDoor : ControlledObject
             opening = false;
             closing = false;
             // replace physics
-            doorRigidbody.isKinematic = false;
+            //doorRigidbody.isKinematic = false;
+            //doorRigidbody.useGravity = true;
         }
 
         if (opening)
