@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class ChapterManager : MonoBehaviour
 {
+    public Transform playerStartPosition;
 
     [SerializeField] private List<IPuzzle> chapterPuzzles = new List<IPuzzle>();
+
     private GameManager gameManager;
     private WinSequence winSequence;
 

@@ -12,6 +12,10 @@ public class SceneControl : MonoBehaviour
     public SceneAction currentSceneAction;
     public string mainMenuButton;
 
+    // Note: replace this with a Chapter property when there are more chapters
+    [SerializeField] private List<Transform> startPositions = new List<Transform>();
+    [SerializeField] private GameObject player;
+
     private bool unloadPreviousScene;
     private bool activeOnLoad;
     private bool readyForPreload;
@@ -100,6 +104,8 @@ public class SceneControl : MonoBehaviour
     {
         // Handle the different scene change scenarios
         // Note that the set up scene (containing singleton classes) is loaded first, and remains loaded throughout
+        currentSceneAction = newAction;
+
         switch (newAction)
         {
             case SceneAction.None:
@@ -206,7 +212,7 @@ public class SceneControl : MonoBehaviour
             
         }
 
-        currentSceneAction = newAction;
+        
     }
 
     private void Update()
@@ -230,6 +236,8 @@ public class SceneControl : MonoBehaviour
         {
             string sceneToUnload = "Intro";
             string sceneToActivate = "Chapter01";
+            currentSceneAction = SceneAction.PlayChapter;
+
             StartCoroutine(ActivateWaitingScene(sceneToUnload, sceneToActivate));
         }
 
@@ -277,14 +285,15 @@ public class SceneControl : MonoBehaviour
 
             Scene sceneToActivate = SceneManager.GetSceneByName(newScene);
             SceneManager.SetActiveScene(sceneToActivate);
-        
+            PositionPlayerForScene();
         }
 
         if (unloadPreviousScene && sceneToUnload.name != "MasterScene")
         {
+            Debug.Log($"Unloading {sceneToUnload}");
             // Note: this will not happen if the asyncOperation is paused - scene will be unloaded when new scene is activated
             SceneManager.UnloadSceneAsync(sceneToUnload);
- 
+            
         }
 
         yield return null;
@@ -316,6 +325,7 @@ public class SceneControl : MonoBehaviour
         if (SceneManager.GetSceneByName(sceneToActivate).isLoaded)
         {
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneToActivate));
+            PositionPlayerForScene();
         }
         else
         {
@@ -336,5 +346,11 @@ public class SceneControl : MonoBehaviour
         unloadPreviousScene = false;
         activeOnLoad = false;
         StartCoroutine(ChangeScene("Chapter01", unloadPreviousScene, activeOnLoad));
+    }
+
+    private void PositionPlayerForScene()
+    {
+        player.transform.position = startPositions[(int)currentSceneAction].position;
+        player.transform.rotation = startPositions[(int)currentSceneAction].rotation;
     }
 }

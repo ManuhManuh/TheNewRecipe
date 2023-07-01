@@ -14,6 +14,7 @@ public class DumbwaiterDoor : ControlledObject
 
     [SerializeField] private Transform openedPositionTransform;
     [SerializeField] private GameObject ladderPlaceholder;
+    [SerializeField] private Rigidbody doorRigidbody;
 
     private Vector3 closedPosition;
     private Vector3 openedPosition;
@@ -21,10 +22,10 @@ public class DumbwaiterDoor : ControlledObject
     private Vector3 toPosition;
     private Vector3 ladderRestPosition;
     private Quaternion ladderRestRotation;
-    private bool opening;
-    private bool closing;
-    private bool frozen;
-    private bool delaying;
+    public bool opening;
+    public bool closing;
+    public bool frozen;
+    public bool delaying;
     private DumbwaiterPuzzle dumbwaiterPuzzle;
 
     private void Start()
@@ -42,6 +43,7 @@ public class DumbwaiterDoor : ControlledObject
         Destroy(ladderPlaceholder);
 
         dumbwaiterPuzzle = FindObjectOfType<DumbwaiterPuzzle>();
+      
     }
     public override void OnPressed()
     {
@@ -75,6 +77,9 @@ public class DumbwaiterDoor : ControlledObject
         {
             opening = false;
             closing = false;
+            // replace physics
+            //doorRigidbody.isKinematic = false;
+            //doorRigidbody.useGravity = true;
         }
 
         if (opening)
@@ -90,39 +95,39 @@ public class DumbwaiterDoor : ControlledObject
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        // If the door is not frozen and the ladder is what collided with it
-        if (!frozen && other.CompareTag("DoorStopper"))
-        {
-            // Stop the door closing
-            closing = false;
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (!frozen && other.CompareTag("DoorStopper")) // if the ladder is what the door collided with
+    //    {
+    //        // Stop the door closing
+    //        closing = false;
 
-            // Find out how far open the door is
-            var openAmount = Vector3.Distance(closedPosition, transform.position);
+    //        // Find out how far open the door is
+    //        var openAmount = Vector3.Distance(closedPosition, transform.position);
 
-            // If the door is open enough to walk through
-            if (openAmount > minOpeningSizeForEntry)
-            {
-                // Place the ladder nicely
-                placeLadder(other.transform);
+    //        // If the door is open enough to walk through
+    //        if (openAmount > minOpeningSizeForEntry)
+    //        {
+    //            // Place the ladder nicely
+    //            placeLadder(other.transform);
 
-                // Freeze the door open so it doesn't keep trying to close
-                frozen = true;
+    //            // Freeze the door open so it doesn't keep trying to close
+    //            frozen = true;
 
-                dumbwaiterPuzzle.CheckPuzzleStatus();
-            }
-        }
+    //            dumbwaiterPuzzle.CheckPuzzleStatus();
+    //        }
+            
+    //    }
 
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        // If the door has not finished closing yet and is not frozen, continue closing
-        if (fromPosition != toPosition && !frozen)
-        {
-            closing = true;
-        }
-    }
+    //}
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    // If the door has not finished closing yet and is not frozen, continue closing
+    //    if (fromPosition != toPosition && !frozen)
+    //    {
+    //        closing = true;
+    //    }
+    //}
 
     private void placeLadder(Transform ladder)
     {
@@ -134,6 +139,42 @@ public class DumbwaiterDoor : ControlledObject
         ladder.GetComponent<XRGrabInteractable>().enabled = false;
 
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (closing && collision.collider.CompareTag("DoorStopper")) // if the ladder is what the door collided with
+        {
+            // Stop the door closing
+            closing = false;
+
+            // Find out how far open the door is
+            var openAmount = Vector3.Distance(closedPosition, transform.position);
+
+            // If the door is open enough to walk through
+            if (openAmount > minOpeningSizeForEntry)
+            {
+                // Place the ladder nicely
+                placeLadder(collision.collider.transform);
+
+                // Freeze the door open so it doesn't keep trying to close
+                frozen = true;
+
+                dumbwaiterPuzzle.CheckPuzzleStatus();
+            }
+            else
+            {
+                frozen = false;
+            }
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+            // If the door has not finished closing yet and is not frozen, continue closing
+            if (fromPosition != toPosition && !frozen)
+            {
+                closing = true;
+            }
+        }
 
     private IEnumerator CloseDumbwaiterDoor(float delay)
     {
