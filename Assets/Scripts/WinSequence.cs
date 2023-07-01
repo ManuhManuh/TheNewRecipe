@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class WinSequence : MonoBehaviour
 {
     [SerializeField] private GameObject realCask;
+    [SerializeField] private GameObject realTapSlot;
     [SerializeField] private GameObject animatedCask;
     [SerializeField] private GameObject animatedLid;
     [SerializeField] private AnimationClip openDoor;
@@ -29,9 +31,17 @@ public class WinSequence : MonoBehaviour
         // Play end of game music
         SoundManager.PlayMusic("Alex Mason - Watchword");
 
-        // Disable Cask B 
+        // Disable Cask B and hide the tap
+        if(realTapSlot != null)
+        {
+            realTapSlot.GetComponent<XRSocketInteractor>().GetOldestInteractableSelected().transform.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.Log("Someone forgot to hook up the realTapSlot on the animated barrel!!");
+        }
         realCask.SetActive(false);
-
+  
         // Enable Barrel Door
         animatedCask.SetActive(true);
 

@@ -136,10 +136,82 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 2411449039034499315}
+    - target: {fileID: 292113008, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
+      propertyPath: m_HapticHoverEnterDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 292113008, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
+      propertyPath: m_HapticHoverEnterIntensity
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 292113008, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
+      propertyPath: m_HapticSelectEnterDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 292113008, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
+      propertyPath: m_PlayHapticsOnHoverEntered
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 292113008, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
+      propertyPath: m_HapticSelectEnterIntensity
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 292113008, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
+      propertyPath: m_PlayHapticsOnSelectEntered
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 292113008, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
+      propertyPath: m_AllowHoverHapticsWhileSelecting
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
+      propertyPath: m_HitClosestOnly
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
+      propertyPath: m_AnchorRotationMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 2411449039034499315}
+    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
+      propertyPath: m_MaxRaycastDistance
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
+      propertyPath: m_HapticHoverEnterDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
+      propertyPath: m_InteractionLayers.m_Bits
+      value: 2147483663
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
+      propertyPath: m_HapticHoverEnterIntensity
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
+      propertyPath: m_HapticSelectEnterDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
+      propertyPath: m_PlayHapticsOnHoverEntered
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
+      propertyPath: m_HapticSelectEnterIntensity
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
+      propertyPath: m_PlayHapticsOnSelectEntered
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
+      propertyPath: m_AllowHoverHapticsWhileSelecting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4070611756717880806, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb,
         type: 3}
       propertyPath: m_ClearFlags
