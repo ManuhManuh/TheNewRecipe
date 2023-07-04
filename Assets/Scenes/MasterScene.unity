@@ -136,102 +136,10 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 2411449039034499315}
-    - target: {fileID: 292113008, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_HapticHoverEnterDuration
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 292113008, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_InteractionLayers.m_Bits
-      value: 31
-      objectReference: {fileID: 0}
-    - target: {fileID: 292113008, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_HapticHoverEnterIntensity
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 292113008, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_HapticSelectEnterDuration
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 292113008, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_PlayHapticsOnHoverEntered
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 292113008, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_HapticSelectEnterIntensity
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 292113008, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_PlayHapticsOnSelectEntered
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 292113008, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_AllowHoverHapticsWhileSelecting
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905390262, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905390262, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905390262, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_HitClosestOnly
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_AllowAnchorControl
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_AnchorRotationMode
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 2411449039034499315}
-    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_MaxRaycastDistance
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_HapticHoverEnterDuration
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_InteractionLayers.m_Bits
-      value: 2147483663
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_HapticHoverEnterIntensity
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_HapticSelectEnterDuration
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_PlayHapticsOnHoverEntered
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_HapticSelectEnterIntensity
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_PlayHapticsOnSelectEntered
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1905390266, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
-      propertyPath: m_AllowHoverHapticsWhileSelecting
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1905390267, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
       propertyPath: m_ModelParent
       value: 
@@ -239,44 +147,26 @@ PrefabInstance:
     - target: {fileID: 1905390267, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
       propertyPath: m_ModelPrefab
       value: 
-      objectReference: {fileID: 1620478341835074214, guid: f138a354b203a754fa0e8c8df3771ad6,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 1905390267, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
       propertyPath: m_AnimateModel
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1905390267, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
       propertyPath: m_ModelSelectTransition
-      value: Grip
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1905390267, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
       propertyPath: m_ModelDeSelectTransition
-      value: ReleaseGrip
+      value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 4070611756717880806, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb,
-        type: 3}
-      propertyPath: m_ClearFlags
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4070611756717880806, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb,
-        type: 3}
-      propertyPath: field of view
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 4070611756717880806, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb,
-        type: 3}
-      propertyPath: m_BackGroundColor.b
-      value: 0.09433961
-      objectReference: {fileID: 0}
-    - target: {fileID: 4070611756717880806, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb,
-        type: 3}
-      propertyPath: m_BackGroundColor.g
-      value: 0.08754103
-      objectReference: {fileID: 0}
-    - target: {fileID: 4070611756717880806, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb,
-        type: 3}
-      propertyPath: m_BackGroundColor.r
-      value: 0.083214656
+    - target: {fileID: 2078306493, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 5ab807098ec326b48a9d97f07762f4a2, type: 3}
+    - target: {fileID: 2078306493, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4070611757058243386, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb,
         type: 3}
@@ -338,45 +228,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4070611757080092728, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb,
+    - target: {fileID: 4070611757058243388, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb,
         type: 3}
-      propertyPath: m_LocalScale.x
+      propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4070611757080092728, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4070611757080092728, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4070611757080092728, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4070611757080092728, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4070611757080092728, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4070611757080092728, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4070611757080092728, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4070611757080092729, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb,
         type: 3}
@@ -387,22 +242,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ModelPrefab
       value: 
-      objectReference: {fileID: 5249035845116621171, guid: 07e45f2c40939394382584ba9aad9459,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4070611757080092729, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb,
         type: 3}
       propertyPath: m_AnimateModel
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4070611757080092729, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb,
-        type: 3}
-      propertyPath: m_ModelSelectTransition
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4070611757080092729, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb,
-        type: 3}
-      propertyPath: m_ModelDeSelectTransition
-      value: 
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a54c4c1cfa8c8d4c89184437e17b8eb, type: 3}
@@ -412,49 +256,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 161835955}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1110793151
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1110793152}
-  - component: {fileID: 1110793153}
-  m_Layer: 0
-  m_Name: InputReader
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1110793152
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1110793151}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.12878475, y: 0.031832375, z: -8.334389}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1110793153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1110793151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9270474ee94e084abf6602cf2d2c2e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1212077565
 GameObject:
   m_ObjectHideFlags: 0
