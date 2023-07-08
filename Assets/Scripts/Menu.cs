@@ -43,11 +43,11 @@ public class Menu : MonoBehaviour
                         SceneControl.OnMenuSelection(SceneControl.SceneAction.Menu);
                         return;
                     }
-            case "SkipButton":
+                case "SkipButton":
                     {
                         SceneControl.OnMenuSelection(SceneControl.SceneAction.PlayChapter);
                         return;
-                }
+                    }
             }
 
     }

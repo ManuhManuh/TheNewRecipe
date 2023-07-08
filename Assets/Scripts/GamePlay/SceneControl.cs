@@ -22,6 +22,9 @@ public class SceneControl : MonoBehaviour
     private bool introFinished;
     private bool outroFinished;
     private AsyncOperation asyncOperation;
+    private SceneAction previousSceneAction;
+    private Transform pausedPlayerPosition;
+    private string currentChapter;
 
     public enum SceneAction
     {
@@ -85,7 +88,9 @@ public class SceneControl : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(transform.root);
         }
-        
+
+        previousSceneAction = SceneAction.None;
+
     }
     private void Start()
     {
@@ -104,6 +109,7 @@ public class SceneControl : MonoBehaviour
     {
         // Handle the different scene change scenarios
         // Note that the set up scene (containing singleton classes) is loaded first, and remains loaded throughout
+        previousSceneAction = currentSceneAction;
         currentSceneAction = newAction;
 
         switch (newAction)
@@ -123,13 +129,23 @@ public class SceneControl : MonoBehaviour
                 // Unload the current scene if it is not already the main menu
                 // This the only scene that can be selected while it is the currently active scene (with controller menu button)
 
-                if (SceneManager.GetActiveScene().name != "MainMenu")
+                if (previousSceneAction == SceneAction.PlayChapter)
                 {
-                    unloadPreviousScene = true;
-                    activeOnLoad = true;
+                    OnMenuSelection(SceneAction.Pause);
+                }
+                else
+                {
+                    // navigation between UI scenes
+                    if (SceneManager.GetActiveScene().name != "MainMenu")
+                    {
+                        unloadPreviousScene = true;
+                        activeOnLoad = true;
+                    }
+
                     StartCoroutine(ChangeScene("MainMenu", unloadPreviousScene, activeOnLoad));
                 }
 
+                
                 return;
 
             case SceneAction.Instructions:
@@ -157,34 +173,34 @@ public class SceneControl : MonoBehaviour
                 // Note: this action will only happen if the scene is resumed after a pause; the initial playing is initiated following the intro finishing
                 // TODO: make this work with multiple chapters (i.e. play next chapter)
 
-                // Until there are more chapters, this doesn't need to do anything - it will eventually figure out which chapter is next and load it
+                // record current chapter to reload when resuming
+                Debug.Log("Play chapter called");
+                currentChapter = FindObjectOfType<ChapterManager>().name;
+
+                // Until there are more chapters, this doesn't need to do anything else - it will eventually figure out which chapter is next and load it
 
                 return;
 
             case SceneAction.Pause:
-
-                unloadPreviousScene = false;
+                // record player position to return to when resuming
+                pausedPlayerPosition = player.transform;
+  
+                // load the menu 
+                unloadPreviousScene = true;    // trying it with unload 
                 activeOnLoad = true;
                 StartCoroutine(ChangeScene("MainMenu", unloadPreviousScene, activeOnLoad));
 
                 return;
 
             case SceneAction.Resume:
-                // Unload the Main menu
-                SceneManager.UnloadSceneAsync("MainMenu");
 
-                // Activate the paused scene, or load the first chapter to skip intro
-                Scene firstChapter = SceneManager.GetSceneByName("Chapter01");
-                if (firstChapter.isLoaded)
-                {
-                    SceneManager.SetActiveScene(firstChapter);
-                }
-                else
-                {
-                    SceneManager.LoadScene("Chapter01");
+                unloadPreviousScene = true;    
+                activeOnLoad = true;
 
-                }    
-                
+                StartCoroutine(ChangeScene(currentChapter, unloadPreviousScene, activeOnLoad));
+
+                // reset the player position
+                PositionPlayerForScene();
                 return;
 
             case SceneAction.StayTuned:
@@ -268,13 +284,14 @@ public class SceneControl : MonoBehaviour
     {
 
         Scene sceneToUnload = SceneManager.GetActiveScene();
+
         asyncOperation = SceneManager.LoadSceneAsync(newScene, LoadSceneMode.Additive);
 
         if (!activeOnLoad)
         {
             // Load but do not activate
             asyncOperation.allowSceneActivation = false;
-      
+
         }
         else
         {
@@ -293,7 +310,7 @@ public class SceneControl : MonoBehaviour
             Debug.Log($"Unloading {sceneToUnload}");
             // Note: this will not happen if the asyncOperation is paused - scene will be unloaded when new scene is activated
             SceneManager.UnloadSceneAsync(sceneToUnload);
-            
+
         }
 
         yield return null;
@@ -350,7 +367,18 @@ public class SceneControl : MonoBehaviour
 
     private void PositionPlayerForScene()
     {
-        player.transform.position = startPositions[(int)currentSceneAction].position;
-        player.transform.rotation = startPositions[(int)currentSceneAction].rotation;
+        Transform newPosition;
+
+        if (currentSceneAction == SceneAction.Resume)
+        {
+            newPosition = pausedPlayerPosition;
+        }
+        else
+        {
+            newPosition = startPositions[(int)currentSceneAction];
+        }
+        
+        player.transform.position = newPosition.position;
+        player.transform.rotation = newPosition.rotation;
     }
 }

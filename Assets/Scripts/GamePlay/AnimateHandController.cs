@@ -7,6 +7,10 @@ using UnityEngine.InputSystem;
 
 public class AnimateHandController : MonoBehaviour
 {
+    /// <summary>
+    /// Not currently used - was part of a tutorial I attempted but changed my mind
+    /// </summary>
+    /// 
     public InputActionReference gripInputAction;
    // public InputActionReference triggerInputAction;
     private Animator handAnimator;
