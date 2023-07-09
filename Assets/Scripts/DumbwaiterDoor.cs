@@ -77,9 +77,7 @@ public class DumbwaiterDoor : ControlledObject
         {
             opening = false;
             closing = false;
-            // replace physics
-            //doorRigidbody.isKinematic = false;
-            //doorRigidbody.useGravity = true;
+
         }
 
         if (opening)
@@ -95,48 +93,15 @@ public class DumbwaiterDoor : ControlledObject
         }
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (!frozen && other.CompareTag("DoorStopper")) // if the ladder is what the door collided with
-    //    {
-    //        // Stop the door closing
-    //        closing = false;
-
-    //        // Find out how far open the door is
-    //        var openAmount = Vector3.Distance(closedPosition, transform.position);
-
-    //        // If the door is open enough to walk through
-    //        if (openAmount > minOpeningSizeForEntry)
-    //        {
-    //            // Place the ladder nicely
-    //            placeLadder(other.transform);
-
-    //            // Freeze the door open so it doesn't keep trying to close
-    //            frozen = true;
-
-    //            dumbwaiterPuzzle.CheckPuzzleStatus();
-    //        }
-            
-    //    }
-
-    //}
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    // If the door has not finished closing yet and is not frozen, continue closing
-    //    if (fromPosition != toPosition && !frozen)
-    //    {
-    //        closing = true;
-    //    }
-    //}
-
     private void placeLadder(Transform ladder)
     {
+        
         // Move the ladder to the stable resting position
         ladder.position = ladderRestPosition;
         ladder.rotation = ladderRestRotation;
 
         // Disable the ladder from being picked up again
-        ladder.GetComponent<XRGrabInteractable>().enabled = false;
+        // ladder.GetComponent<XRGrabInteractable>().enabled = false;
 
     }
 
