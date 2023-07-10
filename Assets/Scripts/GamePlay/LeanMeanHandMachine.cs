@@ -40,11 +40,14 @@ public class LeanMeanHandMachine : MonoBehaviour
     //private void TriggerPress(InputAction.CallbackContext obj) => _handAnimator.SetFloat("Trigger", obj.ReadValue<float>());
     private void MainMenuButtonPress(InputAction.CallbackContext obj)
     {
-        Debug.Log($"Current SceneAction: {SceneControl.instance.currentSceneAction}");
-        if(SceneControl.instance.currentSceneAction != SceneControl.SceneAction.Menu)
-        {
-            SceneControl.OnMenuSelection(SceneControl.SceneAction.Menu);
-        }
+        //Debug.Log($"Current SceneAction: {SceneControl.instance.currentSceneAction}");
+
+        //if(SceneControl.instance.currentSceneAction != SceneControl.SceneAction.Menu)
+        //{
+        //    SceneControl.OnMenuSelection(SceneControl.SceneAction.Menu);
+        //}
+
+        SceneConductor.instance.ShowMainMenuInChapter();
         
     }
     

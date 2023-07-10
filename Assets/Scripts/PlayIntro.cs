@@ -40,7 +40,8 @@ public class PlayIntro : MonoBehaviour
         SoundManager.PlayMusic("Alex Mason - Prisoner",0f,0.1f);
 
         // Notify scene contol that first chapter can start pre-loading
-        SceneControl.instance.ReadyForPreload = true;
+        // SceneControl.instance.ReadyForPreload = true;
+        SceneConductor.instance.PreLoadChapter(SceneConductor.SceneIndex.Chapter01);
 
         foreach (Paragraph para in paragraphs)
         {
@@ -71,7 +72,10 @@ public class PlayIntro : MonoBehaviour
     {
 
         // Notify scene control that intro has finished, so first chapter can be activated
-        SceneControl.instance.IntroFinished = true;
+        // SceneControl.instance.IntroFinished = true;
+
+        // Activate the first chapter
+        SceneConductor.instance.ActivateChapter(SceneConductor.SceneIndex.Chapter01);
 
         yield return new WaitForSeconds(3.0f);
         // Return backgroud music to normal volume

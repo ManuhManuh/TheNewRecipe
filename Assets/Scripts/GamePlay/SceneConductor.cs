@@ -6,59 +6,81 @@ using System;
 
 public class SceneConductor : MonoBehaviour
 {
+    public static SceneConductor instance;
+
     [SerializeField] GameObject player;
     public int CurrentScene => (int)currentSceneIndex;
 
     private SceneIndex currentSceneIndex;
-    private SceneIndex preLoadingChapter;
     private SceneIndex waitingChapter;
 
     private bool chapterIsOpen;
+    private AsyncOperation asyncOperation;
+    private Transform sceneStartPosition;
+    private Transform pausedPosition;
 
     // Note: the SceneIndex enum needs to match the build index to work right
     // Chapters can be added at the end
     public enum SceneIndex
     {
-        MasterScene,
-        MainMenu,
-        Instructions,
-        Credits,
-        Ending,
-        Intro,
-        Chapter01
+        MasterScene = 0,
+        Instructions = 1,
+        MainMenu = 2,
+        Credits = 3,
+        Ending = 4,
+        Intro = 5,
+        Chapter01 = 6
     }
 
     private void Awake()
     {
+        if (instance != null)
+        {
+            Debug.LogError("There was more than 1 Scene Control");
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(transform.root);
+        }
+
         currentSceneIndex = SceneIndex.MasterScene;
-        preLoadingChapter = SceneIndex.MasterScene; // condition when no chapter scenes are currently loading
         waitingChapter = SceneIndex.MasterScene;    // condition when no chapter scenes are awaiting activation
         chapterIsOpen = false;
     }
-
-    private void Start()
-    {
-        SceneIndex sceneToLoad = SceneIndex.Instructions;
-
-        bool unloadCurrentScene = false; // Only scene currently open should be Master, which should never be unloaded
-        bool activateWhenLoaded = true;
-
-        StartCoroutine(ChangeToNewScene(sceneToLoad, unloadCurrentScene, activateWhenLoaded));
-    }
-
 
     /// <summary>
     /// Below are the methods that will be called to initiate scene changes
     /// </summary>
 
-    public void ShowMainMenu()
+    public void ShowMainMenuInChapter()
     {
         bool activateWhenLoaded = true;
+        bool unloadCurrentScene;
 
-        // if current scene is a chapter don't unload it, just add the menu; otherwise unload it
-        bool unloadCurrentScene = (int)currentSceneIndex < 6 && (int)currentSceneIndex > 0;
+        // from UI, use ShowNonChapterScene instead
 
-        StartCoroutine(ChangeToNewScene(SceneIndex.MainMenu, unloadCurrentScene, activateWhenLoaded));
+        if (chapterIsOpen)    
+        {
+            // chapter: keep open, and record location to return to when pause is over
+            unloadCurrentScene = false;
+            pausedPosition = player.transform;
+            StartCoroutine(ChangeToNewScene(SceneIndex.MainMenu, unloadCurrentScene, activateWhenLoaded));
+
+        }
+       
+    }
+
+    public void CloseMainMenu()
+    {
+        if (chapterIsOpen)  // only time this should be used, as otherwise the menu is closed as byproduct of opening another scene
+        {
+            // paused: just unload the main menu and put player back where they were
+            StartCoroutine(UnloadScene(currentSceneIndex));
+            PositionPlayerForScene(pausedPosition);
+
+        }
+
     }
 
     public void ShowNonChapterScene(SceneIndex sceneToShow)
@@ -80,11 +102,14 @@ public class SceneConductor : MonoBehaviour
         // make sure the scene is a chapter scene
         if ((int)chapter < 6) return;
 
-        // chapters should be preloaded, as they are larger and take more time
-        if (preLoadingChapter == SceneIndex.MasterScene)
+        // chapters should be preloaded, as they are larger and take more time, but only one at a time
+        if (asyncOperation.allowSceneActivation == true) 
         {
             // no chapter is currently being preloaded
-            StartCoroutine(PreLoadScene(chapter));
+            bool unloadOldScene = false;
+            bool activateWhenLoaded = false;
+
+            StartCoroutine(ChangeToNewScene(chapter, unloadOldScene, activateWhenLoaded));
         }
 
     }
@@ -92,7 +117,16 @@ public class SceneConductor : MonoBehaviour
     public void ActivateChapter(SceneIndex chapter)
     {
         // Activate a previously pre-loaded chapter
+        StartCoroutine(ActivateWaitingChapter());
+        chapterIsOpen = true;
 
+    }
+
+    public void ExitGame()
+    {
+        Debug.Log("Game exited");
+        // Exit the game
+        Application.Quit();
     }
 
     /// <summary>
@@ -101,56 +135,100 @@ public class SceneConductor : MonoBehaviour
 
     private IEnumerator ChangeToNewScene(SceneIndex sceneIndexToLoad, bool unloadOldScene, bool activateWhenLoaded)
     {
-        // Use this when previous scene needs to be unloaded (i.e., switching between UI scenes)
-        // If the previous scene does NOT need to be unloaded, use AddNewScene instead
+        Debug.Log($"Attempting to load scene with build index {(int)sceneIndexToLoad}");
+        Debug.Log($"Called with unload old = {unloadOldScene} and activateonload = {activateWhenLoaded}");
 
         // Make sure we never unload the Master scene
-        if (currentSceneIndex == SceneIndex.MasterScene) yield return null;
+        if (currentSceneIndex == SceneIndex.MasterScene) unloadOldScene = false;
 
         Scene sceneToUnload = SceneManager.GetSceneByBuildIndex((int)currentSceneIndex);
         Scene sceneToActivate = SceneManager.GetSceneByBuildIndex((int)sceneIndexToLoad);
 
         // load the new scene; always additive because the Master Scene can't be unloaded
-        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync((int)sceneIndexToLoad, LoadSceneMode.Additive);
-        asyncOperation.allowSceneActivation = true;
+        asyncOperation = SceneManager.LoadSceneAsync((int)sceneIndexToLoad, LoadSceneMode.Additive);
+        asyncOperation.allowSceneActivation = activateWhenLoaded;
 
         while (!asyncOperation.isDone)
         {
             yield return null;
         }
 
-        if (unloadOldScene)
-        {
-            // when done, unload the old scene if required
-            SceneManager.UnloadSceneAsync(sceneToUnload);
-        }
+        Debug.Log($"Scene has been loaded?: {sceneToActivate.isLoaded}");
 
         if (activateWhenLoaded)
         {
-            // activate the new scene and update currentSceneIndex
+            Debug.Log($"Activating {sceneToUnload.name}");
+            Debug.Log($"Scene has been loaded?: {sceneToActivate.isLoaded}");
+
+            // activate the new scene if required and update status variables
             SceneManager.SetActiveScene(sceneToActivate);
             currentSceneIndex = sceneIndexToLoad;
 
             // place the player for the scene
-            PositionPlayerForScene();
+            sceneStartPosition = GameObject.FindGameObjectWithTag("StartPosition").transform;
+            PositionPlayerForScene(sceneStartPosition);
+   
+        }
+        else
+        {
+            // flag as waiting
+            waitingChapter = sceneIndexToLoad;
+        }
+
+        if (unloadOldScene)
+        {
+            Debug.Log ($"Unloading {sceneToUnload.name}");
+
+            // when loading is done, unload the old scene if required
+            SceneManager.UnloadSceneAsync(sceneToUnload);
         }
 
         yield return null;
     }
 
-  
-    private IEnumerator PreLoadScene(SceneIndex sceneToPreLoad)
+    private IEnumerator ActivateWaitingChapter()
     {
+        // allow the scene activation if we have a waiting chapter
+        if (asyncOperation.allowSceneActivation == false)
+        {
+            // finish load 
+            asyncOperation.allowSceneActivation = true;
+            while (!asyncOperation.isDone)
+            {
+                yield return null;
+            }
 
-        preLoadingChapter = SceneIndex.MasterScene;
-        waitingChapter = sceneToPreLoad;
-        yield return null;
+        }
+
+        StartCoroutine(UnloadScene(currentSceneIndex));
+
+        // Activate the new scene
+        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex((int)waitingChapter));
+
+        // position the player for the new scene
+        sceneStartPosition = GameObject.FindGameObjectWithTag("StartPosition").transform;
+        PositionPlayerForScene(sceneStartPosition);
+
+        // update current scene and reset waiting
+        currentSceneIndex = waitingChapter;
+        waitingChapter = SceneIndex.MasterScene;    // default when no chapter is waiting
     }
 
-    private void PositionPlayerForScene()
+    private IEnumerator UnloadScene(SceneIndex sceneToUnload)
     {
-        // find the start position game object for the current scene
+        // unload the current scene
+        SceneManager.UnloadSceneAsync((int)sceneToUnload);
+        while (!asyncOperation.isDone)
+        {
+            yield return null;
+        }
 
+    }
+
+    private void PositionPlayerForScene(Transform newPosition)
+    {
+        player.transform.position = newPosition.position;
+        player.transform.rotation = newPosition.rotation;
     }
 
 }

@@ -10,9 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public GameManager instance;
 
-    [SerializeField] private List<ChapterManager> chapters = new List<ChapterManager>();
-
-    private int currentChapterIndex = 0;
+    private int currentChapterIndex = 6;    // this is Chapter 1
 
     private void Awake()
     {
@@ -28,21 +26,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+       SceneConductor.instance.ShowNonChapterScene(SceneConductor.SceneIndex.Instructions);
+    }
+
     public void AdvanceToNextChapter()
     {
         currentChapterIndex++;
-        
-        // use this until there are more chapters and the chapter flow mechanism is built; then, remove this
-        SceneControl.OnMenuSelection(SceneControl.SceneAction.StayTuned);
 
-        // SceneControl.SceneAction nextScene = chapters[currentChapterIndex].name; // use this when there are more chapters to test with
+        if (currentChapterIndex > Enum.GetNames(typeof(SceneConductor.SceneIndex)).Length)
+        {
+            // no more chapters: play the ending
+            SceneConductor.instance.ActivateChapter(SceneConductor.SceneIndex.Ending);
 
-        // if the chapter specifies where the player should start, put the player there
-        //if (chapters[currentChapterIndex].playerStartPosition != null)
-        //{
-        //    player.transform.position = chapters[currentChapterIndex].playerStartPosition.position;
-        //}
+        }
+        else
+        {
+            // play the newly incremented chapter
+            SceneConductor.instance.ActivateChapter((SceneConductor.SceneIndex)currentChapterIndex);
+        }
 
+        // SceneControl.OnMenuSelection(SceneControl.SceneAction.StayTuned);
     }
 
     

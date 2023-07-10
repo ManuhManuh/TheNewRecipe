@@ -25,6 +25,7 @@ public class SceneControl : MonoBehaviour
     private SceneAction previousSceneAction;
     private Transform pausedPlayerPosition;
     private string currentChapter;
+    private bool menuIsOpen;
 
     public enum SceneAction
     {
@@ -90,7 +91,7 @@ public class SceneControl : MonoBehaviour
         }
 
         previousSceneAction = SceneAction.None;
-
+        menuIsOpen = false;
     }
     private void Start()
     {
@@ -120,6 +121,7 @@ public class SceneControl : MonoBehaviour
                 outroFinished = false;
                 unloadPreviousScene = false;
                 activeOnLoad = true;
+                Debug.Log("Starting coroutine for loading Instructions");
                 StartCoroutine(ChangeScene("Instructions", unloadPreviousScene, activeOnLoad));
 
                 return;
@@ -282,10 +284,18 @@ public class SceneControl : MonoBehaviour
     }
     private IEnumerator ChangeScene (string newScene, bool unloadPreviousScene, bool activeOnLoad)
     {
+        // do nothing if trying to open menu and it's already there
+        if (newScene == "MainMenu" && menuIsOpen)
+        {
+            Debug.Log("Tried to open MainMenu when it was already open");
+            yield break;
+        }
 
         Scene sceneToUnload = SceneManager.GetActiveScene();
+        if (sceneToUnload.name == "MainMenu") menuIsOpen = false;
 
         asyncOperation = SceneManager.LoadSceneAsync(newScene, LoadSceneMode.Additive);
+        if (newScene == "MainMenu") menuIsOpen = true;
 
         if (!activeOnLoad)
         {
@@ -307,7 +317,7 @@ public class SceneControl : MonoBehaviour
 
         if (unloadPreviousScene && sceneToUnload.name != "MasterScene")
         {
-            Debug.Log($"Unloading {sceneToUnload}");
+            Debug.Log($"Unloading {sceneToUnload.name}");
             // Note: this will not happen if the asyncOperation is paused - scene will be unloaded when new scene is activated
             SceneManager.UnloadSceneAsync(sceneToUnload);
 
