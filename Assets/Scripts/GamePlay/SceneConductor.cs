@@ -9,7 +9,11 @@ public class SceneConductor : MonoBehaviour
     public static SceneConductor instance;
 
     [SerializeField] GameObject player;
+    [SerializeField] List<Transform> startPositions = new List<Transform>();
+    // Note: above indexes need to match build indexes and SceneIndex enum
+
     public int CurrentScene => (int)currentSceneIndex;
+    public bool ChapterIsOpen => chapterIsOpen;
 
     private SceneIndex currentSceneIndex;
     private SceneIndex waitingChapter;
@@ -77,6 +81,7 @@ public class SceneConductor : MonoBehaviour
         {
             // paused: just unload the main menu and put player back where they were
             StartCoroutine(UnloadScene(currentSceneIndex));
+            Debug.Log($"Calling PositionPlayerForScene with a position of {pausedPosition.position}");
             PositionPlayerForScene(pausedPosition);
 
         }
@@ -85,8 +90,7 @@ public class SceneConductor : MonoBehaviour
 
     public void ShowNonChapterScene(SceneIndex sceneToShow)
     {
-
-        // Scenes that are not chapters and not the Master Scene are not NonChapter scenes
+        // Scenes that are not chapters and not the Master Scene are "NonChapter" scenes
         if ((int)sceneToShow > 5 || (int)sceneToShow == 0) return;
 
         bool activateWhenLoaded = true;
@@ -135,9 +139,6 @@ public class SceneConductor : MonoBehaviour
 
     private IEnumerator ChangeToNewScene(SceneIndex sceneIndexToLoad, bool unloadOldScene, bool activateWhenLoaded)
     {
-        Debug.Log($"Attempting to load scene with build index {(int)sceneIndexToLoad}");
-        Debug.Log($"Called with unload old = {unloadOldScene} and activateonload = {activateWhenLoaded}");
-
         // Make sure we never unload the Master scene
         if (currentSceneIndex == SceneIndex.MasterScene) unloadOldScene = false;
 
@@ -153,21 +154,16 @@ public class SceneConductor : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log($"Scene has been loaded?: {sceneToActivate.isLoaded}");
-
         if (activateWhenLoaded)
         {
-            Debug.Log($"Activating {sceneToUnload.name}");
-            Debug.Log($"Scene has been loaded?: {sceneToActivate.isLoaded}");
-
             // activate the new scene if required and update status variables
-            SceneManager.SetActiveScene(sceneToActivate);
+            // SceneManager.SetActiveScene(sceneToActivate);
             currentSceneIndex = sceneIndexToLoad;
 
             // place the player for the scene
-            sceneStartPosition = GameObject.FindGameObjectWithTag("StartPosition").transform;
+            sceneStartPosition = startPositions[(int)currentSceneIndex];
+            Debug.Log($"Calling PositionPlayerForScene with a position of {sceneStartPosition.position}");
             PositionPlayerForScene(sceneStartPosition);
-   
         }
         else
         {
@@ -177,8 +173,6 @@ public class SceneConductor : MonoBehaviour
 
         if (unloadOldScene)
         {
-            Debug.Log ($"Unloading {sceneToUnload.name}");
-
             // when loading is done, unload the old scene if required
             SceneManager.UnloadSceneAsync(sceneToUnload);
         }
@@ -206,7 +200,8 @@ public class SceneConductor : MonoBehaviour
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex((int)waitingChapter));
 
         // position the player for the new scene
-        sceneStartPosition = GameObject.FindGameObjectWithTag("StartPosition").transform;
+        sceneStartPosition = startPositions[(int)waitingChapter];
+        Debug.Log($"Calling PositionPlayerForScene with a position of {sceneStartPosition.position}");
         PositionPlayerForScene(sceneStartPosition);
 
         // update current scene and reset waiting
@@ -227,8 +222,11 @@ public class SceneConductor : MonoBehaviour
 
     private void PositionPlayerForScene(Transform newPosition)
     {
-        player.transform.position = newPosition.position;
-        player.transform.rotation = newPosition.rotation;
+        Debug.Log($"Positioning player at: {newPosition.position}");
+
+        // figure out why empty object Transforms are giving positions of -106.4, -1.2, -14.9 when they should be 0, -1.5, -6.75
+
+        player.transform.SetPositionAndRotation(newPosition.position, newPosition.rotation);
     }
 
 }

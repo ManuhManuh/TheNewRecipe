@@ -7,51 +7,25 @@ using UnityEngine.InputSystem;
 
 public class AnimateHandController : MonoBehaviour
 {
-    /// <summary>
-    /// Not currently used - was part of a tutorial I attempted but changed my mind
-    /// </summary>
-    /// 
-    public InputActionReference gripInputAction;
-   // public InputActionReference triggerInputAction;
+    [SerializeField] InputActionProperty gripAction;
+    [SerializeField] InputActionProperty triggerAction;
+
     private Animator handAnimator;
-    public float gripValue;
 
-    //private float triggerValue;
-
-    // Start is called before the first frame update
-    void Awake()
+    private void Start()
     {
-       handAnimator = GetComponent<Animator>();
+        handAnimator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        AnimateGrip();
-        //AnimateTrigger();
+        float triggerValue = triggerAction.action.ReadValue<float>();
+        float gripValue = gripAction.action.ReadValue<float>();
+
+        handAnimator.SetFloat("Grip", gripValue);
+        handAnimator.SetFloat("Trigger", triggerValue);
+
     }
 
-    private void AnimateGrip()
-    {
-        gripValue = gripInputAction.action.ReadValue<float>();
-        if (gripValue < 0.1)
-        {
-            gripValue = 0;
-        }
-        if(handAnimator != null)
-        {
-            handAnimator.SetFloat("Grip", gripValue);
-        }
-        else
-        {
-            handAnimator = GetComponent<Animator>();
-        }
-        
-    }
-
-    //private void AnimateTrigger()
-    //{
-    //    triggerValue = triggerInputAction.action.ReadValue<float>();
-    //    handAnimator.SetFloat("Trigger", gripValue);
-    //}
+    
 }

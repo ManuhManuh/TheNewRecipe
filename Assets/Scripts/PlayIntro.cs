@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayIntro : MonoBehaviour
 {
@@ -11,9 +12,12 @@ public class PlayIntro : MonoBehaviour
     public Button skipButton;
 
     private bool previouslyPlayed;
+    private bool preloadBegun;
 
     private void Start()
     {
+        preloadBegun = false;
+
         previouslyPlayed = PlayerPrefs.HasKey("Played");
 
         // Note: make sure paragraphs are in order in the inspector
@@ -41,7 +45,7 @@ public class PlayIntro : MonoBehaviour
 
         // Notify scene contol that first chapter can start pre-loading
         // SceneControl.instance.ReadyForPreload = true;
-        SceneConductor.instance.PreLoadChapter(SceneConductor.SceneIndex.Chapter01);
+        
 
         foreach (Paragraph para in paragraphs)
         {
@@ -52,6 +56,19 @@ public class PlayIntro : MonoBehaviour
 
             // play the audio clip
             SoundManager.PlaySound(para.sourceOfSound, para.audioClip.name);
+
+            // wait until the main menu is unloaded
+            if (SceneManager.GetSceneByName("MainMenu").isLoaded)
+            {
+                yield return null;
+            }
+
+            // start preloading the chapter if this is the first paragraph
+            if (!preloadBegun)
+            {
+                SceneConductor.instance.PreLoadChapter(SceneConductor.SceneIndex.Chapter01);
+                preloadBegun = true;
+            }
 
             // Wait until the narration is finished
             yield return new WaitForSeconds(para.duration);

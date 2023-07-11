@@ -281,7 +281,7 @@
                 },
                 {
                     "name": "ReturnToMainMenu",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "7d345869-3906-4004-915c-39ce719413df",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -381,7 +381,7 @@
                 {
                     "name": "",
                     "id": "6af063f3-7add-40bb-87df-0c49de73b0f3",
-                    "path": "<XRController>{LeftHand}/menuButton",
+                    "path": "<XRController>{LeftHand}/menu",
                     "interactions": "",
                     "processors": "",
                     "groups": "Generic XR Controller",
