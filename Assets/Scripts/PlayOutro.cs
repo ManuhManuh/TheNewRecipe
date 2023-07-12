@@ -10,11 +10,6 @@ public class PlayOutro : MonoBehaviour
     private bool playing;
     private int secondsLeft;
 
-    private void Awake()
-    {
-       // mainCamera.XRInputSubsystem.TryRecenter();
-    }
-
     private void Start()
     {
 
@@ -32,6 +27,8 @@ public class PlayOutro : MonoBehaviour
         StartCoroutine(PlayStayTuned());
     }
 
+
+
     public IEnumerator PlayStayTuned()
     {
         while (playing)
@@ -41,9 +38,10 @@ public class PlayOutro : MonoBehaviour
             secondsLeft--;
             playing = secondsLeft > 0;
         }
-        
+
         // Notify scene control that outro has finished, so credits can be activated
-        SceneControl.instance.OutroFinished = true;
+        // SceneControl.instance.OutroFinished = true;
+        SceneConductor.instance.ShowNonChapterScene(SceneConductor.SceneIndex.Ending);
 
     }
 }

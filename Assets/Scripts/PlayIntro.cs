@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayIntro : MonoBehaviour
 {
@@ -11,9 +12,12 @@ public class PlayIntro : MonoBehaviour
     public Button skipButton;
 
     private bool previouslyPlayed;
+    private bool preloadBegun;
 
     private void Start()
     {
+        preloadBegun = false;
+
         previouslyPlayed = PlayerPrefs.HasKey("Played");
 
         // Note: make sure paragraphs are in order in the inspector
@@ -31,7 +35,8 @@ public class PlayIntro : MonoBehaviour
 
     public void SkipIntro()
     {
-        StartCoroutine(EndIntro());
+        Debug.Log("Clicked SkipIntro (Play Intro)");
+        SceneConductor.instance.ActivateChapter(SceneConductor.SceneIndex.Chapter01);
     }
 
     private IEnumerator PlayParagraphs()
@@ -40,7 +45,8 @@ public class PlayIntro : MonoBehaviour
         SoundManager.PlayMusic("Alex Mason - Prisoner",0f,0.1f);
 
         // Notify scene contol that first chapter can start pre-loading
-        SceneControl.instance.ReadyForPreload = true;
+        // SceneControl.instance.ReadyForPreload = true;
+        
 
         foreach (Paragraph para in paragraphs)
         {
@@ -51,6 +57,19 @@ public class PlayIntro : MonoBehaviour
 
             // play the audio clip
             SoundManager.PlaySound(para.sourceOfSound, para.audioClip.name);
+
+            // wait until the main menu is unloaded
+            if (SceneManager.GetSceneByName("MainMenu").isLoaded)
+            {
+                yield return null;
+            }
+
+            // start preloading the chapter if this is the first paragraph
+            if (!preloadBegun)
+            {
+                SceneConductor.instance.PreLoadChapter(SceneConductor.SceneIndex.Chapter01);
+                preloadBegun = true;
+            }
 
             // Wait until the narration is finished
             yield return new WaitForSeconds(para.duration);
@@ -64,18 +83,7 @@ public class PlayIntro : MonoBehaviour
 
         PlayerPrefs.SetString("Played", "True");
 
-        StartCoroutine(EndIntro());
-    }
-
-    private IEnumerator EndIntro()
-    {
-
-        // Notify scene control that intro has finished, so first chapter can be activated
-        SceneControl.instance.IntroFinished = true;
-
-        yield return new WaitForSeconds(3.0f);
-        // Return backgroud music to normal volume
-        SoundManager.PlayMusic("Alex Mason - Prisoner", 0f, 1.0f);
+        SceneConductor.instance.ActivateChapter(SceneConductor.SceneIndex.Chapter01);
     }
 
 }

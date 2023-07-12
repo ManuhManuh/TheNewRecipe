@@ -11,44 +11,52 @@ public class Menu : MonoBehaviour
             {
                 case "InstructionsButton":
                     {
-                        SceneControl.OnMenuSelection(SceneControl.SceneAction.Instructions);
+                        // SceneControl.OnMenuSelection(SceneControl.SceneAction.Instructions);
+                        SceneConductor.instance.ShowNonChapterScene(SceneConductor.SceneIndex.Instructions);
                         return;
                     }
 
                 case "PlayButton":
                     {
-                        SceneControl.OnMenuSelection(SceneControl.SceneAction.PlayIntro);
+                        // SceneControl.OnMenuSelection(SceneControl.SceneAction.PlayIntro);
+                        SceneConductor.instance.ShowNonChapterScene(SceneConductor.SceneIndex.Intro);
                         return;
                     }
 
                 case "ResumeButton":
                     {
-                        SceneControl.OnMenuSelection(SceneControl.SceneAction.Resume);
+                        // SceneControl.OnMenuSelection(SceneControl.SceneAction.Resume);
+                        SceneConductor.instance.CloseMainMenu();
                         return;
                     }
 
                 case "CreditsButton":
                     {
-                        SceneControl.OnMenuSelection(SceneControl.SceneAction.Credits);
+                        // SceneControl.OnMenuSelection(SceneControl.SceneAction.Credits);
+                        SceneConductor.instance.ShowNonChapterScene(SceneConductor.SceneIndex.Credits);
                         return;
                     }
 
                 case "ExitButton":
                     {
-                        SceneControl.OnMenuSelection(SceneControl.SceneAction.Exit);
+                        // SceneControl.OnMenuSelection(SceneControl.SceneAction.Exit);
+                        SceneConductor.instance.ExitGame();
                         return;
                     }
-                case "MainMenuButton":
+                case "MainMenuButton":  // NOTE: This is NOT used when chapter is open for pause menu
                     {
-                        SceneControl.OnMenuSelection(SceneControl.SceneAction.Menu);
+                        // SceneControl.OnMenuSelection(SceneControl.SceneAction.Menu);
+                        SceneConductor.instance.ShowNonChapterScene(SceneConductor.SceneIndex.MainMenu);
                         return;
                     }
                 case "SkipButton":
                     {
-                        SceneControl.OnMenuSelection(SceneControl.SceneAction.PlayChapter);
+                        // SceneControl.OnMenuSelection(SceneControl.SceneAction.PlayChapter);
+                        SceneConductor.instance.ActivateChapter(SceneConductor.SceneIndex.Chapter01);
                         return;
                     }
             }
 
     }
+
 }

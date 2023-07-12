@@ -21,6 +21,7 @@ TagManager:
   - WineSlot
   - SittingTarget
   - DumbwaiterFloor
+  - StartPosition
   layers:
   - Default
   - TransparentFX
