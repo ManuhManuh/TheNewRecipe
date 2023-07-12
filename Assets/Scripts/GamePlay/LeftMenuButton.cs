@@ -14,6 +14,8 @@ public class LeftMenuButton : MonoBehaviour
 
     private void MainMenuButtonPress(InputAction.CallbackContext obj)
     {
+        Debug.Log($"MainMenu pressed by {this.gameObject.name}");
+
         if (!this.gameObject.activeInHierarchy) return;
 
         if(SceneConductor.instance.ChapterIsOpen)

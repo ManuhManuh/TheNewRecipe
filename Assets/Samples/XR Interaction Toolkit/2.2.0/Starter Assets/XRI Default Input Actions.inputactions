@@ -281,7 +281,7 @@
                 },
                 {
                     "name": "ReturnToMainMenu",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "7d345869-3906-4004-915c-39ce719413df",
                     "expectedControlType": "Button",
                     "processors": "",

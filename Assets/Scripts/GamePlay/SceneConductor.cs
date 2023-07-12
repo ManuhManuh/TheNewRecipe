@@ -20,8 +20,12 @@ public class SceneConductor : MonoBehaviour
 
     private bool chapterIsOpen;
     private AsyncOperation asyncOperation;
-    private Transform sceneStartPosition;
-    private Transform pausedPosition;
+    private Vector3 sceneStartPosition;
+    private Quaternion sceneStartRotation;
+    private Vector3 pausedPosition;
+    private Quaternion pausedRotation;
+    private GameObject levelObjects;
+
 
     // Note: the SceneIndex enum needs to match the build index to work right
     // Chapters can be added at the end
@@ -47,10 +51,13 @@ public class SceneConductor : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(transform.root);
         }
-
+       
         currentSceneIndex = SceneIndex.MasterScene;
         waitingChapter = SceneIndex.MasterScene;    // condition when no chapter scenes are awaiting activation
         chapterIsOpen = false;
+        pausedPosition = gameObject.transform.position;
+        pausedRotation = gameObject.transform.rotation;
+
     }
 
     /// <summary>
@@ -59,37 +66,38 @@ public class SceneConductor : MonoBehaviour
 
     public void ShowMainMenuInChapter()
     {
-        bool activateWhenLoaded = true;
-        bool unloadCurrentScene;
 
         // from UI, use ShowNonChapterScene instead
 
         if (chapterIsOpen)    
         {
-            // chapter: keep open, and record location to return to when pause is over
-            unloadCurrentScene = false;
-            pausedPosition = player.transform;
+            levelObjects = GameObject.Find("LevelObjects");
+            levelObjects.SetActive(false);
+            pausedPosition = player.transform.position;
+            pausedRotation = player.transform.rotation;
+            bool activateWhenLoaded = true;
+            bool unloadCurrentScene = false;
             StartCoroutine(ChangeToNewScene(SceneIndex.MainMenu, unloadCurrentScene, activateWhenLoaded));
 
         }
-       
+
     }
 
     public void CloseMainMenu()
     {
         if (chapterIsOpen)  // only time this should be used, as otherwise the menu is closed as byproduct of opening another scene
         {
+            levelObjects.SetActive(true);
             // paused: just unload the main menu and put player back where they were
             StartCoroutine(UnloadScene(currentSceneIndex));
-            Debug.Log($"Calling PositionPlayerForScene with a position of {pausedPosition.position}");
-            PositionPlayerForScene(pausedPosition);
-
+            PositionPlayerForScene(pausedPosition, pausedRotation);
         }
 
     }
 
     public void ShowNonChapterScene(SceneIndex sceneToShow)
     {
+
         // Scenes that are not chapters and not the Master Scene are "NonChapter" scenes
         if ((int)sceneToShow > 5 || (int)sceneToShow == 0) return;
 
@@ -103,6 +111,7 @@ public class SceneConductor : MonoBehaviour
   
     public void PreLoadChapter(SceneIndex chapter)
     {
+
         // make sure the scene is a chapter scene
         if ((int)chapter < 6) return;
 
@@ -116,10 +125,13 @@ public class SceneConductor : MonoBehaviour
             StartCoroutine(ChangeToNewScene(chapter, unloadOldScene, activateWhenLoaded));
         }
 
+        waitingChapter = chapter;
+
     }
 
     public void ActivateChapter(SceneIndex chapter)
     {
+
         // Activate a previously pre-loaded chapter
         StartCoroutine(ActivateWaitingChapter());
         chapterIsOpen = true;
@@ -139,6 +151,7 @@ public class SceneConductor : MonoBehaviour
 
     private IEnumerator ChangeToNewScene(SceneIndex sceneIndexToLoad, bool unloadOldScene, bool activateWhenLoaded)
     {
+        if (SceneManager.GetSceneByBuildIndex((int)sceneIndexToLoad).isLoaded) yield break;
         // Make sure we never unload the Master scene
         if (currentSceneIndex == SceneIndex.MasterScene) unloadOldScene = false;
 
@@ -161,9 +174,11 @@ public class SceneConductor : MonoBehaviour
             currentSceneIndex = sceneIndexToLoad;
 
             // place the player for the scene
-            sceneStartPosition = startPositions[(int)currentSceneIndex];
-            Debug.Log($"Calling PositionPlayerForScene with a position of {sceneStartPosition.position}");
-            PositionPlayerForScene(sceneStartPosition);
+
+            sceneStartPosition = startPositions[(int)currentSceneIndex].position;
+            sceneStartRotation = startPositions[(int)currentSceneIndex].rotation;
+
+            PositionPlayerForScene(sceneStartPosition, sceneStartRotation);
         }
         else
         {
@@ -178,10 +193,12 @@ public class SceneConductor : MonoBehaviour
         }
 
         yield return null;
+
     }
 
     private IEnumerator ActivateWaitingChapter()
     {
+
         // allow the scene activation if we have a waiting chapter
         if (asyncOperation.allowSceneActivation == false)
         {
@@ -194,39 +211,42 @@ public class SceneConductor : MonoBehaviour
 
         }
 
-        StartCoroutine(UnloadScene(currentSceneIndex));
-
-        // Activate the new scene
-        SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex((int)waitingChapter));
-
         // position the player for the new scene
-        sceneStartPosition = startPositions[(int)waitingChapter];
-        Debug.Log($"Calling PositionPlayerForScene with a position of {sceneStartPosition.position}");
-        PositionPlayerForScene(sceneStartPosition);
+        sceneStartPosition = startPositions[(int)waitingChapter].position;
+        sceneStartRotation = startPositions[(int)waitingChapter].rotation;
+        PositionPlayerForScene(sceneStartPosition, sceneStartRotation);
+
+        // unload the current scene
+        SceneManager.UnloadSceneAsync((int)currentSceneIndex);
+        while (!asyncOperation.isDone)
+        {
+            yield return null;
+        }
 
         // update current scene and reset waiting
         currentSceneIndex = waitingChapter;
         waitingChapter = SceneIndex.MasterScene;    // default when no chapter is waiting
+
     }
 
     private IEnumerator UnloadScene(SceneIndex sceneToUnload)
     {
-        // unload the current scene
+        // Note: this is only needed for unloading the Main Menu when opened from a chapter
+
+        Debug.Log($"Start of UnloadScene ({sceneToUnload})");
+
         SceneManager.UnloadSceneAsync((int)sceneToUnload);
         while (!asyncOperation.isDone)
         {
             yield return null;
         }
 
+        Debug.Log($"End of UnloadScene ({sceneToUnload})");
     }
 
-    private void PositionPlayerForScene(Transform newPosition)
+    private void PositionPlayerForScene(Vector3 newPosition, Quaternion newRotation)
     {
-        Debug.Log($"Positioning player at: {newPosition.position}");
-
-        // figure out why empty object Transforms are giving positions of -106.4, -1.2, -14.9 when they should be 0, -1.5, -6.75
-
-        player.transform.SetPositionAndRotation(newPosition.position, newPosition.rotation);
+        player.transform.SetPositionAndRotation(newPosition, newRotation);
     }
 
 }

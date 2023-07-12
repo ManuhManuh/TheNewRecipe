@@ -35,7 +35,8 @@ public class PlayIntro : MonoBehaviour
 
     public void SkipIntro()
     {
-        StartCoroutine(EndIntro());
+        Debug.Log("Clicked SkipIntro (Play Intro)");
+        SceneConductor.instance.ActivateChapter(SceneConductor.SceneIndex.Chapter01);
     }
 
     private IEnumerator PlayParagraphs()
@@ -82,21 +83,7 @@ public class PlayIntro : MonoBehaviour
 
         PlayerPrefs.SetString("Played", "True");
 
-        StartCoroutine(EndIntro());
-    }
-
-    private IEnumerator EndIntro()
-    {
-
-        // Notify scene control that intro has finished, so first chapter can be activated
-        // SceneControl.instance.IntroFinished = true;
-
-        // Activate the first chapter
         SceneConductor.instance.ActivateChapter(SceneConductor.SceneIndex.Chapter01);
-
-        yield return new WaitForSeconds(3.0f);
-        // Return backgroud music to normal volume
-        SoundManager.PlayMusic("Alex Mason - Prisoner", 0f, 1.0f);
     }
 
 }
