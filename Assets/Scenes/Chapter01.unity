@@ -21482,6 +21482,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3431144480492639055, guid: e812f738335b528488ed0f3b98014ee6,
         type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 3431144480492639055, guid: e812f738335b528488ed0f3b98014ee6,
+        type: 3}
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
@@ -33461,7 +33466,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 118
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!153 &1653699498586670
 ConfigurableJoint:

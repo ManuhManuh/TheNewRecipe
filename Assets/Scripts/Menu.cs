@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class Menu : MonoBehaviour
 {
@@ -52,6 +53,11 @@ public class Menu : MonoBehaviour
                 case "SkipButton":
                     {
                         // SceneControl.OnMenuSelection(SceneControl.SceneAction.PlayChapter);
+                        PlayableDirector timeline = FindObjectOfType<PlayableDirector>();
+                        if(timeline != null)
+                        {
+                            timeline.Stop();
+                        }
                         SceneConductor.instance.ActivateChapter(SceneConductor.SceneIndex.Chapter01);
                         return;
                     }

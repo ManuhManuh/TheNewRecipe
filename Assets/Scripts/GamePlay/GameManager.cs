@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     public void AdvanceToNextChapter()
     {
         currentChapterIndex++;
+        Debug.Log($"Current chapter index incremented to {currentChapterIndex}");
 
         if (currentChapterIndex > Enum.GetNames(typeof(SceneConductor.SceneIndex)).Length)
         {

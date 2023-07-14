@@ -46,7 +46,7 @@ public class WinePuzzle : MonoBehaviour, IPuzzle
     {
         // unlock the drawer 
         drawer.enabled = true;
-
+        drawer.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
         // enable the tap inside the drawer
         tap.SetActive(true);
     }
