@@ -32,13 +32,18 @@ public class WinePuzzle : MonoBehaviour, IPuzzle
     {
         bool solved = true;
 
-        foreach (WineSlot slot in wineSlots)
+        GameObject magicTapOfCheating = GameObject.Find("MagicEndingTap");
+        if (magicTapOfCheating == null)
         {
-            if (!slot.HasCorrectFillStatus)
+            foreach (WineSlot slot in wineSlots)
             {
-                solved = false;
+                if (!slot.HasCorrectFillStatus)
+                {
+                    solved = false;
+                }
             }
         }
+
         return solved;
     }
 

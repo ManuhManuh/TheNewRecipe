@@ -49,6 +49,11 @@ public class PlayIntro : MonoBehaviour
         
     }
 
+    public void EnableSkipButton()
+    {
+        skipButton.enabled = true;
+    }
+
    
    
 }

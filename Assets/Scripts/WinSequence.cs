@@ -34,12 +34,17 @@ public class WinSequence : MonoBehaviour
         // Disable Cask B and hide the tap
         if(realTapSlot != null)
         {
-            realTapSlot.GetComponent<XRSocketInteractor>().GetOldestInteractableSelected().transform.gameObject.SetActive(false);
+            IXRSelectInteractable tap = realTapSlot.GetComponent<XRSocketInteractor>().GetOldestInteractableSelected();
+            if (tap != null)
+            {
+                tap.transform.gameObject.SetActive(false);
+            }
         }
         else
         {
             Debug.Log("Someone forgot to hook up the realTapSlot on the animated barrel!!");
         }
+
         realCask.SetActive(false);
   
         // Enable Barrel Door
@@ -52,7 +57,7 @@ public class WinSequence : MonoBehaviour
         SoundManager.PlaySound(gameObject, "DumbwaiterDoorOpen");
 
         // Make hidden door visible
-        hiddenDoor.SetActive(true); //Figure out how to fade in .. really abrupt
+        hiddenDoor.SetActive(true); 
 
         // Activate teleport target inside barrel
         interiorTeleportTarget.SetActive(true);
@@ -61,7 +66,6 @@ public class WinSequence : MonoBehaviour
 
     public void OnSecretDoorActivated()
     {
-        Debug.Log("Secret door grabbed");
         chapterManager.OnAdvancementTriggered();   
     }
 
