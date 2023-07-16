@@ -28,7 +28,15 @@ public class DumbwaiterPuzzle : MonoBehaviour, IPuzzle
 
     public bool IsSolved()
     {
-        return dumbwaiterDoor.Frozen;
+        GameObject magicTapOfCheating = GameObject.Find("MagicEndingTap");
+        if (magicTapOfCheating == null)
+        {
+            return dumbwaiterDoor.Frozen;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     public void OnSolved()

@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,11 +30,10 @@ public class GameManager : MonoBehaviour
     {
         currentChapterIndex++;
 
-        if (currentChapterIndex > Enum.GetNames(typeof(SceneConductor.SceneIndex)).Length)
+        if (currentChapterIndex >= Enum.GetNames(typeof(SceneConductor.SceneIndex)).Length)
         {
             // no more chapters: play the ending
-            SceneConductor.instance.ActivateChapter(SceneConductor.SceneIndex.Ending);
-
+            SceneConductor.instance.ShowNonChapterScene(SceneConductor.SceneIndex.Ending);
         }
         else
         {
@@ -47,7 +41,6 @@ public class GameManager : MonoBehaviour
             SceneConductor.instance.ActivateChapter((SceneConductor.SceneIndex)currentChapterIndex);
         }
 
-        // SceneControl.OnMenuSelection(SceneControl.SceneAction.StayTuned);
     }
 
     

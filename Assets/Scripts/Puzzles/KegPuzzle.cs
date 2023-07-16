@@ -35,17 +35,21 @@ public class KegPuzzle : MonoBehaviour, IPuzzle
     {
         bool solved = true;
 
-        foreach(Keg keg in kegs)
+        GameObject magicTapOfCheating = GameObject.Find("MagicEndingTap");
+        if (magicTapOfCheating == null)
         {
-            if (!keg.HasTap)
+            foreach (Keg keg in kegs)
             {
-                solved = false;
-            }
-            else
-            {
-                if (!keg.ColourIsCorrect)
+                if (!keg.HasTap)
                 {
                     solved = false;
+                }
+                else
+                {
+                    if (!keg.ColourIsCorrect)
+                    {
+                        solved = false;
+                    }
                 }
             }
         }
