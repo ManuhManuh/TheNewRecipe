@@ -103,7 +103,7 @@ public class SceneConductor : MonoBehaviour
 
         bool activateWhenLoaded = true;
         bool unloadCurrentScene = true;
-
+        
         StartCoroutine(ChangeToNewScene(sceneToShow, unloadCurrentScene, activateWhenLoaded));
 
     }
@@ -190,6 +190,12 @@ public class SceneConductor : MonoBehaviour
         {
             // when loading is done, unload the old scene if required
             SceneManager.UnloadSceneAsync(sceneToUnload);
+
+            // check if replacing chapter with non-chapter
+            if ((int)sceneToUnload.buildIndex > 5 && (int) sceneIndexToLoad <= 5)
+            {
+                chapterIsOpen = false;
+            }
         }
 
         yield return null;
@@ -233,15 +239,12 @@ public class SceneConductor : MonoBehaviour
     {
         // Note: this is only needed for unloading the Main Menu when opened from a chapter
 
-        Debug.Log($"Start of UnloadScene ({sceneToUnload})");
-
         SceneManager.UnloadSceneAsync((int)sceneToUnload);
         while (!asyncOperation.isDone)
         {
             yield return null;
         }
 
-        Debug.Log($"End of UnloadScene ({sceneToUnload})");
     }
 
     private void PositionPlayerForScene(Vector3 newPosition, Quaternion newRotation)

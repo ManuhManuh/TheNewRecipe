@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
+    [SerializeField] Button resumeButton;
     public void MenuChoiceOnClick(string selection)
     {
    
@@ -19,6 +20,8 @@ public class Menu : MonoBehaviour
 
                 case "PlayButton":
                     {
+                        // resume button is only present in main menu
+                        if (resumeButton != null) resumeButton.gameObject.SetActive(true);
                         SceneConductor.instance.ShowNonChapterScene(SceneConductor.SceneIndex.Intro);
                         return;
                     }
@@ -31,7 +34,8 @@ public class Menu : MonoBehaviour
 
                 case "CreditsButton":
                     {
-                        SceneConductor.instance.ShowNonChapterScene(SceneConductor.SceneIndex.Credits);
+                    Debug.Log("Credits requested");
+                    SceneConductor.instance.ShowNonChapterScene(SceneConductor.SceneIndex.Credits);
                         return;
                     }
 
