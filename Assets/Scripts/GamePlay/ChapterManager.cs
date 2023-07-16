@@ -27,14 +27,15 @@ public class ChapterManager : MonoBehaviour
     public bool ChapterFinished()
     {
         bool finished = true;
-
-        foreach(IPuzzle puzzle in chapterPuzzles)
+        
+        foreach (IPuzzle puzzle in chapterPuzzles)
         {
             if (!puzzle.Solved)
             {
                 finished = false;
             }
         }
+        
         return finished;
     }
 

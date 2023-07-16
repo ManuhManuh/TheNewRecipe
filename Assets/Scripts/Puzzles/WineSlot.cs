@@ -32,7 +32,7 @@ public class WineSlot : MonoBehaviour
     public void WineBottleRemoved()
     {
         // Update the correctly filled status
-        fillStatusIsCorrect = shouldBeFilled;
+        fillStatusIsCorrect = !shouldBeFilled;
 
         // Get the puzzle status updated
         winePuzzle.CheckPuzzleStatus();

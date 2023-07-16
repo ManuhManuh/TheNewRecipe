@@ -156,7 +156,7 @@ public class SceneConductor : MonoBehaviour
         if (currentSceneIndex == SceneIndex.MasterScene) unloadOldScene = false;
 
         Scene sceneToUnload = SceneManager.GetSceneByBuildIndex((int)currentSceneIndex);
-        Scene sceneToActivate = SceneManager.GetSceneByBuildIndex((int)sceneIndexToLoad);
+        // Scene sceneToActivate = SceneManager.GetSceneByBuildIndex((int)sceneIndexToLoad);
 
         // load the new scene; always additive because the Master Scene can't be unloaded
         asyncOperation = SceneManager.LoadSceneAsync((int)sceneIndexToLoad, LoadSceneMode.Additive);
