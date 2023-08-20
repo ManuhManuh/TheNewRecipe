@@ -20,7 +20,13 @@ public class WineBottle : MonoBehaviour
         {
             // play a random wood clink sound
             audioSource.PlayOneShot(woodClips[Random.Range(0, woodClips.Count - 1)]);
+            
         }
+    }
+
+    private void OnBecameInvisible()
+    {
+        // check if it is actually blocked rather than just behind the player
     }
 
 }

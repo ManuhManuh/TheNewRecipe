@@ -11,7 +11,7 @@ public class BreakableObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Brick"))
+        if (other.gameObject.CompareTag("Smasher"))
         {
             // Activate the broken version
             brokenVersion.SetActive(true);

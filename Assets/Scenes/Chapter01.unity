@@ -194,6 +194,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1982127382006078542, guid: c54577c7572e1f246a6c2835d89608b0,
         type: 3}
+      propertyPath: m_TagString
+      value: Smasher
+      objectReference: {fileID: 0}
+    - target: {fileID: 1982127382006078542, guid: c54577c7572e1f246a6c2835d89608b0,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -2349,6 +2354,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: brickInsetGrey5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1982127382006078542, guid: c54577c7572e1f246a6c2835d89608b0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Smasher
       objectReference: {fileID: 0}
     - target: {fileID: 1982127382006078542, guid: c54577c7572e1f246a6c2835d89608b0,
         type: 3}
@@ -8211,6 +8221,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1982127382006078542, guid: c54577c7572e1f246a6c2835d89608b0,
         type: 3}
+      propertyPath: m_TagString
+      value: Smasher
+      objectReference: {fileID: 0}
+    - target: {fileID: 1982127382006078542, guid: c54577c7572e1f246a6c2835d89608b0,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -11788,6 +11803,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: brickInsetGrey6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1982127382006078542, guid: c54577c7572e1f246a6c2835d89608b0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Smasher
       objectReference: {fileID: 0}
     - target: {fileID: 1982127382006078542, guid: c54577c7572e1f246a6c2835d89608b0,
         type: 3}
@@ -31156,6 +31176,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: brickInsetGrey2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1982127382006078542, guid: c54577c7572e1f246a6c2835d89608b0,
+        type: 3}
+      propertyPath: m_TagString
+      value: Smasher
       objectReference: {fileID: 0}
     - target: {fileID: 1982127382006078542, guid: c54577c7572e1f246a6c2835d89608b0,
         type: 3}
