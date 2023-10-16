@@ -1,0 +1,24 @@
+Single scene with all flat UI in it - this is for start UI only, so that Chapter01 can load
+*instantiate canvas1 in the scene (has play instead of resume)
+Put player at 0,0,0 in the UI scene
+Move Chapter01 scene so that player at 0,0,0 is in the right position
+*This way if the intro is skipped the player is already in the correct position
+
+When menu button pushed in game, move player to Menu position (away from lighting)
+*do not change scenes
+*canvas2 instantiated
+*do not include ability to play intro
+*include:
+	*resume
+	*quit
+	*instructions
+	*settings
+
+Go back to flat UI scene at the end, show credits panel
+
+
+
+Drawers:
+Let go when moved too far
+
+

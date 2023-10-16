@@ -16,13 +16,13 @@ public class PlayIntro : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
 
-        previouslyPlayed = PlayerPrefs.HasKey("Played");
+        //previouslyPlayed = PlayerPrefs.HasKey("Played");
 
-        if (previouslyPlayed)
-        {
+        //if (previouslyPlayed)
+        //{
         
-            skipButton.enabled = previouslyPlayed;
-        }
+        //    skipButton.enabled = previouslyPlayed;
+        //}
 
         SoundManager.PlayMusic("Alex Mason - Prisoner", 0f, 0.1f);
 
@@ -34,11 +34,21 @@ public class PlayIntro : MonoBehaviour
     public void PreloadFirstChapter()
     {
         Debug.Log("Preload chapter requested");
+        // trying delay by 1 second to stop de-synching of the visual/audio
         SceneConductor.instance.PreLoadChapter(SceneConductor.SceneIndex.Chapter01);
     }
 
+    //private IEnumerator StartPreLoad()
+    //{
+    //    yield return new WaitForSeconds(1.0f);
+    //    SceneConductor.instance.PreLoadChapter(SceneConductor.SceneIndex.Chapter01);
+
+    //}
     public void EndIntro()
     {
+
+        //SceneConductor.instance.ActivateChapter(SceneConductor.SceneIndex.Chapter01);
+
         Debug.Log("End Intro requested");
         PlayableDirector timeline = FindObjectOfType<PlayableDirector>();
         if(timeline != null)
@@ -51,11 +61,7 @@ public class PlayIntro : MonoBehaviour
         
     }
 
-    public void EnableSkipButton()
-    {
-        Debug.Log("Skip enabled");
-        skipButton.enabled = true;
-    }
+    
 
    
    

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -356,6 +356,8 @@ PlayableDirector:
     value: {fileID: 1530010487}
   - key: {fileID: 1297348316182326442, guid: 62c12f267170aab4b8c8f25a6ac7df02, type: 2}
     value: {fileID: 909956353}
+  - key: {fileID: -9173656899355536093, guid: 62c12f267170aab4b8c8f25a6ac7df02, type: 2}
+    value: {fileID: 1790882790}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &909956356
@@ -405,19 +407,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 909956357}
-          m_TargetAssemblyTypeName: PlayIntro, Assembly-CSharp
-          m_MethodName: EnableSkipButton
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+        m_Calls: []
 --- !u!114 &909956357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,6 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad846cf2d1ed4d94c9e0e6f2a84635df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resumeButton: {fileID: 0}
 --- !u!1001 &1144426950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -583,22 +574,22 @@ PrefabInstance:
     - target: {fileID: 6864002683868882387, guid: 89005438e20dd99408c3fb8a3e31ec6d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6864002683868882387, guid: 89005438e20dd99408c3fb8a3e31ec6d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 909956358}
+      objectReference: {fileID: 909956357}
     - target: {fileID: 6864002683868882387, guid: 89005438e20dd99408c3fb8a3e31ec6d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MenuChoiceOnClick
+      value: EndIntro
       objectReference: {fileID: 0}
     - target: {fileID: 6864002683868882387, guid: 89005438e20dd99408c3fb8a3e31ec6d,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Menu, Assembly-CSharp
+      value: PlayIntro, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6864002683868882387, guid: 89005438e20dd99408c3fb8a3e31ec6d,
         type: 3}
@@ -619,7 +610,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1144426950}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1790882789}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -837,8 +828,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1046,7 +1037,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 16777215
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1147,6 +1138,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &1790882789 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6864002683868882384, guid: 89005438e20dd99408c3fb8a3e31ec6d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1144426950}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1790882790
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1790882789}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 740c11f3c2677174a96716e8c8cba7a9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2100481166
 GameObject:
   m_ObjectHideFlags: 0
@@ -1162,6 +1178,8 @@ GameObject:
   - component: {fileID: 2100481173}
   - component: {fileID: 2100481171}
   - component: {fileID: 2100481174}
+  - component: {fileID: 2100481172}
+  - component: {fileID: 2100481176}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -1266,6 +1284,33 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!320 &2100481172
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100481166}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: 62c12f267170aab4b8c8f25a6ac7df02, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 0
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 8752850924210119864, guid: 62c12f267170aab4b8c8f25a6ac7df02, type: 2}
+    value: {fileID: 1216479428}
+  - key: {fileID: -3910708216246173370, guid: 62c12f267170aab4b8c8f25a6ac7df02, type: 2}
+    value: {fileID: 1302255399}
+  - key: {fileID: -8439466175892100320, guid: 62c12f267170aab4b8c8f25a6ac7df02, type: 2}
+    value: {fileID: 470769739}
+  - key: {fileID: 6974057143771085688, guid: 62c12f267170aab4b8c8f25a6ac7df02, type: 2}
+    value: {fileID: 1530010487}
+  - key: {fileID: -9173656899355536093, guid: 62c12f267170aab4b8c8f25a6ac7df02, type: 2}
+    value: {fileID: 1790882790}
+  m_ExposedReferences:
+    m_References: []
 --- !u!114 &2100481173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1293,6 +1338,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2100481166}
   m_CullTransparentMesh: 1
+--- !u!114 &2100481176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100481166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 81e8263919c62314c94ee89a2048f87e, type: 2}
+    - {fileID: 11400000, guid: fde7dc7a874494243a2b18d2d5f36ff0, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 909956357}
+          m_TargetAssemblyTypeName: PlayIntro, Assembly-CSharp
+          m_MethodName: PreloadFirstChapter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 909956357}
+          m_TargetAssemblyTypeName: PlayIntro, Assembly-CSharp
+          m_MethodName: EndIntro
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2135315361
 GameObject:
   m_ObjectHideFlags: 0
