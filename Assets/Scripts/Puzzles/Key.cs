@@ -52,11 +52,7 @@ public class Key : MonoBehaviour
         {
 
             lockedObject.GetComponent<XRGrabInteractable>().enabled = true;
-            lockedObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | 
-                                                                 RigidbodyConstraints.FreezePositionY |
-                                                                 RigidbodyConstraints.FreezeRotationX | 
-                                                                 RigidbodyConstraints.FreezeRotationY | 
-                                                                 RigidbodyConstraints.FreezeRotationZ;
+
         }
 
         foreach (GameObject hiddenObject in hiddenObjects)
