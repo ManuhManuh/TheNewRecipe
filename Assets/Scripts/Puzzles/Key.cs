@@ -6,26 +6,27 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class Key : MonoBehaviour
 {
     [SerializeField] private GameObject animationKey;
-    [SerializeField] private List<XRGrabInteractable> lockedObjects = new List<XRGrabInteractable>();
-    [SerializeField] private List<GameObject> hiddenObjects = new List<GameObject>();
+    [SerializeField] private GameObject travellingKey;
     [SerializeField] private float delay = 0.5f;
     private Animator keyAnimator;
 
     public void Start()
     {
-        // Get the key's animator
-        keyAnimator = animationKey.GetComponent<Animator>();
+        // Get the animation key's animator
+        if(animationKey != null)
+        {
+            keyAnimator = animationKey.GetComponent<Animator>();
+          
+        }
 
     }
 
     public void OnUsed()
     {
-
         // Play the key insert sound
         SoundManager.PlaySound(gameObject, "KeyInsert");
 
         StartCoroutine(AnimateTurning(delay));
-
 
     }
 
@@ -38,26 +39,21 @@ public class Key : MonoBehaviour
 
         // Visually replace the socket/physics key with the animation key
         gameObject.GetComponent<MeshRenderer>().enabled = false;
-        animationKey.GetComponent<MeshRenderer>().enabled = true;
-
+        
         // Play the key turning animation
         if (keyAnimator != null)
         {
+            animationKey.GetComponent<MeshRenderer>().enabled = true;
             keyAnimator.SetBool("KeyTurning", true);
         }
 
-        // Enable the locked object
+        yield return new WaitForSeconds(2.2f);  // animation is 2 seconds long
 
-        foreach (XRGrabInteractable lockedObject in lockedObjects)
-        {
+        // switch the keys back and make the real key not grabbable
 
-            lockedObject.GetComponent<XRGrabInteractable>().enabled = true;
+        travellingKey.GetComponent<MeshRenderer>().enabled = true;
+        gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+        animationKey.GetComponent<MeshRenderer>().enabled = false;
 
-        }
-
-        foreach (GameObject hiddenObject in hiddenObjects)
-        {
-            hiddenObject.SetActive(true);
-        }
     }
 }   

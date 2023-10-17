@@ -202,6 +202,7 @@
     <Compile Include="Assets\Oculus\SampleFramework\Core\Locomotion\Scripts\TeleportTransitionBlink.cs" />
     <Compile Include="Assets\Oculus\SampleFramework\Core\HandsInteraction\Scripts\Tools\PinchStateModule.cs" />
     <Compile Include="Assets\Oculus\Avatar\Scripts\OvrAvatarSkinnedMeshRenderPBSComponent.cs" />
+    <Compile Include="Assets\Scripts\TestForInteraction.cs" />
     <Compile Include="Assets\Scripts\WinSequence.cs" />
     <Compile Include="Assets\Oculus\LipSync\Scripts\OVRLipSyncContextBase.cs" />
     <Compile Include="Assets\Oculus\AudioManager\Scripts\Utils\InspectorNoteAttribute.cs" />
@@ -252,7 +253,7 @@
     <Compile Include="Assets\Scripts\SoundManager.cs" />
     <Compile Include="Assets\Oculus\Avatar\Samples\SocialStarter\Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Oculus\SampleFramework\Usage\HandsTrainExample\Scripts\TrackSegment.cs" />
-    <Compile Include="Assets\Scripts\TestForInteraction.cs" />
+    <Compile Include="Assets\Scripts\Puzzles\Keyhole.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Oculus\SampleFramework\Usage\HandsTrainExample\Shaders\XingLightShader.shader" />

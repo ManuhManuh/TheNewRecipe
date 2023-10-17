@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: -3596499540346572612}
   - component: {fileID: -5064786531040437270}
   - component: {fileID: 8992721789159379031}
+  - component: {fileID: -3825509214826854077}
   m_Layer: 0
   m_Name: DeskKey
   m_TagString: Untagged
@@ -280,3 +281,20 @@ CapsuleCollider:
   m_Height: 0.2515226
   m_Direction: 2
   m_Center: {x: -0.005014427, y: -0.0023301784, z: -0.0028194238}
+--- !u!114 &-3825509214826854077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6306731353306885448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e1a519567106044b89d596228f73997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationKey: {fileID: 0}
+  lockedObjects:
+  - {fileID: 0}
+  hiddenObjects: []
+  delay: 0.5

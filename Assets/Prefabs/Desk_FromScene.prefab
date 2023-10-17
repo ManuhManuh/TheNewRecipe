@@ -1749,7 +1749,7 @@ ConfigurableJoint:
   m_Anchor: {x: 24.55, y: 0.72, z: 13.93}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 2.2962127, y: 0.73794854, z: -3.3743885}
+  m_ConnectedAnchor: {x: -0.5206014, y: -0.5620514, z: -2.1646807}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -1952,7 +1952,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0.6, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 3.3469584, y: 0.72211915, z: -3.133}
+  m_ConnectedAnchor: {x: 0.5301444, y: -0.5778808, z: -1.9232923}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2291,7 +2291,7 @@ ConfigurableJoint:
   m_Anchor: {x: -1.58, y: 0.8, z: 12.8}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 2.1256297, y: 0.7248822, z: -3.354807}
+  m_ConnectedAnchor: {x: -0.6911842, y: -0.57511777, z: -2.1450992}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -2385,7 +2385,7 @@ PrefabInstance:
     - target: {fileID: 5745138251098675604, guid: 9d144dde979ef5641a22ebc9ebbb5154,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6306731353306885448, guid: 9d144dde979ef5641a22ebc9ebbb5154,
         type: 3}
