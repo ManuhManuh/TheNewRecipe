@@ -308,7 +308,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 31
+    m_Bits: 95
   m_AttachTransform: {fileID: 8891507744783180485}
   m_KeepSelectedTargetValid: 1
   m_DisableVisualsWhenBlockedInGroup: 1

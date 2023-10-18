@@ -37,11 +37,6 @@ public class DumbwaiterDoor : ControlledObject
         frozen = false;
         delaying = false;
 
-        // Find resting position for ladder when being propped and delete placeholder
-        ladderRestPosition = ladderPlaceholder.transform.position;
-        ladderRestRotation = ladderPlaceholder.transform.rotation;
-        Destroy(ladderPlaceholder);
-
         dumbwaiterPuzzle = FindObjectOfType<DumbwaiterPuzzle>();
       
     }
@@ -49,6 +44,7 @@ public class DumbwaiterDoor : ControlledObject
     {
         if (!frozen && !opening)
         {
+           
             // Set flags and positions for opening
             opening = true;
             closing = false;
@@ -71,7 +67,7 @@ public class DumbwaiterDoor : ControlledObject
         }
        
     }
-    private void FixedUpdate()
+    private void Update()
     {
         if (fromPosition == toPosition)
         {
@@ -93,22 +89,12 @@ public class DumbwaiterDoor : ControlledObject
         }
     }
 
-    private void placeLadder(Transform ladder)
-    {
-        
-        // Move the ladder to the stable resting position
-        ladder.position = ladderRestPosition;
-        ladder.rotation = ladderRestRotation;
-
-        // Disable the ladder from being picked up again
-        // ladder.GetComponent<XRGrabInteractable>().enabled = false;
-
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Collision detected");
         if (closing && collision.collider.CompareTag("DoorStopper")) // if the ladder is what the door collided with
         {
+            Debug.Log("Door should be stopping");
             // Stop the door closing
             closing = false;
 
@@ -118,9 +104,6 @@ public class DumbwaiterDoor : ControlledObject
             // If the door is open enough to walk through
             if (openAmount > minOpeningSizeForEntry)
             {
-                // Place the ladder nicely
-                placeLadder(collision.collider.transform);
-
                 // Freeze the door open so it doesn't keep trying to close
                 frozen = true;
 
