@@ -3,6 +3,8 @@ Single scene with all flat UI in it - this is for start UI only, so that Chapter
 Put player at 0,0,0 in the UI scene
 Move Chapter01 scene so that player at 0,0,0 is in the right position
 *This way if the intro is skipped the player is already in the correct position
+=> never mind - code it properly so the player always enters any scene at the player start position
+
 
 When menu button pushed in game, move player to Menu position (away from lighting)
 *do not change scenes

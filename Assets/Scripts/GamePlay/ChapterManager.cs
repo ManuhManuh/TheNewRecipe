@@ -5,14 +5,23 @@ using UnityEngine;
 public class ChapterManager : MonoBehaviour
 {
     public Transform playerStartPosition;
+    public GameObject levelContainer;
 
     [SerializeField] private List<IPuzzle> chapterPuzzles = new List<IPuzzle>();
 
     private GameManager gameManager;
     private WinSequence winSequence;
+    private GameObject player;
 
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+
+    }
     private void Start()
     {
+        player.transform.position = playerStartPosition.position;
+
         gameManager = FindObjectOfType<GameManager>();
         winSequence = FindObjectOfType<WinSequence>();
     }
