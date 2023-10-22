@@ -136,12 +136,12 @@ GameObject:
   - component: {fileID: 222713805}
   - component: {fileID: 222713804}
   m_Layer: 0
-  m_Name: BackButton
+  m_Name: BackButtonCred
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &222713803
 RectTransform:
   m_ObjectHideFlags: 0
@@ -818,7 +818,7 @@ GameObject:
   - component: {fileID: 1001129340787938116}
   - component: {fileID: 1001129340787938169}
   m_Layer: 0
-  m_Name: MainMenu
+  m_Name: Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1605,7 +1605,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &2265962261469901546
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1723,12 +1723,13 @@ MonoBehaviour:
     - {fileID: 11400000, guid: fde7dc7a874494243a2b18d2d5f36ff0, type: 2}
     - {fileID: 11400000, guid: 81e8263919c62314c94ee89a2048f87e, type: 2}
     - {fileID: 11400000, guid: b535a36207c8b384081ff18e1d3059ca, type: 2}
+    - {fileID: 11400000, guid: f8e0219c844ca5346b2c944453a71415, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: PlayIntro, Assembly-CSharp
-          m_MethodName: EndIntro
+        - m_Target: {fileID: 1502890107}
+          m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+          m_MethodName: ResumeChapter
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1739,10 +1740,14 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
     - m_PersistentCalls:
+        m_Calls: []
+    - m_PersistentCalls:
+        m_Calls: []
+    - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 2355099798097368578}
           m_TargetAssemblyTypeName: PlayIntro, Assembly-CSharp
-          m_MethodName: PreloadFirstChapter
+          m_MethodName: StartMainMusic
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1752,8 +1757,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-    - m_PersistentCalls:
-        m_Calls: []
 --- !u!4 &2355099796940656524
 Transform:
   m_ObjectHideFlags: 0
@@ -1793,7 +1796,7 @@ PlayableDirector:
     value: {fileID: 2355099798600729081}
   - key: {fileID: 1297348316182326442, guid: 62c12f267170aab4b8c8f25a6ac7df02, type: 2}
     value: {fileID: 2355099796940656527}
-  - key: {fileID: -9173656899355536093, guid: 62c12f267170aab4b8c8f25a6ac7df02, type: 2}
+  - key: {fileID: 0}
     value: {fileID: 2355099797821352296}
   m_ExposedReferences:
     m_References: []
@@ -2025,6 +2028,7 @@ GameObject:
   - component: {fileID: 2355099798097368600}
   - component: {fileID: 2355099798097368602}
   - component: {fileID: 2355099798097368598}
+  - component: {fileID: 2355099798097368578}
   m_Layer: 0
   m_Name: Intro
   m_TagString: Untagged
@@ -2049,6 +2053,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2355099798097368578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2355099798097368576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 651d02cd66418f342a2c2816083274ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skipButton: {fileID: 2355099797821352296}
+  mainMusicTrack: {fileID: 8300000, guid: f863f03123f78974189e3a4154957cf2, type: 3}
+  musicVolume: 0.25
 --- !u!114 &2355099798097368598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2125,8 +2144,6 @@ PlayableDirector:
     value: {fileID: 2355099797575023301}
   - key: {fileID: 6974057143771085688, guid: 62c12f267170aab4b8c8f25a6ac7df02, type: 2}
     value: {fileID: 2355099798600729081}
-  - key: {fileID: -9173656899355536093, guid: 62c12f267170aab4b8c8f25a6ac7df02, type: 2}
-    value: {fileID: 2355099797821352296}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &2355099798097368603
@@ -3590,7 +3607,7 @@ GameObject:
   - component: {fileID: 4626189372235956188}
   - component: {fileID: 4626189372235956187}
   m_Layer: 0
-  m_Name: BackButton
+  m_Name: BackButtonInst
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

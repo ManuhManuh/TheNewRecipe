@@ -50,6 +50,7 @@ public class Menu : MonoBehaviour
 
     public void ShowPauseMenu()
     {
+        Debug.Log("Show pause menu");
         currentPanel.SetActive(false);
         pause.SetActive(true);
         currentPanel = pause;

@@ -7,14 +7,19 @@ using UnityEngine.UI;
 public class SceneControl : MonoBehaviour
 {
     public static SceneControl instance;
+    public bool ChapterLoaded => chapterLoaded;
 
     private GameObject menuContainer;
+    private Menu menu;
     private Vector3 menuPlayerPosition;
+    private Quaternion menuPlayerRotation;
     private AsyncOperation asyncOperation;
     private string currentChapter;
     private string previousChapter;
     private GameObject player;
     private Vector3 lastPlayerPosition;
+    private Quaternion lastPlayerRotation;
+    private bool chapterLoaded;
 
     private void Awake()
     {
@@ -32,6 +37,7 @@ public class SceneControl : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        Debug.Log("Scene control loading Main Menu");
         StartCoroutine(InitializeMenu());
 
     }
@@ -41,49 +47,91 @@ public class SceneControl : MonoBehaviour
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Additive);
 
         // allow time for MainMenu to load 
-        yield return new WaitForSeconds(1.0f);
+        //while (SceneManager.GetActiveScene().ToString() !="MainMenu")
+        while(!SceneManager.GetSceneByName("MainMenu").isLoaded)
+        {
+            yield return null;
+        }
 
-        menuContainer = GameObject.Find("MainMenu");
-        menuPlayerPosition = GameObject.Find("PlayerStartPosition").transform.position;
+        menuContainer = GameObject.Find("MainMenu"); // contains all objects in the menu scene - used for activation/deactivation
+        menu = FindObjectOfType<Menu>();    // has the Menu script on it
+        GameObject startMarker = GameObject.Find("PlayerStartPosition");
+        menuPlayerPosition = startMarker.transform.position;
+        menuPlayerRotation = startMarker.transform.rotation;
+
+        GameManager.instance.AdvanceToNextChapter();
+
     }
-    public void OpenScene(string sceneName)
+    public IEnumerator OpenScene(string sceneName)
     {
         // all chapters will have level objects in a container which will start out deactivated (unless this lags)
         // all chapters will open async and be activated intentionally (not just when done)
-        
+        chapterLoaded = false;
+
         if (currentChapter != null) previousChapter = currentChapter;
         currentChapter = sceneName;
 
         asyncOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         asyncOperation.allowSceneActivation = false;
 
-        if (previousChapter != null) SceneManager.UnloadSceneAsync(sceneName);
+        while(asyncOperation.progress < 0.9f)
+        {
+            yield return null;
+        }
 
+        chapterLoaded = true;
+
+        //yield return new WaitForSeconds(1.0f);  // time for current chapter to be updated
+
+        //lastPlayerPosition = GameManager.instance.CurrentChapter.playerStartPosition.position;
+        //lastPlayerRotation = GameManager.instance.CurrentChapter.playerStartPosition.rotation;
+
+        if (previousChapter != null) SceneManager.UnloadSceneAsync(sceneName);
     }
 
+   
     public void ActivateLoadedScene()
     {
         if (asyncOperation.allowSceneActivation == false)
         {
             asyncOperation.allowSceneActivation = true;
-            player.transform.position = GameManager.instance.CurrentChapter.playerStartPosition.position;
 
+            StartCoroutine(FindChapterManager());
+            
+            
         }
 
     }
 
-    public void ShowMainMenu(string sceneToUnload)
+    private IEnumerator FindChapterManager()
+    {
+        GameObject chapterManager = null; 
+
+        while (GameManager.instance.CurrentChapter == null)
+        {
+            chapterManager = GameObject.Find(currentChapter);
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        GameManager.instance.CurrentChapter = chapterManager.GetComponent<ChapterManager>();
+
+        yield return new WaitForEndOfFrame();
+
+        player.transform.position = GameManager.instance.CurrentChapter.playerStartPosition.position;
+        player.transform.rotation = GameManager.instance.CurrentChapter.playerStartPosition.rotation;
+
+    }
+
+    public void ShowMainMenu()
     {
      
-        if(sceneToUnload == "None")
+        if(chapterLoaded)
         {
             PauseChapter();
-
         }
         else
         {
-            ReturnToMainWithUnload(sceneToUnload);
-
+            menu.ReturnToMain();
         }
         
     }
@@ -91,37 +139,38 @@ public class SceneControl : MonoBehaviour
     private void PauseChapter()
     {
         // hide the chapter and unhide the menu
+
         lastPlayerPosition = player.transform.position;
+        lastPlayerRotation = player.transform.rotation;
+
+        Debug.Log($"Deactivating {GameManager.instance.CurrentChapter.levelContainer.name}");
+
         GameManager.instance.CurrentChapter.levelContainer.SetActive(false);
         menuContainer.SetActive(true);
+        menu.ShowPauseMenu();
+
         player.transform.position = menuPlayerPosition;
+        player.transform.rotation = menuPlayerRotation;
 
     }
 
     public void ResumeChapter()
     {
         // hide the menu and unhide the chapter 
+        ActivateLoadedScene();  // used if we going from the menu to a newly loaded chapter
+
         menuContainer.SetActive(false);
         player.transform.position = lastPlayerPosition;
+        player.transform.rotation = lastPlayerRotation;
+
         GameManager.instance.CurrentChapter.levelContainer.SetActive(true);
 
     }
 
     public void GameOver()
     {
-        ReturnToMainWithUnload(GameManager.instance.CurrentChapter.name);
-    }
-
-    public void ReturnToMainWithUnload(string sceneToUnload)
-    {
-        // basically only happens with placeholder UI, eventually with Game Over to allow restart/credits, etc.
-
-        if (sceneToUnload != "None")
-        {
-            SceneManager.UnloadSceneAsync(sceneToUnload);
-            menuContainer.SetActive(true);
-        }
-
+        SceneManager.UnloadSceneAsync(currentChapter);
+        menuContainer.SetActive(true);
     }
 
 }

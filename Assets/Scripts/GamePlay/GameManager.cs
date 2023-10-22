@@ -6,9 +6,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public ChapterManager CurrentChapter => currentChapter;
+    public ChapterManager CurrentChapter
+    {
+        get { return currentChapter; }
+        set { currentChapter = value; }
+    }
+   
+    [SerializeField] private List<string> chapters = new List<string>();    // strings because objects in different scene; don't change again ;)
 
-    [SerializeField] private List<string> chapters = new List<string>();
     private int currentChapterIndex = 0;    // Main menu is chapter 0, rest follow their natural number
     private ChapterManager currentChapter;
 
@@ -30,6 +35,7 @@ public class GameManager : MonoBehaviour
     public void AdvanceToNextChapter()
     {
         currentChapterIndex++;
+        currentChapter = null;
 
         if (currentChapterIndex >= chapters.Count)
         {
@@ -40,18 +46,11 @@ public class GameManager : MonoBehaviour
         else
         {
             // play the newly incremented chapter
-            SceneControl.instance.OpenScene(chapters[currentChapterIndex]);
-            currentChapter = null;
+            StartCoroutine(SceneControl.instance.OpenScene(chapters[currentChapterIndex]));
+
         }
 
     }
 
-    private void Update()
-    {
-        if (currentChapter == null)
-        {
-            currentChapter = FindObjectOfType<ChapterManager>();
-        }
-    }
 
 }

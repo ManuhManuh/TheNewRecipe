@@ -21,9 +21,14 @@ public class ChapterManager : MonoBehaviour
     private void Start()
     {
         player.transform.position = playerStartPosition.position;
+        player.transform.rotation = playerStartPosition.rotation;
 
         gameManager = FindObjectOfType<GameManager>();
         winSequence = FindObjectOfType<WinSequence>();
+
+        gameManager.CurrentChapter = gameObject.GetComponent<ChapterManager>();
+
+        Debug.Log($"Current chapter: {gameManager.CurrentChapter.name}");
     }
 
     public void CheckChapterStatus()
