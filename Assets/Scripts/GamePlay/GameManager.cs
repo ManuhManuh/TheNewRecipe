@@ -1,11 +1,21 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameManager instance;
+    public static GameManager instance;
+    public ChapterManager CurrentChapter
+    {
+        get { return currentChapter; }
+        set { currentChapter = value; }
+    }
+   
+    [SerializeField] private List<string> chapters = new List<string>();    // strings because objects in different scene; don't change again ;)
 
-    private int currentChapterIndex = 6;    // this is Chapter 1
+    private int currentChapterIndex = 0;    // Main menu is chapter 0, rest follow their natural number
+    private ChapterManager currentChapter;
 
     private void Awake()
     {
@@ -21,27 +31,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-       SceneConductor.instance.ShowNonChapterScene(SceneConductor.SceneIndex.Instructions);
-    }
 
     public void AdvanceToNextChapter()
     {
         currentChapterIndex++;
+        currentChapter = null;
 
-        if (currentChapterIndex >= Enum.GetNames(typeof(SceneConductor.SceneIndex)).Length)
+        if (currentChapterIndex >= chapters.Count)
         {
-            // no more chapters: play the ending
-            SceneConductor.instance.ShowNonChapterScene(SceneConductor.SceneIndex.Ending);
+            // no more chapters: show the credits
+            SceneControl.instance.GameOver();
+
         }
         else
         {
             // play the newly incremented chapter
-            SceneConductor.instance.ActivateChapter((SceneConductor.SceneIndex)currentChapterIndex);
+            StartCoroutine(SceneControl.instance.OpenScene(chapters[currentChapterIndex]));
+
         }
 
     }
 
-    
+
 }

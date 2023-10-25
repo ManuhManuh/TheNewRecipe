@@ -10,7 +10,7 @@ public class Hammer : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 
-            // play a random glass clink sound
+            // play hammer hit sound
             audioSource.PlayOneShot(hammerHit);
 
     }
