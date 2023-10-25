@@ -26,9 +26,8 @@ public class ChapterManager : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         winSequence = FindObjectOfType<WinSequence>();
 
-        gameManager.CurrentChapter = gameObject.GetComponent<ChapterManager>();
+        gameManager.CurrentChapter = this.GetComponent<ChapterManager>();
 
-        Debug.Log($"Current chapter: {gameManager.CurrentChapter.name}");
     }
 
     public void CheckChapterStatus()

@@ -37,7 +37,6 @@ public class SceneControl : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        Debug.Log("Scene control loading Main Menu");
         StartCoroutine(InitializeMenu());
 
     }
@@ -81,12 +80,9 @@ public class SceneControl : MonoBehaviour
 
         chapterLoaded = true;
 
-        //yield return new WaitForSeconds(1.0f);  // time for current chapter to be updated
-
-        //lastPlayerPosition = GameManager.instance.CurrentChapter.playerStartPosition.position;
-        //lastPlayerRotation = GameManager.instance.CurrentChapter.playerStartPosition.rotation;
-
         if (previousChapter != null) SceneManager.UnloadSceneAsync(sceneName);
+
+
     }
 
    
@@ -95,30 +91,8 @@ public class SceneControl : MonoBehaviour
         if (asyncOperation.allowSceneActivation == false)
         {
             asyncOperation.allowSceneActivation = true;
-
-            StartCoroutine(FindChapterManager());
-            
             
         }
-
-    }
-
-    private IEnumerator FindChapterManager()
-    {
-        GameObject chapterManager = null; 
-
-        while (GameManager.instance.CurrentChapter == null)
-        {
-            chapterManager = GameObject.Find(currentChapter);
-            yield return new WaitForSeconds(0.5f);
-        }
-
-        GameManager.instance.CurrentChapter = chapterManager.GetComponent<ChapterManager>();
-
-        yield return new WaitForEndOfFrame();
-
-        player.transform.position = GameManager.instance.CurrentChapter.playerStartPosition.position;
-        player.transform.rotation = GameManager.instance.CurrentChapter.playerStartPosition.rotation;
 
     }
 
