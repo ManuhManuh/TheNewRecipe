@@ -142,6 +142,13 @@ MonoBehaviour:
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
+  m_AllowGazeInteraction: 0
+  m_AllowGazeSelect: 0
+  m_OverrideGazeTimeToSelect: 0
+  m_GazeTimeToSelect: 0.5
+  m_OverrideTimeToAutoDeselectGaze: 0
+  m_TimeToAutoDeselectGaze: 3
+  m_AllowGazeAssistance: 0
   m_FirstHoverEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -174,6 +181,7 @@ MonoBehaviour:
       m_Calls: []
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
+  m_StartingInteractionStrengthFilters: []
   m_OnFirstHoverEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -202,10 +210,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_AttachTransform: {fileID: 2292928759086160898}
+  m_SecondaryAttachTransform: {fileID: 0}
   m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1
+  m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
   m_MovementType: 0
   m_VelocityDamping: 1
@@ -301,6 +311,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2b8d429977b56c4f8fda6be7ae18861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showGhostObjects: {fileID: -7425416499598261195, guid: c348712bda248c246b8c49b3db54643f,
+    type: 3}
   glassClips:
   - {fileID: 8300000, guid: e53615d82c455a345a8857d35989e216, type: 3}
   - {fileID: 8300000, guid: 09232f8f6b30d52489682c4e6a75bd27, type: 3}
@@ -331,6 +343,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d51a77eac5a5e474689d6df23bc98327, type: 3}
   - {fileID: 8300000, guid: 112910c4246769e4281632e0e0a0ea77, type: 3}
   audioSource: {fileID: 1773053917419766619}
+  soundStartDelay: 3
+  soundSpacing: 1
+  ghostMaterial: {fileID: 2100000, guid: bed90687b672b924693a51698b15535f, type: 2}
 --- !u!82 &1773053917419766619
 AudioSource:
   m_ObjectHideFlags: 0

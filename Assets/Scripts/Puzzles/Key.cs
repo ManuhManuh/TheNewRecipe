@@ -8,7 +8,7 @@ public class Key : MonoBehaviour
     [SerializeField] private GameObject animationKey;
     [SerializeField] private GameObject travellingKey;
     [SerializeField] private float delay = 0.5f;
-    private Animator keyAnimator;
+    [SerializeField] private Animator keyAnimator;
 
     public void Start()
     {
