@@ -6,45 +6,44 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class Keyhole : MonoBehaviour
 {
     [SerializeField] private XRGrabInteractable handle;
-    [SerializeField] private GameObject animationKey;
-    [SerializeField] private GameObject travellingKey;
-    [SerializeField] private float delay = 0.5f;
     [SerializeField] private Animator keyAnimator;
+    [SerializeField] private float delay;
+    [SerializeField] private Key correctKey;
 
-    private GameObject insertedKey;
     public void OnKeyInserted()
     {
-        // enable the XR Grab interactable on the handle of the drawer
-        handle.enabled = true;
-
-        // Play the key insert sound
+        
+        // Play the key insert sound (the turn sound happens with the animation)
         SoundManager.PlaySound(gameObject, "KeyInsert");
-        XRSocketInteractor socket = GetComponent<XRSocketInteractor>();
-        IXRSelectInteractable objName = socket.GetOldestInteractableSelected();
-        insertedKey = objName.transform.gameObject;
 
-        animationKey.GetComponent<MeshRenderer>().enabled = true;
-        Destroy(insertedKey);
-
-        StartCoroutine(AnimateTurning(delay));
+        StartCoroutine(TurnAndUnlock(delay));
+        
     }
 
-    public IEnumerator AnimateTurning(float delay)
+    public IEnumerator TurnAndUnlock(float delay)
     {
+        // Play the key turning animation
+        keyAnimator.SetTrigger("TurnKey");
+
         yield return new WaitForSeconds(delay);
 
         // Play the key turning sound
         SoundManager.PlaySound(gameObject, "KeyTurn");
 
-        // Play the key turning animation
-        keyAnimator.SetBool("KeyTurning", true);
+        float nTime = 0;
+        AnimatorStateInfo animatorStateInfo;
 
-        yield return new WaitForSeconds(2.2f);  // animation is 2 seconds long
+        // wait for animation to complete
+        while (nTime < 1.0f)
+        {
+            animatorStateInfo = keyAnimator.GetCurrentAnimatorStateInfo(0);
+            nTime = animatorStateInfo.normalizedTime;
+            yield return null;
+        }
 
-        // switch the keys back and make the real key not grabbable
-
-        travellingKey.GetComponent<MeshRenderer>().enabled = true;
-        Destroy(animationKey);
+        // enable the grab interactable on the handle of the drawer
+        handle.enabled = true;
+        correctKey.OnUsed();
 
     }
 }

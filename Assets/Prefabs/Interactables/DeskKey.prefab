@@ -229,7 +229,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 1
+  m_MovementType: 2
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -293,6 +293,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e1a519567106044b89d596228f73997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationKey: {fileID: 0}
-  travellingKey: {fileID: 0}
-  delay: 0.5
