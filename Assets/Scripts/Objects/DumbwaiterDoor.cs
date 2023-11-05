@@ -20,8 +20,6 @@ public class DumbwaiterDoor : ControlledObject
     private Vector3 openedPosition;
     private Vector3 fromPosition;
     private Vector3 toPosition;
-    private Vector3 ladderRestPosition;
-    private Quaternion ladderRestRotation;
     public bool opening;
     public bool closing;
     public bool frozen;

@@ -1,32 +1,81 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WineBottle : MonoBehaviour
 {
+    [SerializeField] InputActionReference showGhostObjects;
+
     [SerializeField] private List<AudioClip> glassClips = new List<AudioClip>();
     [SerializeField] private List<AudioClip> woodClips = new List<AudioClip>();
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private float soundStartDelay;
+    [SerializeField] private float soundSpacing;
+    [SerializeField] private Material ghostMaterial;
 
-    private void OnCollisionEnter(Collision collision)
-    {
+    private bool soundAllowed = false;
+    private bool inGhostMode = false;
+    private MeshRenderer meshRenderer;
+    private Material originalMaterial;
     
-        if (collision.gameObject.CompareTag("WineBottle"))
+    private void Start()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+        originalMaterial = meshRenderer.material;
+        StartCoroutine(AllowSound(soundStartDelay));
+    }
+
+    private IEnumerator AllowSound(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        soundAllowed = true;
+    }
+
+    private void Update()
+    {
+        float secondaryButtonValue = showGhostObjects.action.ReadValue<float>();
+        if(secondaryButtonValue > 0.1 && !inGhostMode)
         {
-            // play a random glass clink sound
-            audioSource.PlayOneShot(glassClips[Random.Range(0, glassClips.Count - 1)]);
+            inGhostMode = true;
+            ShowGhostBottle();
         }
-        else
+        if(secondaryButtonValue < 0.3 && inGhostMode)
         {
-            // play a random wood clink sound
-            audioSource.PlayOneShot(woodClips[Random.Range(0, woodClips.Count - 1)]);
-            
+            inGhostMode = false;
+            HideGhostBottle();
         }
     }
 
-    private void OnBecameInvisible()
+    private void OnCollisionEnter(Collision collision)
     {
-        // check if it is actually blocked rather than just behind the player
+        //Debug.Log($"Collision with {collision.gameObject.name}");
+        if (soundAllowed)
+        {
+            soundAllowed = false;
+            if (collision.gameObject.CompareTag("WineBottle"))
+            {
+                // play a random glass clink sound
+                audioSource.PlayOneShot(glassClips[Random.Range(0, glassClips.Count - 1)]);
+            }
+            else
+            {
+                // play a random wood clink sound
+                audioSource.PlayOneShot(woodClips[Random.Range(0, woodClips.Count - 1)]);
+            }
+            StartCoroutine(AllowSound(soundSpacing));
+        }
+        
+    }
+
+    public void ShowGhostBottle()
+    {
+        meshRenderer.material = ghostMaterial;
+    }
+
+    public void HideGhostBottle()
+    {
+        meshRenderer.material = originalMaterial;
     }
 
 }
